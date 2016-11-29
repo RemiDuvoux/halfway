@@ -4,8 +4,4 @@ class Airport < ApplicationRecord
 
   validates :iata_code, presence: true
 
-  def name
-    self.city.name
-  end
-
 end

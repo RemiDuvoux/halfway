@@ -43,5 +43,5 @@ AIRPORTS = {
   }
 
 City.all.each do |city|
-  Airport.create(city_id: city.id, iata_code: AIRPORS[city.name])
+  Airport.create(city_id: city.id, iata_code: AIRPORTS[city.name])
 end

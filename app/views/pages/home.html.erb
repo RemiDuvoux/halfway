@@ -7,14 +7,10 @@
           <div class="search-form-box">
             <div class="search-form-origin text-left">
               <%= form_for @result do |f| %>
-              <%= f.select :city_a,
-                Airport::AIRPORTS.map { |k,v| [k, v] },
-               { include_blank: true },
-               { class: 'chosen-select' }%>
-               <%end%>
+                <%= autocomplete_field_tag 'name', '', autocomplete_airport_name_results_path %>
+              <%end%>
             </div>
           </div>
-
         </div>
       </div>
     </div>

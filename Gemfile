@@ -19,6 +19,7 @@ gem 'autoprefixer-rails'
 gem 'rails-jquery-autocomplete'
 gem 'cloudinary', '1.1.0'
 gem "attachinary", github: "assembler/attachinary"
+gem 'jquery-ui-rails'
 gem "jquery-fileupload-rails"
 gem "coffee-rails"
 
