@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+
+require 'csv'
+csv_options = { col_sep: ',', headers: :first_row }
+
+
+filepath ||= "#{Rails.root}/db/seed_cities.csv"
+CSV.foreach(filepath, csv_options) do |row|
+  new_city = City.create!(name: row[0])
+  new_city.save!
+  new_city.card_photo_url = row[2]
+  new_city.background_photo_url = row[3]
+  new_city.save!
+end
+
