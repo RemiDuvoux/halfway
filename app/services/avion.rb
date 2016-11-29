@@ -264,36 +264,36 @@ module Avion
 
     nth = results.index(result)
 
-    html = "<p> According to our little fairies, the number #{nth + 1} cheapest city to get from #{flight_a.origin_airport} and #{flight_b.origin_airport} is #{result.destination_city}" + "<br>"
+    html = "<p> According to our little fairies, the <strong>number #{nth + 1}</strong> cheapest city to get from #{flight_a.origin_airport} and #{flight_b.origin_airport} is <strong>#{result.destination_city}</strong>" + "<br>"
+    html += "<br>"
     html += "Ann flies with #{flight_a.carrier}:" + "<br>"
-    html += "Flight 1:" + "<br>"
+    html += "Flight there:" + "<br>"
     html += "From #{flight_a.origin_airport} to #{flight_a.destination_airport} departing on #{flight_a.departure_time_there}, arriving on #{flight_a.arrival_time_there}" + "<br>"
-    html += "Flight 2:" + "<br>"
+    html += "Flight back:" + "<br>"
     html += "From #{flight_a.destination_airport} to #{flight_a.origin_airport} departing on #{flight_a.departure_time_back}, arriving on #{flight_a.arrival_time_back}" + "<br>"
     html += "Cost for Ann: #{flight_a.price}#{flight_a.currency}" + "<br>"
     html += "<br>"
     html += "Bob flies with #{flight_b.carrier}:" + "<br>"
-    html += "Flight 1:" + "<br>"
+    html += "Flight there:" + "<br>"
     html += "From #{flight_b.origin_airport} to #{flight_b.destination_airport} departing on #{flight_b.departure_time_there}, arriving on #{flight_b.arrival_time_there}" + "<br>"
-    html += "Flight 2:" + "<br>"
+    html += "Flight back:" + "<br>"
     html += "From #{flight_b.destination_airport} to #{flight_b.origin_airport} departing on #{flight_b.departure_time_back}, arriving on #{flight_b.arrival_time_back}" + "<br>"
     html += "Cost for Bob: #{flight_b.price}#{flight_b.currency}" + "<br>"
-
-    html += "Total cost for both:" + "<br>"
-    html += "#{result.total.round(2)}" + "<br>"
+    html += "<br>"
+    html += "<strong>Total cost for both: #{result.total.round(2)}</strong>"
 
     return html
   end
 
 
   #  NOTE: You must user your own API string from Google QPX instead of Secret::QPX_KEY
-  def self.query_qpx(routes, date_there, date_back, filename)
+  def self.query_qpx(routes, date_there, date_back, cache)
     jsons = []
     routes.each do |route|
       jsons << Avion::QPXRequester.new(origin: route.first, destination: route.last, date_there: date_there, date_back: date_back, trip_options: 5, api_key: ENV["QPX_KEY"]).make_request
     end
     # Write all jsons to file for caching during testing
-    File.open(filename, 'w') { |file| file.write(jsons) }
+    File.open(cache, 'w') { |file| file.write(jsons) }
     return jsons
   end
 end
