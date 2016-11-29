@@ -5,5 +5,8 @@ Rails.application.routes.draw do
   resources :results, only:[:index] do
     get :autocomplete_airport_name, :on => :collection
   end
+  resources :cities, only: :index
+  mount Attachinary::Engine => "/attachinary"
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
