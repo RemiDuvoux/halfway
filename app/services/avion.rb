@@ -92,7 +92,7 @@ module Avion
     # date should be a string in "YYYY-MM-DD" format
     def initialize(args = {})
       @origin = args[:origin] # airport code
-      @destination = args[:destination] #airport code
+      @destination = args[:destination]
       @date_there = args[:date_there]
       @date_back = args[:date_back]
       @trip_options = args[:trip_options]
@@ -128,6 +128,64 @@ module Avion
           "refundable"=>false}
         }
       return JSON.generate(request_hash)
+    end
+  end
+
+  # Query QPX two requests at a time, only make request if corresponding Offer
+  # is not found in Redis cache
+  class SmartQPXAgent
+    def initialize(args = {})
+      @origin_a = args[:origin_a]
+      @origin_b = args[:origin_b]
+      @destination_city = args[:destination_city]
+      @date_there = args[:date_there]
+      @date_back = args[:date_back]
+      @cache_key_name = generate_cache_key_name
+      # DEBUG ONLY
+      puts @cache_key_name
+    end
+
+    # TODO: Handle case when no offers found (see Avion command line tester)
+    def obtain_offers
+      # Get deserialized Offer object from cache if found
+      if check_cache
+        puts "Found key #{@cache_key_name} in cache"
+        return Marshal.load($redis.get(@cache_key_name))
+      end
+
+      # If not – run two requests one after another and try to combine them
+      json_a = Avion::QPXRequester.new(
+      origin: @origin_a, destination: @destination_city, date_there: @date_there, date_back: @date_back, trip_options: 5, api_key: ENV["QPX_KEY"]).make_request
+      # DEBUG ONLY
+      puts "#{@origin_a} - #{@destination_city} request made to QPX"
+
+      json_b = Avion::QPXRequester.new(
+      origin: @origin_b, destination: @destination_city, date_there: @date_there, date_back: @date_back, trip_options: 5, api_key: ENV["QPX_KEY"]).make_request
+      # DEBUG ONLY
+      puts "#{@origin_b} - #{@destination_city} request made to QPX"
+
+      # Form the params hash to pass to Comparator
+      comp_params = {
+        date_there: @date_there,
+        date_back: @date_back,
+        origin_a: @origin_a,
+        origin_b: @origin_b
+      }
+
+      comparator = Avion::QPXComparatorGranular.new(json_a, json_b, comp_params)
+      output = comparator.compare
+      $redis.set(@cache_key_name, Marshal.dump(output))
+      return output
+    end
+
+    private
+
+    def check_cache
+      $redis.get(@cache_key_name) != nil
+    end
+
+    def generate_cache_key_name
+      "#{@origin_a}_#{@origin_b}_#{@destination_city}_#{@date_there}_#{@date_back}"
     end
   end
 
@@ -244,6 +302,15 @@ module Avion
     }
   end
 
+  def self.generate_triple_routes(airports, origin_a, origin_b)
+    triples = airports.map do |airport|
+      if airport != origin_a && airport!= origin_b
+        [origin_a, origin_b, airport]
+      end
+    end
+    triples.compact
+  end
+
   def self.print_result(result, results)
     roundtrip_a = result.roundtrips.first
     roundtrip_b = result.roundtrips.last
@@ -298,8 +365,9 @@ module Avion
     return html
   end
 
-  # TODO: Change this method names after testng
-  def self.query_qpx_granular(route, date_there, date_back, cache_dir)
+
+  # Query QPX one request at a time
+  def self.query_qpx_solo(route, date_there, date_back, cache_dir)
    json = Avion::QPXRequester.new(origin: route.first, destination: route.last, date_there: date_there, date_back: date_back, trip_options: 5, api_key: ENV["QPX_KEY"]).make_request
    path = File.join(cache_dir, Avion.generate_cache_name(route, date_there, date_back)) + ".json"
    File.open(path, 'w') { |file| file.write(json) }
@@ -321,10 +389,4 @@ module Avion
   def self.generate_cache_name(route, date_there, date_back)
     "#{route.first}_#{route.last}_#{date_there}_#{date_back}"
   end
-
-  def self.check_if_offer_exists()
-    #code
-  end
-
-
 end
