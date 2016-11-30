@@ -242,6 +242,7 @@ DEPENDENCIES
   rails (= 5.0.0.1)
   rails-jquery-autocomplete
   redis
+  rest-client
   sass-rails
   simple_form
   spring
@@ -252,4 +253,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.13.2
+   1.13.6

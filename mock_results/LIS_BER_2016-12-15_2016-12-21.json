@@ -1,0 +1,254 @@
+{
+ "kind": "qpxExpress#tripsSearch",
+ "trips": {
+  "kind": "qpxexpress#tripOptions",
+  "requestId": "ZqWi5mDMHRhImR94F0PXaQ",
+  "data": {
+   "kind": "qpxexpress#data",
+   "airport": [
+    {
+     "kind": "qpxexpress#airportData",
+     "code": "LIS",
+     "city": "LIS",
+     "name": "Lisbon"
+    },
+    {
+     "kind": "qpxexpress#airportData",
+     "code": "TXL",
+     "city": "BER",
+     "name": "Berlin Tegel"
+    }
+   ],
+   "city": [
+    {
+     "kind": "qpxexpress#cityData",
+     "code": "BER",
+     "name": "Berlin"
+    },
+    {
+     "kind": "qpxexpress#cityData",
+     "code": "LIS",
+     "name": "Lisbon"
+    }
+   ],
+   "aircraft": [
+    {
+     "kind": "qpxexpress#aircraftData",
+     "code": "320",
+     "name": "Airbus A320"
+    }
+   ],
+   "tax": [
+    {
+     "kind": "qpxexpress#taxData",
+     "id": "DE_001",
+     "name": "Germany Airport Security Charge"
+    },
+    {
+     "kind": "qpxexpress#taxData",
+     "id": "YP_003",
+     "name": "Portugal Passenger Service Charge"
+    },
+    {
+     "kind": "qpxexpress#taxData",
+     "id": "PT_001",
+     "name": "Portugal Security Tax"
+    },
+    {
+     "kind": "qpxexpress#taxData",
+     "id": "YQ_I",
+     "name": "TP YQ surcharge"
+    },
+    {
+     "kind": "qpxexpress#taxData",
+     "id": "OY_001",
+     "name": "Germany Air Transport Tax"
+    },
+    {
+     "kind": "qpxexpress#taxData",
+     "id": "RA_002",
+     "name": "German Passenger Service Charge"
+    }
+   ],
+   "carrier": [
+    {
+     "kind": "qpxexpress#carrierData",
+     "code": "TP",
+     "name": "TAP Portugal"
+    }
+   ]
+  },
+  "tripOption": [
+   {
+    "kind": "qpxexpress#tripOption",
+    "saleTotal": "EUR236.30",
+    "id": "COlR1wG6fDLS8rBrLkgy2A001",
+    "slice": [
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 210,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 210,
+        "flight": {
+         "carrier": "TP",
+         "number": "532"
+        },
+        "id": "GDZsZYtxqXMliKbx",
+        "cabin": "COACH",
+        "bookingCode": "E",
+        "bookingCodeCount": 9,
+        "marriedSegmentGroup": "0",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "LyKc4uy4oC-Ex+cl",
+          "aircraft": "320",
+          "arrivalTime": "2016-12-15T22:30+01:00",
+          "departureTime": "2016-12-15T18:00+00:00",
+          "origin": "LIS",
+          "destination": "TXL",
+          "originTerminal": "1",
+          "duration": 210,
+          "mileage": 1430,
+          "meal": "Meal"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 215,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 215,
+        "flight": {
+         "carrier": "TP",
+         "number": "531"
+        },
+        "id": "G1felxeP6MH4QMBr",
+        "cabin": "COACH",
+        "bookingCode": "K",
+        "bookingCodeCount": 9,
+        "marriedSegmentGroup": "1",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "Lo1KN667JgfqbFyf",
+          "aircraft": "320",
+          "arrivalTime": "2016-12-21T08:35+00:00",
+          "departureTime": "2016-12-21T06:00+01:00",
+          "origin": "TXL",
+          "destination": "LIS",
+          "destinationTerminal": "1",
+          "duration": 215,
+          "mileage": 1430,
+          "meal": "Meal"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "pricing": [
+     {
+      "kind": "qpxexpress#pricingInfo",
+      "fare": [
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AnSawLMItJOBthnHU/6VbXX1aKQGcwVtywlOjBb8lkaM",
+        "carrier": "TP",
+        "origin": "LIS",
+        "destination": "BER",
+        "basisCode": "E15BSC0A"
+       },
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "Ad9c3jrOaJa4hDnUmZxrEdwr/9/RhpLmaHA5poV2yWcs",
+        "carrier": "TP",
+        "origin": "BER",
+        "destination": "LIS",
+        "basisCode": "K15BSC0A"
+       }
+      ],
+      "segmentPricing": [
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AnSawLMItJOBthnHU/6VbXX1aKQGcwVtywlOjBb8lkaM",
+        "segmentId": "GDZsZYtxqXMliKbx"
+       },
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "Ad9c3jrOaJa4hDnUmZxrEdwr/9/RhpLmaHA5poV2yWcs",
+        "segmentId": "G1felxeP6MH4QMBr"
+       }
+      ],
+      "baseFareTotal": "EUR158.00",
+      "saleFareTotal": "EUR158.00",
+      "saleTaxTotal": "EUR78.30",
+      "saleTotal": "EUR236.30",
+      "passengers": {
+       "kind": "qpxexpress#passengerCounts",
+       "adultCount": 1
+      },
+      "tax": [
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "YQ_I",
+        "chargeType": "CARRIER_SURCHARGE",
+        "code": "YQ",
+        "salePrice": "EUR35.00"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "YP_003",
+        "chargeType": "GOVERNMENT",
+        "code": "YP",
+        "country": "PT",
+        "salePrice": "EUR10.88"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "PT_001",
+        "chargeType": "GOVERNMENT",
+        "code": "PT",
+        "country": "PT",
+        "salePrice": "EUR4.03"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "DE_001",
+        "chargeType": "GOVERNMENT",
+        "code": "DE",
+        "country": "DE",
+        "salePrice": "EUR7.30"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "OY_001",
+        "chargeType": "GOVERNMENT",
+        "code": "OY",
+        "country": "DE",
+        "salePrice": "EUR7.38"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "RA_002",
+        "chargeType": "GOVERNMENT",
+        "code": "RA",
+        "country": "DE",
+        "salePrice": "EUR13.71"
+       }
+      ],
+      "fareCalculation": "LIS TP BER 62.84E15BSC0A TP LIS 114.46K15BSC0A NUC 177.30 END ROE 0.891079 FARE EUR 158.00 XT 4.03PT 10.88YP 7.30DE 7.38OY 13.71RA 35.00YQ",
+      "latestTicketingTime": "2016-12-15T12:59-05:00",
+      "ptc": "ADT"
+     }
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,1015 @@
+{
+ "kind": "qpxExpress#tripsSearch",
+ "trips": {
+  "kind": "qpxexpress#tripOptions",
+  "requestId": "ztNZhWw8iZDrOjXHK0PXaQ",
+  "data": {
+   "kind": "qpxexpress#data",
+   "airport": [
+    {
+     "kind": "qpxexpress#airportData",
+     "code": "LIS",
+     "city": "LIS",
+     "name": "Lisbon"
+    },
+    {
+     "kind": "qpxexpress#airportData",
+     "code": "ORY",
+     "city": "PAR",
+     "name": "Paris Orly"
+    }
+   ],
+   "city": [
+    {
+     "kind": "qpxexpress#cityData",
+     "code": "LIS",
+     "name": "Lisbon"
+    },
+    {
+     "kind": "qpxexpress#cityData",
+     "code": "PAR",
+     "name": "Paris"
+    }
+   ],
+   "aircraft": [
+    {
+     "kind": "qpxexpress#aircraftData",
+     "code": "319",
+     "name": "Airbus A319"
+    },
+    {
+     "kind": "qpxexpress#aircraftData",
+     "code": "320",
+     "name": "Airbus A320"
+    },
+    {
+     "kind": "qpxexpress#aircraftData",
+     "code": "321",
+     "name": "Airbus A321"
+    }
+   ],
+   "tax": [
+    {
+     "kind": "qpxexpress#taxData",
+     "id": "IZ_001",
+     "name": "French Air Passenger Solidarity Tax"
+    },
+    {
+     "kind": "qpxexpress#taxData",
+     "id": "YQ_F",
+     "name": "ZI YQ surcharge"
+    },
+    {
+     "kind": "qpxexpress#taxData",
+     "id": "FR_007",
+     "name": "French Airport Tax"
+    },
+    {
+     "kind": "qpxexpress#taxData",
+     "id": "QX",
+     "name": "French International Passenger Service Charge"
+    },
+    {
+     "kind": "qpxexpress#taxData",
+     "id": "YP_003",
+     "name": "Portugal Passenger Service Charge"
+    },
+    {
+     "kind": "qpxexpress#taxData",
+     "id": "PT_001",
+     "name": "Portugal Security Tax"
+    },
+    {
+     "kind": "qpxexpress#taxData",
+     "id": "YQ_I",
+     "name": "IB YQ surcharge"
+    },
+    {
+     "kind": "qpxexpress#taxData",
+     "id": "FR_001",
+     "name": "France Civil Aviation Tax Domestic And International"
+    }
+   ],
+   "carrier": [
+    {
+     "kind": "qpxexpress#carrierData",
+     "code": "IB",
+     "name": "Iberia Lineas Aereas de Espana S.A."
+    },
+    {
+     "kind": "qpxexpress#carrierData",
+     "code": "TP",
+     "name": "TAP Portugal"
+    },
+    {
+     "kind": "qpxexpress#carrierData",
+     "code": "ZI",
+     "name": "Aigle Azur"
+    }
+   ]
+  },
+  "tripOption": [
+   {
+    "kind": "qpxexpress#tripOption",
+    "saleTotal": "EUR152.77",
+    "id": "THjlUoPZyO4VDAGdbZ4Xl8001",
+    "slice": [
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 140,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 140,
+        "flight": {
+         "carrier": "ZI",
+         "number": "308"
+        },
+        "id": "GAHTpgR4fmyQ5C51",
+        "cabin": "COACH",
+        "bookingCode": "T",
+        "bookingCodeCount": 9,
+        "marriedSegmentGroup": "0",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "LTCF9xf-ZBr50C+a",
+          "aircraft": "320",
+          "arrivalTime": "2016-12-15T21:55+01:00",
+          "departureTime": "2016-12-15T18:35+00:00",
+          "origin": "LIS",
+          "destination": "ORY",
+          "originTerminal": "1",
+          "destinationTerminal": "S",
+          "duration": 140,
+          "mileage": 893,
+          "meal": "Food and Beverages for Purchase"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 145,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 145,
+        "flight": {
+         "carrier": "ZI",
+         "number": "301"
+        },
+        "id": "G2KXR08xEaMNDyTc",
+        "cabin": "COACH",
+        "bookingCode": "L",
+        "bookingCodeCount": 3,
+        "marriedSegmentGroup": "1",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "Lf1yHRqmC4Xl6KV3",
+          "aircraft": "320",
+          "arrivalTime": "2016-12-21T08:55+00:00",
+          "departureTime": "2016-12-21T07:30+01:00",
+          "origin": "ORY",
+          "destination": "LIS",
+          "originTerminal": "S",
+          "destinationTerminal": "1",
+          "duration": 145,
+          "mileage": 893,
+          "meal": "Food and Beverages for Purchase"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "pricing": [
+     {
+      "kind": "qpxexpress#pricingInfo",
+      "fare": [
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "ATzlqXBNLlSe6jXaKBXzuARplZGSNqYfL//eLptchRhA",
+        "carrier": "ZI",
+        "origin": "LIS",
+        "destination": "PAR",
+        "basisCode": "TRPEURO0"
+       },
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AsEs9VBiuhKPkYNnvKJmn90/xPzXYpUFHfuEMsXEssBE",
+        "carrier": "ZI",
+        "origin": "PAR",
+        "destination": "LIS",
+        "basisCode": "LRTPT0P"
+       }
+      ],
+      "segmentPricing": [
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "ATzlqXBNLlSe6jXaKBXzuARplZGSNqYfL//eLptchRhA",
+        "segmentId": "GAHTpgR4fmyQ5C51"
+       },
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AsEs9VBiuhKPkYNnvKJmn90/xPzXYpUFHfuEMsXEssBE",
+        "segmentId": "G2KXR08xEaMNDyTc"
+       }
+      ],
+      "baseFareTotal": "EUR79.00",
+      "saleFareTotal": "EUR79.00",
+      "saleTaxTotal": "EUR73.77",
+      "saleTotal": "EUR152.77",
+      "passengers": {
+       "kind": "qpxexpress#passengerCounts",
+       "adultCount": 1
+      },
+      "tax": [
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "YQ_F",
+        "chargeType": "CARRIER_SURCHARGE",
+        "code": "YQ",
+        "salePrice": "EUR30.00"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "YP_003",
+        "chargeType": "GOVERNMENT",
+        "code": "YP",
+        "country": "PT",
+        "salePrice": "EUR10.88"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "PT_001",
+        "chargeType": "GOVERNMENT",
+        "code": "PT",
+        "country": "PT",
+        "salePrice": "EUR4.03"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "FR_001",
+        "chargeType": "GOVERNMENT",
+        "code": "FR",
+        "country": "FR",
+        "salePrice": "EUR4.44"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "QX",
+        "chargeType": "GOVERNMENT",
+        "code": "QX",
+        "country": "FR",
+        "salePrice": "EUR10.54"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "FR_007",
+        "chargeType": "GOVERNMENT",
+        "code": "FR",
+        "country": "FR",
+        "salePrice": "EUR12.75"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "IZ_001",
+        "chargeType": "GOVERNMENT",
+        "code": "IZ",
+        "country": "FR",
+        "salePrice": "EUR1.13"
+       }
+      ],
+      "fareCalculation": "LIS ZI PAR 8.97TRPEURO0 ZI LIS 79.67LRTPT0P NUC 88.64 END ROE 0.891079 FARE EUR 79.00 XT 4.03PT 10.88YP 17.19FR 1.13IZ 10.54QX 30.00YQ",
+      "latestTicketingTime": "2016-12-15T13:34-05:00",
+      "ptc": "ADT",
+      "refundable": true
+     }
+    ]
+   },
+   {
+    "kind": "qpxexpress#tripOption",
+    "saleTotal": "EUR208.77",
+    "id": "THjlUoPZyO4VDAGdbZ4Xl8002",
+    "slice": [
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 155,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 155,
+        "flight": {
+         "carrier": "IB",
+         "number": "5986"
+        },
+        "id": "GrPHBcU3YW9Pz4-g",
+        "cabin": "COACH",
+        "bookingCode": "F",
+        "bookingCodeCount": 4,
+        "marriedSegmentGroup": "0",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "LnSKeJ3mOfEVGIJ5",
+          "aircraft": "320",
+          "arrivalTime": "2016-12-15T22:30+01:00",
+          "departureTime": "2016-12-15T18:55+00:00",
+          "origin": "LIS",
+          "destination": "ORY",
+          "originTerminal": "1",
+          "destinationTerminal": "W",
+          "duration": 155,
+          "operatingDisclosure": "OPERATED BY VUELING AIRLINES",
+          "mileage": 893
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 150,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 150,
+        "flight": {
+         "carrier": "IB",
+         "number": "5985"
+        },
+        "id": "GQlNDJxQaUT3zsJy",
+        "cabin": "COACH",
+        "bookingCode": "Z",
+        "bookingCodeCount": 4,
+        "marriedSegmentGroup": "1",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "LyrEGmcmN2sQzAxn",
+          "aircraft": "320",
+          "arrivalTime": "2016-12-21T18:05+00:00",
+          "departureTime": "2016-12-21T16:35+01:00",
+          "origin": "ORY",
+          "destination": "LIS",
+          "originTerminal": "W",
+          "destinationTerminal": "1",
+          "duration": 150,
+          "operatingDisclosure": "OPERATED BY VUELING AIRLINES",
+          "mileage": 893
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "pricing": [
+     {
+      "kind": "qpxexpress#pricingInfo",
+      "fare": [
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AGykmIgAAOVUaoM6XCrxYTn/FBthD20LVr7tzHBliifQ",
+        "carrier": "IB",
+        "origin": "LIS",
+        "destination": "PAR",
+        "basisCode": "FRTNVY"
+       },
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AIKW2YAxek1oSaZcXa8j+4HD1UnGooRDCU7njcggkht/",
+        "carrier": "IB",
+        "origin": "PAR",
+        "destination": "LIS",
+        "basisCode": "ZRTNVY"
+       }
+      ],
+      "segmentPricing": [
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AGykmIgAAOVUaoM6XCrxYTn/FBthD20LVr7tzHBliifQ",
+        "segmentId": "GrPHBcU3YW9Pz4-g"
+       },
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AIKW2YAxek1oSaZcXa8j+4HD1UnGooRDCU7njcggkht/",
+        "segmentId": "GQlNDJxQaUT3zsJy"
+       }
+      ],
+      "baseFareTotal": "EUR120.00",
+      "saleFareTotal": "EUR120.00",
+      "saleTaxTotal": "EUR88.77",
+      "saleTotal": "EUR208.77",
+      "passengers": {
+       "kind": "qpxexpress#passengerCounts",
+       "adultCount": 1
+      },
+      "tax": [
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "YQ_I",
+        "chargeType": "CARRIER_SURCHARGE",
+        "code": "YQ",
+        "salePrice": "EUR45.00"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "YP_003",
+        "chargeType": "GOVERNMENT",
+        "code": "YP",
+        "country": "PT",
+        "salePrice": "EUR10.88"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "PT_001",
+        "chargeType": "GOVERNMENT",
+        "code": "PT",
+        "country": "PT",
+        "salePrice": "EUR4.03"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "FR_001",
+        "chargeType": "GOVERNMENT",
+        "code": "FR",
+        "country": "FR",
+        "salePrice": "EUR4.44"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "QX",
+        "chargeType": "GOVERNMENT",
+        "code": "QX",
+        "country": "FR",
+        "salePrice": "EUR10.54"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "FR_007",
+        "chargeType": "GOVERNMENT",
+        "code": "FR",
+        "country": "FR",
+        "salePrice": "EUR12.75"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "IZ_001",
+        "chargeType": "GOVERNMENT",
+        "code": "IZ",
+        "country": "FR",
+        "salePrice": "EUR1.13"
+       }
+      ],
+      "fareCalculation": "LIS IB PAR 9.53FRTNVY IB LIS 125.12ZRTNVY NUC 134.65 END ROE 0.891079 FARE EUR 120.00 XT 4.03PT 10.88YP 17.19FR 1.13IZ 10.54QX 45.00YQ",
+      "latestTicketingTime": "2016-12-01T11:10-05:00",
+      "ptc": "ADT"
+     }
+    ]
+   },
+   {
+    "kind": "qpxexpress#tripOption",
+    "saleTotal": "EUR216.77",
+    "id": "THjlUoPZyO4VDAGdbZ4Xl8003",
+    "slice": [
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 150,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 150,
+        "flight": {
+         "carrier": "TP",
+         "number": "434"
+        },
+        "id": "GHycLvd04USFCFdm",
+        "cabin": "COACH",
+        "bookingCode": "O",
+        "bookingCodeCount": 9,
+        "marriedSegmentGroup": "0",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "LumyuF7vLi77ojMC",
+          "aircraft": "321",
+          "arrivalTime": "2016-12-15T10:10+01:00",
+          "departureTime": "2016-12-15T06:40+00:00",
+          "origin": "LIS",
+          "destination": "ORY",
+          "originTerminal": "1",
+          "destinationTerminal": "W",
+          "duration": 150,
+          "mileage": 893,
+          "meal": "Meal"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 145,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 145,
+        "flight": {
+         "carrier": "TP",
+         "number": "447"
+        },
+        "id": "G+DpccUdH5RbZjbM",
+        "cabin": "COACH",
+        "bookingCode": "W",
+        "bookingCodeCount": 9,
+        "marriedSegmentGroup": "1",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "L9WSq3rLbax5ZuxJ",
+          "aircraft": "319",
+          "arrivalTime": "2016-12-21T08:25+00:00",
+          "departureTime": "2016-12-21T07:00+01:00",
+          "origin": "ORY",
+          "destination": "LIS",
+          "originTerminal": "W",
+          "destinationTerminal": "1",
+          "duration": 145,
+          "mileage": 893,
+          "meal": "Meal"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "pricing": [
+     {
+      "kind": "qpxexpress#pricingInfo",
+      "fare": [
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AZRA/BKfq8cTwuQSkUyF9rFYLCDA3hHc9e7JthrB11/M",
+        "carrier": "TP",
+        "origin": "LIS",
+        "destination": "PAR",
+        "basisCode": "O14BSC0A"
+       },
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AKlaPKM194pjs4p31wLvgmQmR1JLWBtCIpOh9o2H0ETg",
+        "carrier": "TP",
+        "origin": "PAR",
+        "destination": "LIS",
+        "basisCode": "W14BSC0A"
+       }
+      ],
+      "segmentPricing": [
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AZRA/BKfq8cTwuQSkUyF9rFYLCDA3hHc9e7JthrB11/M",
+        "segmentId": "GHycLvd04USFCFdm"
+       },
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AKlaPKM194pjs4p31wLvgmQmR1JLWBtCIpOh9o2H0ETg",
+        "segmentId": "G+DpccUdH5RbZjbM"
+       }
+      ],
+      "baseFareTotal": "EUR133.00",
+      "saleFareTotal": "EUR133.00",
+      "saleTaxTotal": "EUR83.77",
+      "saleTotal": "EUR216.77",
+      "passengers": {
+       "kind": "qpxexpress#passengerCounts",
+       "adultCount": 1
+      },
+      "tax": [
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "YQ_I",
+        "chargeType": "CARRIER_SURCHARGE",
+        "code": "YQ",
+        "salePrice": "EUR40.00"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "YP_003",
+        "chargeType": "GOVERNMENT",
+        "code": "YP",
+        "country": "PT",
+        "salePrice": "EUR10.88"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "PT_001",
+        "chargeType": "GOVERNMENT",
+        "code": "PT",
+        "country": "PT",
+        "salePrice": "EUR4.03"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "FR_001",
+        "chargeType": "GOVERNMENT",
+        "code": "FR",
+        "country": "FR",
+        "salePrice": "EUR4.44"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "QX",
+        "chargeType": "GOVERNMENT",
+        "code": "QX",
+        "country": "FR",
+        "salePrice": "EUR10.54"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "FR_007",
+        "chargeType": "GOVERNMENT",
+        "code": "FR",
+        "country": "FR",
+        "salePrice": "EUR12.75"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "IZ_001",
+        "chargeType": "GOVERNMENT",
+        "code": "IZ",
+        "country": "FR",
+        "salePrice": "EUR1.13"
+       }
+      ],
+      "fareCalculation": "LIS TP PAR 20.20O14BSC0A TP LIS 129.05W14BSC0A NUC 149.25 END ROE 0.891079 FARE EUR 133.00 XT 4.03PT 10.88YP 17.19FR 1.13IZ 10.54QX 40.00YQ",
+      "latestTicketingTime": "2016-12-15T01:39-05:00",
+      "ptc": "ADT"
+     }
+    ]
+   },
+   {
+    "kind": "qpxexpress#tripOption",
+    "saleTotal": "EUR225.77",
+    "id": "THjlUoPZyO4VDAGdbZ4Xl8004",
+    "slice": [
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 150,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 150,
+        "flight": {
+         "carrier": "TP",
+         "number": "446"
+        },
+        "id": "GKDhkbf5hi8zX9z9",
+        "cabin": "COACH",
+        "bookingCode": "T",
+        "bookingCodeCount": 9,
+        "marriedSegmentGroup": "0",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "Lmt7f2HaK0N6-xlW",
+          "aircraft": "320",
+          "arrivalTime": "2016-12-15T23:05+01:00",
+          "departureTime": "2016-12-15T19:35+00:00",
+          "origin": "LIS",
+          "destination": "ORY",
+          "originTerminal": "1",
+          "destinationTerminal": "W",
+          "duration": 150,
+          "mileage": 893,
+          "meal": "Meal"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 145,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 145,
+        "flight": {
+         "carrier": "TP",
+         "number": "447"
+        },
+        "id": "G+DpccUdH5RbZjbM",
+        "cabin": "COACH",
+        "bookingCode": "W",
+        "bookingCodeCount": 9,
+        "marriedSegmentGroup": "1",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "L9WSq3rLbax5ZuxJ",
+          "aircraft": "319",
+          "arrivalTime": "2016-12-21T08:25+00:00",
+          "departureTime": "2016-12-21T07:00+01:00",
+          "origin": "ORY",
+          "destination": "LIS",
+          "originTerminal": "W",
+          "destinationTerminal": "1",
+          "duration": 145,
+          "mileage": 893,
+          "meal": "Meal"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "pricing": [
+     {
+      "kind": "qpxexpress#pricingInfo",
+      "fare": [
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AxW6TsItCqX567QhAB3V+MHKh51s6KpYzCNdvL3a4zyM",
+        "carrier": "TP",
+        "origin": "LIS",
+        "destination": "PAR",
+        "basisCode": "T14BSC0A"
+       },
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AKlaPKM194pjs4p31wLvgmQmR1JLWBtCIpOh9o2H0ETg",
+        "carrier": "TP",
+        "origin": "PAR",
+        "destination": "LIS",
+        "basisCode": "W14BSC0A"
+       }
+      ],
+      "segmentPricing": [
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AxW6TsItCqX567QhAB3V+MHKh51s6KpYzCNdvL3a4zyM",
+        "segmentId": "GKDhkbf5hi8zX9z9"
+       },
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AKlaPKM194pjs4p31wLvgmQmR1JLWBtCIpOh9o2H0ETg",
+        "segmentId": "G+DpccUdH5RbZjbM"
+       }
+      ],
+      "baseFareTotal": "EUR142.00",
+      "saleFareTotal": "EUR142.00",
+      "saleTaxTotal": "EUR83.77",
+      "saleTotal": "EUR225.77",
+      "passengers": {
+       "kind": "qpxexpress#passengerCounts",
+       "adultCount": 1
+      },
+      "tax": [
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "YQ_I",
+        "chargeType": "CARRIER_SURCHARGE",
+        "code": "YQ",
+        "salePrice": "EUR40.00"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "YP_003",
+        "chargeType": "GOVERNMENT",
+        "code": "YP",
+        "country": "PT",
+        "salePrice": "EUR10.88"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "PT_001",
+        "chargeType": "GOVERNMENT",
+        "code": "PT",
+        "country": "PT",
+        "salePrice": "EUR4.03"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "FR_001",
+        "chargeType": "GOVERNMENT",
+        "code": "FR",
+        "country": "FR",
+        "salePrice": "EUR4.44"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "QX",
+        "chargeType": "GOVERNMENT",
+        "code": "QX",
+        "country": "FR",
+        "salePrice": "EUR10.54"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "FR_007",
+        "chargeType": "GOVERNMENT",
+        "code": "FR",
+        "country": "FR",
+        "salePrice": "EUR12.75"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "IZ_001",
+        "chargeType": "GOVERNMENT",
+        "code": "IZ",
+        "country": "FR",
+        "salePrice": "EUR1.13"
+       }
+      ],
+      "fareCalculation": "LIS TP PAR 30.30T14BSC0A TP LIS 129.05W14BSC0A NUC 159.35 END ROE 0.891079 FARE EUR 142.00 XT 4.03PT 10.88YP 17.19FR 1.13IZ 10.54QX 40.00YQ",
+      "latestTicketingTime": "2016-12-15T14:34-05:00",
+      "ptc": "ADT"
+     }
+    ]
+   },
+   {
+    "kind": "qpxexpress#tripOption",
+    "saleTotal": "EUR225.77",
+    "id": "THjlUoPZyO4VDAGdbZ4Xl8005",
+    "slice": [
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 150,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 150,
+        "flight": {
+         "carrier": "TP",
+         "number": "448"
+        },
+        "id": "GbQW8XYB+8k45Svr",
+        "cabin": "COACH",
+        "bookingCode": "T",
+        "bookingCodeCount": 9,
+        "marriedSegmentGroup": "0",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "LnbiHfbvwsbQ-AzE",
+          "aircraft": "320",
+          "arrivalTime": "2016-12-15T21:35+01:00",
+          "departureTime": "2016-12-15T18:05+00:00",
+          "origin": "LIS",
+          "destination": "ORY",
+          "originTerminal": "1",
+          "destinationTerminal": "W",
+          "duration": 150,
+          "mileage": 893,
+          "meal": "Meal"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 145,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 145,
+        "flight": {
+         "carrier": "TP",
+         "number": "447"
+        },
+        "id": "G+DpccUdH5RbZjbM",
+        "cabin": "COACH",
+        "bookingCode": "W",
+        "bookingCodeCount": 9,
+        "marriedSegmentGroup": "1",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "L9WSq3rLbax5ZuxJ",
+          "aircraft": "319",
+          "arrivalTime": "2016-12-21T08:25+00:00",
+          "departureTime": "2016-12-21T07:00+01:00",
+          "origin": "ORY",
+          "destination": "LIS",
+          "originTerminal": "W",
+          "destinationTerminal": "1",
+          "duration": 145,
+          "mileage": 893,
+          "meal": "Meal"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "pricing": [
+     {
+      "kind": "qpxexpress#pricingInfo",
+      "fare": [
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AxW6TsItCqX567QhAB3V+MHKh51s6KpYzCNdvL3a4zyM",
+        "carrier": "TP",
+        "origin": "LIS",
+        "destination": "PAR",
+        "basisCode": "T14BSC0A"
+       },
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AKlaPKM194pjs4p31wLvgmQmR1JLWBtCIpOh9o2H0ETg",
+        "carrier": "TP",
+        "origin": "PAR",
+        "destination": "LIS",
+        "basisCode": "W14BSC0A"
+       }
+      ],
+      "segmentPricing": [
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AxW6TsItCqX567QhAB3V+MHKh51s6KpYzCNdvL3a4zyM",
+        "segmentId": "GbQW8XYB+8k45Svr"
+       },
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AKlaPKM194pjs4p31wLvgmQmR1JLWBtCIpOh9o2H0ETg",
+        "segmentId": "G+DpccUdH5RbZjbM"
+       }
+      ],
+      "baseFareTotal": "EUR142.00",
+      "saleFareTotal": "EUR142.00",
+      "saleTaxTotal": "EUR83.77",
+      "saleTotal": "EUR225.77",
+      "passengers": {
+       "kind": "qpxexpress#passengerCounts",
+       "adultCount": 1
+      },
+      "tax": [
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "YQ_I",
+        "chargeType": "CARRIER_SURCHARGE",
+        "code": "YQ",
+        "salePrice": "EUR40.00"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "YP_003",
+        "chargeType": "GOVERNMENT",
+        "code": "YP",
+        "country": "PT",
+        "salePrice": "EUR10.88"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "PT_001",
+        "chargeType": "GOVERNMENT",
+        "code": "PT",
+        "country": "PT",
+        "salePrice": "EUR4.03"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "FR_001",
+        "chargeType": "GOVERNMENT",
+        "code": "FR",
+        "country": "FR",
+        "salePrice": "EUR4.44"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "QX",
+        "chargeType": "GOVERNMENT",
+        "code": "QX",
+        "country": "FR",
+        "salePrice": "EUR10.54"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "FR_007",
+        "chargeType": "GOVERNMENT",
+        "code": "FR",
+        "country": "FR",
+        "salePrice": "EUR12.75"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "IZ_001",
+        "chargeType": "GOVERNMENT",
+        "code": "IZ",
+        "country": "FR",
+        "salePrice": "EUR1.13"
+       }
+      ],
+      "fareCalculation": "LIS TP PAR 30.30T14BSC0A TP LIS 129.05W14BSC0A NUC 159.35 END ROE 0.891079 FARE EUR 142.00 XT 4.03PT 10.88YP 17.19FR 1.13IZ 10.54QX 40.00YQ",
+      "latestTicketingTime": "2016-12-15T13:04-05:00",
+      "ptc": "ADT"
+     }
+    ]
+   }
+  ]
+ }
+}

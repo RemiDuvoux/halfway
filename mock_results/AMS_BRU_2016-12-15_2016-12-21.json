@@ -1,0 +1,809 @@
+{
+ "kind": "qpxExpress#tripsSearch",
+ "trips": {
+  "kind": "qpxexpress#tripOptions",
+  "requestId": "p9akGpUDNE0bGeT8b0PXaQ",
+  "data": {
+   "kind": "qpxexpress#data",
+   "airport": [
+    {
+     "kind": "qpxexpress#airportData",
+     "code": "AMS",
+     "city": "AMS",
+     "name": "Amsterdam Schiphol Airport"
+    },
+    {
+     "kind": "qpxexpress#airportData",
+     "code": "BRU",
+     "city": "BRU",
+     "name": "Brussels Airport"
+    }
+   ],
+   "city": [
+    {
+     "kind": "qpxexpress#cityData",
+     "code": "AMS",
+     "name": "Amsterdam"
+    },
+    {
+     "kind": "qpxexpress#cityData",
+     "code": "BRU",
+     "name": "Brussels"
+    }
+   ],
+   "aircraft": [
+    {
+     "kind": "qpxexpress#aircraftData",
+     "code": "E90",
+     "name": "Embraer RJ-190"
+    },
+    {
+     "kind": "qpxexpress#aircraftData",
+     "code": "F70",
+     "name": "Fokker 70"
+    }
+   ],
+   "tax": [
+    {
+     "kind": "qpxexpress#taxData",
+     "id": "CJ_001",
+     "name": "Netherlands Security Service Charge"
+    },
+    {
+     "kind": "qpxexpress#taxData",
+     "id": "RN_001",
+     "name": "Netherlands Passenger Service Charge"
+    },
+    {
+     "kind": "qpxexpress#taxData",
+     "id": "BE_001",
+     "name": "Belgium Passenger Service And Security Charge"
+    }
+   ],
+   "carrier": [
+    {
+     "kind": "qpxexpress#carrierData",
+     "code": "KL",
+     "name": "KLM Royal Dutch Airlines"
+    }
+   ]
+  },
+  "tripOption": [
+   {
+    "kind": "qpxexpress#tripOption",
+    "saleTotal": "EUR117.12",
+    "id": "LENAQNYujlTQoc4TnklhIJ002",
+    "slice": [
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 50,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 50,
+        "flight": {
+         "carrier": "KL",
+         "number": "1733"
+        },
+        "id": "GCEVZC10rej4Y0mN",
+        "cabin": "COACH",
+        "bookingCode": "V",
+        "bookingCodeCount": 9,
+        "marriedSegmentGroup": "0",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "L6jLFQy9aOLpNS8y",
+          "aircraft": "F70",
+          "arrivalTime": "2016-12-15T22:10+01:00",
+          "departureTime": "2016-12-15T21:20+01:00",
+          "origin": "AMS",
+          "destination": "BRU",
+          "duration": 50,
+          "operatingDisclosure": "OPERATED BY KLM CITYHOPPER",
+          "mileage": 97,
+          "meal": "Snack or Brunch"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 55,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 55,
+        "flight": {
+         "carrier": "KL",
+         "number": "1720"
+        },
+        "id": "G-FGt+CjqexP7pyF",
+        "cabin": "COACH",
+        "bookingCode": "X",
+        "bookingCodeCount": 7,
+        "marriedSegmentGroup": "1",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "LNNUus+U1wKDDtIX",
+          "aircraft": "F70",
+          "arrivalTime": "2016-12-21T07:40+01:00",
+          "departureTime": "2016-12-21T06:45+01:00",
+          "origin": "BRU",
+          "destination": "AMS",
+          "duration": 55,
+          "operatingDisclosure": "OPERATED BY KLM CITYHOPPER",
+          "mileage": 97,
+          "meal": "Snack or Brunch"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "pricing": [
+     {
+      "kind": "qpxexpress#pricingInfo",
+      "fare": [
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AosjlQiCJuJqSxHHgqFubx9gbh7e6CmV6JdIF6kz6Rgo",
+        "carrier": "KL",
+        "origin": "AMS",
+        "destination": "BRU",
+        "basisCode": "VSRNL"
+       },
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AVNx3nGK7eZHKILJNkWsQoNulAOShuOg1WJowmdZdXBY",
+        "carrier": "KL",
+        "origin": "BRU",
+        "destination": "AMS",
+        "basisCode": "XSRNL"
+       }
+      ],
+      "segmentPricing": [
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AosjlQiCJuJqSxHHgqFubx9gbh7e6CmV6JdIF6kz6Rgo",
+        "segmentId": "GCEVZC10rej4Y0mN"
+       },
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AVNx3nGK7eZHKILJNkWsQoNulAOShuOg1WJowmdZdXBY",
+        "segmentId": "G-FGt+CjqexP7pyF"
+       }
+      ],
+      "baseFareTotal": "EUR66.00",
+      "saleFareTotal": "EUR66.00",
+      "saleTaxTotal": "EUR51.12",
+      "saleTotal": "EUR117.12",
+      "passengers": {
+       "kind": "qpxexpress#passengerCounts",
+       "adultCount": 1
+      },
+      "tax": [
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "CJ_001",
+        "chargeType": "GOVERNMENT",
+        "code": "CJ",
+        "country": "NL",
+        "salePrice": "EUR10.53"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "RN_001",
+        "chargeType": "GOVERNMENT",
+        "code": "RN",
+        "country": "NL",
+        "salePrice": "EUR13.00"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "BE_001",
+        "chargeType": "GOVERNMENT",
+        "code": "BE",
+        "country": "BE",
+        "salePrice": "EUR27.59"
+       }
+      ],
+      "fareCalculation": "AMS KL BRU 40.96VSRNL KL AMS 33.10XSRNL NUC 74.06 END ROE 0.891079 FARE EUR 66.00 XT 10.53CJ 13.00RN 27.59BE",
+      "latestTicketingTime": "2016-12-03T23:59-05:00",
+      "ptc": "ADT"
+     }
+    ]
+   },
+   {
+    "kind": "qpxexpress#tripOption",
+    "saleTotal": "EUR117.12",
+    "id": "LENAQNYujlTQoc4TnklhIJ001",
+    "slice": [
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 45,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 45,
+        "flight": {
+         "carrier": "KL",
+         "number": "1721"
+        },
+        "id": "GTpKYoyWAu0w+R3k",
+        "cabin": "COACH",
+        "bookingCode": "V",
+        "bookingCodeCount": 9,
+        "marriedSegmentGroup": "0",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "L7bib3o9Gs--ht2a",
+          "aircraft": "F70",
+          "arrivalTime": "2016-12-15T07:35+01:00",
+          "departureTime": "2016-12-15T06:50+01:00",
+          "origin": "AMS",
+          "destination": "BRU",
+          "duration": 45,
+          "operatingDisclosure": "OPERATED BY KLM CITYHOPPER",
+          "mileage": 97,
+          "meal": "Snack or Brunch"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 55,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 55,
+        "flight": {
+         "carrier": "KL",
+         "number": "1720"
+        },
+        "id": "G-FGt+CjqexP7pyF",
+        "cabin": "COACH",
+        "bookingCode": "X",
+        "bookingCodeCount": 7,
+        "marriedSegmentGroup": "1",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "LNNUus+U1wKDDtIX",
+          "aircraft": "F70",
+          "arrivalTime": "2016-12-21T07:40+01:00",
+          "departureTime": "2016-12-21T06:45+01:00",
+          "origin": "BRU",
+          "destination": "AMS",
+          "duration": 55,
+          "operatingDisclosure": "OPERATED BY KLM CITYHOPPER",
+          "mileage": 97,
+          "meal": "Snack or Brunch"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "pricing": [
+     {
+      "kind": "qpxexpress#pricingInfo",
+      "fare": [
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AosjlQiCJuJqSxHHgqFubx9gbh7e6CmV6JdIF6kz6Rgo",
+        "carrier": "KL",
+        "origin": "AMS",
+        "destination": "BRU",
+        "basisCode": "VSRNL"
+       },
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AVNx3nGK7eZHKILJNkWsQoNulAOShuOg1WJowmdZdXBY",
+        "carrier": "KL",
+        "origin": "BRU",
+        "destination": "AMS",
+        "basisCode": "XSRNL"
+       }
+      ],
+      "segmentPricing": [
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AosjlQiCJuJqSxHHgqFubx9gbh7e6CmV6JdIF6kz6Rgo",
+        "segmentId": "GTpKYoyWAu0w+R3k"
+       },
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AVNx3nGK7eZHKILJNkWsQoNulAOShuOg1WJowmdZdXBY",
+        "segmentId": "G-FGt+CjqexP7pyF"
+       }
+      ],
+      "baseFareTotal": "EUR66.00",
+      "saleFareTotal": "EUR66.00",
+      "saleTaxTotal": "EUR51.12",
+      "saleTotal": "EUR117.12",
+      "passengers": {
+       "kind": "qpxexpress#passengerCounts",
+       "adultCount": 1
+      },
+      "tax": [
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "CJ_001",
+        "chargeType": "GOVERNMENT",
+        "code": "CJ",
+        "country": "NL",
+        "salePrice": "EUR10.53"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "RN_001",
+        "chargeType": "GOVERNMENT",
+        "code": "RN",
+        "country": "NL",
+        "salePrice": "EUR13.00"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "BE_001",
+        "chargeType": "GOVERNMENT",
+        "code": "BE",
+        "country": "BE",
+        "salePrice": "EUR27.59"
+       }
+      ],
+      "fareCalculation": "AMS KL BRU 40.96VSRNL KL AMS 33.10XSRNL NUC 74.06 END ROE 0.891079 FARE EUR 66.00 XT 10.53CJ 13.00RN 27.59BE",
+      "latestTicketingTime": "2016-12-03T23:59-05:00",
+      "ptc": "ADT"
+     }
+    ]
+   },
+   {
+    "kind": "qpxexpress#tripOption",
+    "saleTotal": "EUR145.12",
+    "id": "LENAQNYujlTQoc4TnklhIJ003",
+    "slice": [
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 45,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 45,
+        "flight": {
+         "carrier": "KL",
+         "number": "1723"
+        },
+        "id": "GxwiEJ09CmHhVOcY",
+        "cabin": "COACH",
+        "bookingCode": "E",
+        "bookingCodeCount": 8,
+        "marriedSegmentGroup": "0",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "LFTaaeSWuHEW26ZX",
+          "aircraft": "E90",
+          "arrivalTime": "2016-12-15T10:05+01:00",
+          "departureTime": "2016-12-15T09:20+01:00",
+          "origin": "AMS",
+          "destination": "BRU",
+          "duration": 45,
+          "operatingDisclosure": "OPERATED BY KLM CITYHOPPER",
+          "mileage": 97,
+          "meal": "Snack or Brunch"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 55,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 55,
+        "flight": {
+         "carrier": "KL",
+         "number": "1720"
+        },
+        "id": "G-FGt+CjqexP7pyF",
+        "cabin": "COACH",
+        "bookingCode": "X",
+        "bookingCodeCount": 7,
+        "marriedSegmentGroup": "1",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "LNNUus+U1wKDDtIX",
+          "aircraft": "F70",
+          "arrivalTime": "2016-12-21T07:40+01:00",
+          "departureTime": "2016-12-21T06:45+01:00",
+          "origin": "BRU",
+          "destination": "AMS",
+          "duration": 55,
+          "operatingDisclosure": "OPERATED BY KLM CITYHOPPER",
+          "mileage": 97,
+          "meal": "Snack or Brunch"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "pricing": [
+     {
+      "kind": "qpxexpress#pricingInfo",
+      "fare": [
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AjIwwrtPrvFwUSZBSft3/W1IzSHvCAky3fHbeITP4RtM",
+        "carrier": "KL",
+        "origin": "AMS",
+        "destination": "BRU",
+        "basisCode": "ESRNL"
+       },
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AVNx3nGK7eZHKILJNkWsQoNulAOShuOg1WJowmdZdXBY",
+        "carrier": "KL",
+        "origin": "BRU",
+        "destination": "AMS",
+        "basisCode": "XSRNL"
+       }
+      ],
+      "segmentPricing": [
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AjIwwrtPrvFwUSZBSft3/W1IzSHvCAky3fHbeITP4RtM",
+        "segmentId": "GxwiEJ09CmHhVOcY"
+       },
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AVNx3nGK7eZHKILJNkWsQoNulAOShuOg1WJowmdZdXBY",
+        "segmentId": "G-FGt+CjqexP7pyF"
+       }
+      ],
+      "baseFareTotal": "EUR94.00",
+      "saleFareTotal": "EUR94.00",
+      "saleTaxTotal": "EUR51.12",
+      "saleTotal": "EUR145.12",
+      "passengers": {
+       "kind": "qpxexpress#passengerCounts",
+       "adultCount": 1
+      },
+      "tax": [
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "CJ_001",
+        "chargeType": "GOVERNMENT",
+        "code": "CJ",
+        "country": "NL",
+        "salePrice": "EUR10.53"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "RN_001",
+        "chargeType": "GOVERNMENT",
+        "code": "RN",
+        "country": "NL",
+        "salePrice": "EUR13.00"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "BE_001",
+        "chargeType": "GOVERNMENT",
+        "code": "BE",
+        "country": "BE",
+        "salePrice": "EUR27.59"
+       }
+      ],
+      "fareCalculation": "AMS KL BRU 72.38ESRNL KL AMS 33.10XSRNL NUC 105.48 END ROE 0.891079 FARE EUR 94.00 XT 10.53CJ 13.00RN 27.59BE",
+      "latestTicketingTime": "2016-12-03T23:59-05:00",
+      "ptc": "ADT"
+     }
+    ]
+   },
+   {
+    "kind": "qpxexpress#tripOption",
+    "saleTotal": "EUR152.12",
+    "id": "LENAQNYujlTQoc4TnklhIJ005",
+    "slice": [
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 50,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 50,
+        "flight": {
+         "carrier": "KL",
+         "number": "1733"
+        },
+        "id": "GCEVZC10rej4Y0mN",
+        "cabin": "COACH",
+        "bookingCode": "V",
+        "bookingCodeCount": 9,
+        "marriedSegmentGroup": "0",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "L6jLFQy9aOLpNS8y",
+          "aircraft": "F70",
+          "arrivalTime": "2016-12-15T22:10+01:00",
+          "departureTime": "2016-12-15T21:20+01:00",
+          "origin": "AMS",
+          "destination": "BRU",
+          "duration": 50,
+          "operatingDisclosure": "OPERATED BY KLM CITYHOPPER",
+          "mileage": 97,
+          "meal": "Snack or Brunch"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 60,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 60,
+        "flight": {
+         "carrier": "KL",
+         "number": "1724"
+        },
+        "id": "GMVIqexycorW6E0o",
+        "cabin": "COACH",
+        "bookingCode": "E",
+        "bookingCodeCount": 1,
+        "marriedSegmentGroup": "1",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "LNvkDp+8tj0nLEia",
+          "aircraft": "E90",
+          "arrivalTime": "2016-12-21T11:40+01:00",
+          "departureTime": "2016-12-21T10:40+01:00",
+          "origin": "BRU",
+          "destination": "AMS",
+          "duration": 60,
+          "operatingDisclosure": "OPERATED BY KLM CITYHOPPER",
+          "mileage": 97,
+          "meal": "Snack or Brunch"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "pricing": [
+     {
+      "kind": "qpxexpress#pricingInfo",
+      "fare": [
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AosjlQiCJuJqSxHHgqFubx9gbh7e6CmV6JdIF6kz6Rgo",
+        "carrier": "KL",
+        "origin": "AMS",
+        "destination": "BRU",
+        "basisCode": "VSRNL"
+       },
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AjIwwrtPrvFwUSZBSft3/W1IzSHvCAky3fHbeITP4RtM",
+        "carrier": "KL",
+        "origin": "BRU",
+        "destination": "AMS",
+        "basisCode": "ESRNL"
+       }
+      ],
+      "segmentPricing": [
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AosjlQiCJuJqSxHHgqFubx9gbh7e6CmV6JdIF6kz6Rgo",
+        "segmentId": "GCEVZC10rej4Y0mN"
+       },
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AjIwwrtPrvFwUSZBSft3/W1IzSHvCAky3fHbeITP4RtM",
+        "segmentId": "GMVIqexycorW6E0o"
+       }
+      ],
+      "baseFareTotal": "EUR101.00",
+      "saleFareTotal": "EUR101.00",
+      "saleTaxTotal": "EUR51.12",
+      "saleTotal": "EUR152.12",
+      "passengers": {
+       "kind": "qpxexpress#passengerCounts",
+       "adultCount": 1
+      },
+      "tax": [
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "CJ_001",
+        "chargeType": "GOVERNMENT",
+        "code": "CJ",
+        "country": "NL",
+        "salePrice": "EUR10.53"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "RN_001",
+        "chargeType": "GOVERNMENT",
+        "code": "RN",
+        "country": "NL",
+        "salePrice": "EUR13.00"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "BE_001",
+        "chargeType": "GOVERNMENT",
+        "code": "BE",
+        "country": "BE",
+        "salePrice": "EUR27.59"
+       }
+      ],
+      "fareCalculation": "AMS KL BRU 40.96VSRNL KL AMS 72.38ESRNL NUC 113.34 END ROE 0.891079 FARE EUR 101.00 XT 10.53CJ 13.00RN 27.59BE",
+      "latestTicketingTime": "2016-12-03T23:59-05:00",
+      "ptc": "ADT"
+     }
+    ]
+   },
+   {
+    "kind": "qpxexpress#tripOption",
+    "saleTotal": "EUR152.12",
+    "id": "LENAQNYujlTQoc4TnklhIJ004",
+    "slice": [
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 45,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 45,
+        "flight": {
+         "carrier": "KL",
+         "number": "1721"
+        },
+        "id": "GTpKYoyWAu0w+R3k",
+        "cabin": "COACH",
+        "bookingCode": "V",
+        "bookingCodeCount": 9,
+        "marriedSegmentGroup": "0",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "L7bib3o9Gs--ht2a",
+          "aircraft": "F70",
+          "arrivalTime": "2016-12-15T07:35+01:00",
+          "departureTime": "2016-12-15T06:50+01:00",
+          "origin": "AMS",
+          "destination": "BRU",
+          "duration": 45,
+          "operatingDisclosure": "OPERATED BY KLM CITYHOPPER",
+          "mileage": 97,
+          "meal": "Snack or Brunch"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "qpxexpress#sliceInfo",
+      "duration": 60,
+      "segment": [
+       {
+        "kind": "qpxexpress#segmentInfo",
+        "duration": 60,
+        "flight": {
+         "carrier": "KL",
+         "number": "1724"
+        },
+        "id": "GMVIqexycorW6E0o",
+        "cabin": "COACH",
+        "bookingCode": "E",
+        "bookingCodeCount": 1,
+        "marriedSegmentGroup": "1",
+        "leg": [
+         {
+          "kind": "qpxexpress#legInfo",
+          "id": "LNvkDp+8tj0nLEia",
+          "aircraft": "E90",
+          "arrivalTime": "2016-12-21T11:40+01:00",
+          "departureTime": "2016-12-21T10:40+01:00",
+          "origin": "BRU",
+          "destination": "AMS",
+          "duration": 60,
+          "operatingDisclosure": "OPERATED BY KLM CITYHOPPER",
+          "mileage": 97,
+          "meal": "Snack or Brunch"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "pricing": [
+     {
+      "kind": "qpxexpress#pricingInfo",
+      "fare": [
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AosjlQiCJuJqSxHHgqFubx9gbh7e6CmV6JdIF6kz6Rgo",
+        "carrier": "KL",
+        "origin": "AMS",
+        "destination": "BRU",
+        "basisCode": "VSRNL"
+       },
+       {
+        "kind": "qpxexpress#fareInfo",
+        "id": "AjIwwrtPrvFwUSZBSft3/W1IzSHvCAky3fHbeITP4RtM",
+        "carrier": "KL",
+        "origin": "BRU",
+        "destination": "AMS",
+        "basisCode": "ESRNL"
+       }
+      ],
+      "segmentPricing": [
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AosjlQiCJuJqSxHHgqFubx9gbh7e6CmV6JdIF6kz6Rgo",
+        "segmentId": "GTpKYoyWAu0w+R3k"
+       },
+       {
+        "kind": "qpxexpress#segmentPricing",
+        "fareId": "AjIwwrtPrvFwUSZBSft3/W1IzSHvCAky3fHbeITP4RtM",
+        "segmentId": "GMVIqexycorW6E0o"
+       }
+      ],
+      "baseFareTotal": "EUR101.00",
+      "saleFareTotal": "EUR101.00",
+      "saleTaxTotal": "EUR51.12",
+      "saleTotal": "EUR152.12",
+      "passengers": {
+       "kind": "qpxexpress#passengerCounts",
+       "adultCount": 1
+      },
+      "tax": [
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "CJ_001",
+        "chargeType": "GOVERNMENT",
+        "code": "CJ",
+        "country": "NL",
+        "salePrice": "EUR10.53"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "RN_001",
+        "chargeType": "GOVERNMENT",
+        "code": "RN",
+        "country": "NL",
+        "salePrice": "EUR13.00"
+       },
+       {
+        "kind": "qpxexpress#taxInfo",
+        "id": "BE_001",
+        "chargeType": "GOVERNMENT",
+        "code": "BE",
+        "country": "BE",
+        "salePrice": "EUR27.59"
+       }
+      ],
+      "fareCalculation": "AMS KL BRU 40.96VSRNL KL AMS 72.38ESRNL NUC 113.34 END ROE 0.891079 FARE EUR 101.00 XT 10.53CJ 13.00RN 27.59BE",
+      "latestTicketingTime": "2016-12-03T23:59-05:00",
+      "ptc": "ADT"
+     }
+    ]
+   }
+  ]
+ }
+}
