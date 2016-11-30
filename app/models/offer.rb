@@ -1,8 +1,8 @@
 class Offer
-  attr_reader :destination_city, :total, :trips
+  attr_reader :destination_city, :total, :roundtrips
   def initialize(args = {})
     @destination_city = args[:destination_city]
     @total = args[:total]
-    @trips = args[:trips] # this is an array that holds two RoundTrip instances
+    @roundtrips = args[:roundtrips] # this is an array that holds two RoundTrip instances
   end
 end

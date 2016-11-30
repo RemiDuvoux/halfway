@@ -175,7 +175,7 @@ module Avion
             destination_city: trip_1.destination_city,
             total: trip_1.price + trip_2.price,
             # we agnosticize QPXTripOption here
-            trips: [
+            roundtrips: [
               RoundTrip.new(qpx_trip_option: trip_1),
               RoundTrip.new(qpx_trip_option: trip_2)
             ]
@@ -223,8 +223,8 @@ module Avion
   end
 
   def self.print_result(result, results)
-    roundtrip_a = result.trips.first
-    roundtrip_b = result.trips.last
+    roundtrip_a = result.roundtrips.first
+    roundtrip_b = result.roundtrips.last
 
     nth = results.index(result)
 
@@ -250,8 +250,8 @@ module Avion
   end
 
   def self.html_result(result, results)
-    roundtrip_a = result.trips.first
-    roundtrip_b = result.trips.last
+    roundtrip_a = result.roundtrips.first
+    roundtrip_b = result.roundtrips.last
 
     nth = results.index(result)
 
