@@ -131,9 +131,42 @@ module Avion
     end
   end
 
+  # class Comparator
+  #   def initialize(args = {})
+  #     @origin_city = args[:origin_city]
+  #     @destination_city = args[:destination_city]
+  #     @date_there = Date.parse(args[:date_there])
+  #     @date_back = Date.parse(args[:date_back])
+  #   end
+  # end
+
   # TODO:
   class QPXComparatorGranular
-    #code
+    def initialize(json_from_a, jsons_from_b)
+      @result_a = QPXResponse.new(json_from_a)
+      @result_b = QPXResponse.new(json_from_a)
+    end
+
+    def compare
+      output = []
+      @result_a.trips.each do |trip_1|
+        @result_b.trips.each do |trip_2|
+          next if trip_1.price == nil || trip_2.price == nil # safeguard if the trip is an empty object
+          if trip_1.destination_city == trip_2.destination_city
+            output << Offer.new(
+            destination_city: trip_1.destination_city,
+            total: trip_1.price + trip_2.price,
+            # we agnosticize QPXTripOption here
+            roundtrips: [
+              RoundTrip.new(qpx_trip_option: trip_1),
+              RoundTrip.new(qpx_trip_option: trip_2)
+            ]
+            )
+          end
+        end
+      end
+      output
+    end
   end
 
   # Our main comparison logic goes here. Takes two arrays of JSON QPX responses
@@ -277,8 +310,13 @@ module Avion
     return jsons
   end
 
+  # TODO: Find a better name
   def self.generate_cache_name(route, date_there, date_back)
     "#{route.first}_#{route.last}_#{date_there}_#{date_back}"
+  end
+
+  def self.check_if_offer_exists()
+    #code
   end
 
 
