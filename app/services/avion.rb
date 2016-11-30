@@ -158,7 +158,7 @@ module Avion
         @all_trips_two.each do |trip_2|
           next if trip_1.price == nil || trip_2.price == nil # safeguard if the trip is an empty object
           if trip_1.destination_city == trip_2.destination_city
-            output << FlightPackage.new(
+            output << Offer.new(
             destination_city: trip_1.destination_city,
             total: trip_1.price + trip_2.price,
             trips: [trip_1, trip_2]

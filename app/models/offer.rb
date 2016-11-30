@@ -1,4 +1,4 @@
-class FlightPackage
+class Offer
   attr_reader :destination_city, :total, :trips
   def initialize(args = {})
     @destination_city = args[:destination_city]

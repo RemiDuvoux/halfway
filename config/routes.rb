@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :flight_packages, only: :index
+  resources :offers, only: :index
   root to: 'pages#home'
   resources :cities, only: :index
   mount Attachinary::Engine => "/attachinary"
