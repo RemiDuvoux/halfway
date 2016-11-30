@@ -10,7 +10,7 @@ module Avion
                 :origin_airport, :departure_time_there, :arrival_time_there,
                 :departure_time_back, :arrival_time_back, :currency, :carrier
     def initialize(args={})
-      if args[:qpx_trip_option].class == QPXTripOption
+      unless args[:qpx_trip_option].nil?
         qpx = args[:qpx_trip_option]
         @currency = qpx.currency
         @price = qpx.price
@@ -156,8 +156,7 @@ module Avion
 
   # Our main comparison logic goes here. Takes two arrays of JSON QPX responses
   # one for each origin
-  class Comparator
-    attr_reader :results_one, :results_two, :all_trips_one, :all_trips_two
+  class QPXComparator
     def initialize(jsons_one, jsons_two)
       @results_one = objectify(jsons_one)
       @results_two = objectify(jsons_two)
@@ -256,7 +255,7 @@ module Avion
 
     nth = results.index(result)
 
-    html = "<p> According to our little fairies, the <strong>number #{nth + 1}</strong> cheapest city to get from #{roundtrip_a.origin_airport} and #{roundtrip_b.origin_airport} is <strong>#{result.destination_city}</strong>" + "<br>"
+    html = "<p><strong>Number #{nth + 1}</strong> cheapest city to get from #{roundtrip_a.origin_airport} and #{roundtrip_b.origin_airport} is <strong>#{result.destination_city}</strong>" + "<br>"
     html += "<br>"
     html += "Ann flies with #{roundtrip_a.carrier}:" + "<br>"
     html += "Flight there:" + "<br>"

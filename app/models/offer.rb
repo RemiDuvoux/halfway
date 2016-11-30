@@ -3,6 +3,6 @@ class Offer
   def initialize(args = {})
     @destination_city = args[:destination_city]
     @total = args[:total]
-    @trips = args[:trips] # this is an array that holds two QPXTripOption instances
+    @trips = args[:trips] # this is an array that holds two RoundTrip instances
   end
 end
