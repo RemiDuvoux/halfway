@@ -3,4 +3,5 @@ class Airport < ApplicationRecord
   has_many :flights
 
   validates :iata_code, presence: true
+
 end

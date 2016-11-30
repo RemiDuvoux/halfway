@@ -6,8 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
-
 require 'csv'
 csv_options = { col_sep: ',', headers: :first_row }
 
@@ -21,3 +19,29 @@ CSV.foreach(filepath, csv_options) do |row|
   new_city.save!
 end
 
+AIRPORTS = {
+    "Paris" => "PAR",
+    "London" => "LON",
+    "Roma" => "ROM",
+    "Madrid" => "MAD",
+    "Berlin" => "BER",
+    "Brussels" => "BRU",
+    "Athens" => "ATH",
+    "Milano" => "MXP",
+    "Venice" => "VCE",
+    "Amsterdam" => "AMS",
+    "Lisbon" => "LIS",
+    "Dublin" => "DUB",
+    "Helsinki" => "HEL",
+    "Barcelona" => "BCN",
+    "Cyprus" => "LCA",
+    "Florence" => "FLR",
+    "Malta" => "MLA",
+    "Vienna" => "VIE",
+    "Riga" => "RIX",
+    "Vilnius" => "VNO",
+  }
+
+City.all.each do |city|
+  Airport.create(city_id: city.id, iata_code: AIRPORTS[city.name])
+end
