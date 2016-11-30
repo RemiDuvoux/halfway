@@ -149,6 +149,7 @@ module Avion
       super(args)
     end
 
+    # this is where the magic happens 
     def compare
       output = []
       @result_a.trips.each do |trip_1|
