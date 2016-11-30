@@ -8,6 +8,7 @@ gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'redis'
+gem 'redis-rails'
 
 # for Avion single-threaded engine
 gem 'rest-client'

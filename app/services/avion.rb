@@ -135,7 +135,6 @@ module Avion
     def initialize(args = {})
       @origin_a = args[:origin_a]
       @origin_b = args[:origin_b]
-      @destination_city = args[:destination_city]
       @date_there = Date.parse(args[:date_there]) unless args[:date_there].nil?
       @date_back = Date.parse(args[:date_back]) unless args[:date_back].nil?
     end
@@ -149,7 +148,7 @@ module Avion
       super(args)
     end
 
-    # this is where the magic happens 
+    # this is where the magic happens
     def compare
       output = []
       @result_a.trips.each do |trip_1|
@@ -159,7 +158,7 @@ module Avion
             output << Offer.new(
             origin_a: @origin_a,
             origin_b: @origin_b,
-            destination_city: @destination_city,
+            destination_city: trip_1.destination_city,
             date_there: @date_there,
             date_back: @date_back,
             total: trip_1.price + trip_2.price,
