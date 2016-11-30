@@ -3,6 +3,29 @@ require 'json'
 
 module Avion
 
+  # An API agnostic version of QPXTripOption we use to refer inside of Offer
+  # A converter class. Use more initialization options with different APIs later
+  class RoundTrip
+    attr_reader :price, :destination_city, :destination_airport,
+                :origin_airport, :departure_time_there, :arrival_time_there,
+                :departure_time_back, :arrival_time_back, :currency, :carrier
+    def initialize(args={})
+      if args[:qpx_trip_option].class == QPXTripOption
+        qpx = args[:qpx_trip_option]
+        @currency = qpx.currency
+        @price = qpx.price
+        @destination_city = qpx.destination_city
+        @destination_airport = qpx.destination_airport
+        @origin_airport = qpx.origin_airport
+        @departure_time_there = qpx.departure_time_there
+        @arrival_time_there = qpx.arrival_time_there
+        @departure_time_back = qpx.departure_time_back
+        @arrival_time_back = qpx.arrival_time_back
+        @carrier = qpx.carrier
+      end
+    end
+  end
+
   # Wraps an individual QPX response
   class QPXResponse
     attr_reader :trips
@@ -161,7 +184,11 @@ module Avion
             output << Offer.new(
             destination_city: trip_1.destination_city,
             total: trip_1.price + trip_2.price,
-            trips: [trip_1, trip_2]
+            # we agnosticize QPXTripOption here
+            trips: [
+              RoundTrip.new(qpx_trip_option: trip_1),
+              RoundTrip.new(qpx_trip_option: trip_2)
+            ]
             )
           end
         end
@@ -232,25 +259,25 @@ module Avion
   end
 
   def self.print_result(result, results)
-    flight_a = result.trips.first
-    flight_b = result.trips.last
+    roundtrip_a = result.trips.first
+    roundtrip_b = result.trips.last
 
     nth = results.index(result)
 
-    puts "According to our little fairies, the number #{nth + 1} cheapest city to get from #{flight_a.origin_airport} and #{flight_b.origin_airport} is #{result.destination_city}"
-    puts "Ann flies with #{flight_a.carrier}:"
+    puts "According to our little fairies, the number #{nth + 1} cheapest city to get from #{roundtrip_a.origin_airport} and #{roundtrip_b.origin_airport} is #{result.destination_city}"
+    puts "Ann flies with #{roundtrip_a.carrier}:"
     puts "Flight 1:"
-    puts "From #{flight_a.origin_airport} to #{flight_a.destination_airport} departing on #{flight_a.departure_time_there}, arriving on #{flight_a.arrival_time_there}"
+    puts "From #{roundtrip_a.origin_airport} to #{roundtrip_a.destination_airport} departing on #{roundtrip_a.departure_time_there}, arriving on #{roundtrip_a.arrival_time_there}"
     puts "Flight 2:"
-    puts "From #{flight_a.destination_airport} to #{flight_a.origin_airport} departing on #{flight_a.departure_time_back}, arriving on #{flight_a.arrival_time_back}"
-    puts "Cost for Ann: #{flight_a.price}#{flight_a.currency}"
+    puts "From #{roundtrip_a.destination_airport} to #{roundtrip_a.origin_airport} departing on #{roundtrip_a.departure_time_back}, arriving on #{roundtrip_a.arrival_time_back}"
+    puts "Cost for Ann: #{roundtrip_a.price}#{roundtrip_a.currency}"
     puts ""
-    puts "Bob flies with #{flight_b.carrier}:"
+    puts "Bob flies with #{roundtrip_b.carrier}:"
     puts "Flight 1:"
-    puts "From #{flight_b.origin_airport} to #{flight_b.destination_airport} departing on #{flight_b.departure_time_there}, arriving on #{flight_b.arrival_time_there}"
+    puts "From #{roundtrip_b.origin_airport} to #{roundtrip_b.destination_airport} departing on #{roundtrip_b.departure_time_there}, arriving on #{roundtrip_b.arrival_time_there}"
     puts "Flight 2:"
-    puts "From #{flight_b.destination_airport} to #{flight_b.origin_airport} departing on #{flight_b.departure_time_back}, arriving on #{flight_b.arrival_time_back}"
-    puts "Cost for Bob: #{flight_b.price}#{flight_b.currency}"
+    puts "From #{roundtrip_b.destination_airport} to #{roundtrip_b.origin_airport} departing on #{roundtrip_b.departure_time_back}, arriving on #{roundtrip_b.arrival_time_back}"
+    puts "Cost for Bob: #{roundtrip_b.price}#{roundtrip_b.currency}"
 
     puts "Total cost for both:"
     puts "#{result.total.round(2)}"
@@ -259,26 +286,26 @@ module Avion
   end
 
   def self.html_result(result, results)
-    flight_a = result.trips.first
-    flight_b = result.trips.last
+    roundtrip_a = result.trips.first
+    roundtrip_b = result.trips.last
 
     nth = results.index(result)
 
-    html = "<p> According to our little fairies, the <strong>number #{nth + 1}</strong> cheapest city to get from #{flight_a.origin_airport} and #{flight_b.origin_airport} is <strong>#{result.destination_city}</strong>" + "<br>"
+    html = "<p> According to our little fairies, the <strong>number #{nth + 1}</strong> cheapest city to get from #{roundtrip_a.origin_airport} and #{roundtrip_b.origin_airport} is <strong>#{result.destination_city}</strong>" + "<br>"
     html += "<br>"
-    html += "Ann flies with #{flight_a.carrier}:" + "<br>"
+    html += "Ann flies with #{roundtrip_a.carrier}:" + "<br>"
     html += "Flight there:" + "<br>"
-    html += "From #{flight_a.origin_airport} to #{flight_a.destination_airport} departing on #{flight_a.departure_time_there}, arriving on #{flight_a.arrival_time_there}" + "<br>"
+    html += "From #{roundtrip_a.origin_airport} to #{roundtrip_a.destination_airport} departing on #{roundtrip_a.departure_time_there}, arriving on #{roundtrip_a.arrival_time_there}" + "<br>"
     html += "Flight back:" + "<br>"
-    html += "From #{flight_a.destination_airport} to #{flight_a.origin_airport} departing on #{flight_a.departure_time_back}, arriving on #{flight_a.arrival_time_back}" + "<br>"
-    html += "Cost for Ann: #{flight_a.price}#{flight_a.currency}" + "<br>"
+    html += "From #{roundtrip_a.destination_airport} to #{roundtrip_a.origin_airport} departing on #{roundtrip_a.departure_time_back}, arriving on #{roundtrip_a.arrival_time_back}" + "<br>"
+    html += "Cost for Ann: #{roundtrip_a.price}#{roundtrip_a.currency}" + "<br>"
     html += "<br>"
-    html += "Bob flies with #{flight_b.carrier}:" + "<br>"
+    html += "Bob flies with #{roundtrip_b.carrier}:" + "<br>"
     html += "Flight there:" + "<br>"
-    html += "From #{flight_b.origin_airport} to #{flight_b.destination_airport} departing on #{flight_b.departure_time_there}, arriving on #{flight_b.arrival_time_there}" + "<br>"
+    html += "From #{roundtrip_b.origin_airport} to #{roundtrip_b.destination_airport} departing on #{roundtrip_b.departure_time_there}, arriving on #{roundtrip_b.arrival_time_there}" + "<br>"
     html += "Flight back:" + "<br>"
-    html += "From #{flight_b.destination_airport} to #{flight_b.origin_airport} departing on #{flight_b.departure_time_back}, arriving on #{flight_b.arrival_time_back}" + "<br>"
-    html += "Cost for Bob: #{flight_b.price}#{flight_b.currency}" + "<br>"
+    html += "From #{roundtrip_b.destination_airport} to #{roundtrip_b.origin_airport} departing on #{roundtrip_b.departure_time_back}, arriving on #{roundtrip_b.arrival_time_back}" + "<br>"
+    html += "Cost for Bob: #{roundtrip_b.price}#{roundtrip_b.currency}" + "<br>"
     html += "<br>"
     html += "<strong>Total cost for both: #{result.total.round(2)}</strong>"
 
