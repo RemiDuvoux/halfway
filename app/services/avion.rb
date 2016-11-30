@@ -132,7 +132,8 @@ module Avion
   end
 
   # Query QPX two requests at a time, only make request if corresponding Offer
-  # is not found in Redis cache. Our hope to run requests in parallel  
+  # is not found in Redis cache. Our hope to run requests in parallel
+  # TODO: remove debugging puts  
   class SmartQPXAgent
     def initialize(args = {})
       @origin_a = args[:origin_a]

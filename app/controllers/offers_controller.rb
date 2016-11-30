@@ -4,7 +4,7 @@ class OffersController < ApplicationController
   def index
     # NEWFANGLED CACHE APPROACH
     # TESTING
-    airports = %w(PAR BER BRU MXP LON MAD BCN)
+    airports = %w(PAR BER BRU MXP LON MAD BCN DUB HEL LCA RIX VNO)
     origin_a = "AMS"
     origin_b = "LIS"
     date_there = "2016-12-15"
@@ -28,6 +28,5 @@ class OffersController < ApplicationController
     @offers = @offers.sort_by { |offer| offer.total }
     # and remove duplicate cities
     @offers = @offers.uniq { |offer| offer.destination_city }
-
   end
 end
