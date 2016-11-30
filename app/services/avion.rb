@@ -165,14 +165,14 @@ module Avion
       puts "#{@origin_b} - #{@destination_city} request made to QPX"
 
       # Form the params hash to pass to Comparator
-      comp_params = {
+      comp_info = {
         date_there: @date_there,
         date_back: @date_back,
         origin_a: @origin_a,
         origin_b: @origin_b
       }
 
-      comparator = Avion::QPXComparatorGranular.new(json_a, json_b, comp_params)
+      comparator = Avion::QPXComparatorGranular.new(json_a, json_b, comp_info)
       output = comparator.compare
       $redis.set(@cache_key_name, Marshal.dump(output))
       return output
@@ -200,9 +200,9 @@ module Avion
 
   # TODO:
   class QPXComparatorGranular < Comparator
-    def initialize(json_from_a, jsons_from_b, args = {})
+    def initialize(json_from_a, json_from_b, args = {})
       @result_a = QPXResponse.new(json_from_a)
-      @result_b = QPXResponse.new(json_from_a)
+      @result_b = QPXResponse.new(json_from_b)
       super(args)
     end
 
