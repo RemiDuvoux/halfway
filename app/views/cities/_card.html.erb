@@ -1,40 +1,43 @@
-<!-- <div class="card">
-  <div class="card-body">
-    <div class="dashboard-card-picture" style="background-image: url('<%#= cl_image_path city.card_photo, height: 300, width: 400, crop: :fill%>')">
-      <div class="dashboard-card-hover text-center">
-        <h4><%#= city.name %></h4>
-        <%#= link_to "", class: "card-link" %>
-      </div>
-    </div>
-    <div class="card-price">
-      <ul class="list-inline">
-        <li><i class="fa fa-money"></i> <%#= price %> for 2</li>
-        <li><i class="fa fa-eye"></i> Rented: <#% if watch.bookings.count > 1%><#%= watch.bookings.count %> times <#% else %><#%= watch.bookings.count %> time<#% end %></li>
-      </ul>
-    </div>
-  </div>
-</div> -->
-
 <div class="container">
   <div class="row">
-    <div class="col-xs-4">
-      <div class="card">
-        <div class="text-center">
-          <h2>PARIS</h2>
+    <div class="col-xs-12 col-sm-6">
+      <div class="card_wrapper">
+        <div class="card_data">
+          <div class="card_content">
+            <div class="card_title">
+                <ul class="list-unstyled">
+                  <li class="card_destination">Paris</li>
+                </ul>
+                <ul class="list-unstyled">
+                  <li class="card_price">145€</li>
+                </ul>
+            </div>
+            <div class="card_text">
+              <div class="card_text_element">
+                <p class="card_origin_city">from London LHT</p>
+                <ul class="list-unstyled">
+                  <li> aller 10:00 -> 11:30 </li>
+                  <li> retour 16:00 -> 17:30 </li>
+                  <li>65€</li>
+                </ul>
+              </div>
+              <div class="card_text_element card_separator">
+              </div>
+              <div class="card_text_element">
+                  <p class="card_origin_city">from Berlin SXF</p>
+                  <ul class="list-unstyled">
+                    <li> aller 10:00 -> 11:30 </li>
+                    <li> retour 16:00 -> 17:30 </li>
+                    <li>75€</li>
+                  </ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="text-center">
-          <p> Total price for 2 <br><strong>140€</strong></p>
-        </div>
-      </div>
-      <div class="text-center">
-        <h2 class="card_origin"> from London - LHR </h2>
-        <p class="card_details"> <strong> 65€ </strong> <br> aller: 10:00 -> 11:35 <br> retour: 12:00 -> 13:35 <br> </p>
-      </div>
-      <div class="text-center">
-        <h2 class="card_origin"> from Berlin - SXF </h2>
-        <p class="card_details"> <strong> 75€ </strong> <br> aller: 10:40 -> 12:20 <br> retour: 13:30 -> 16:35 <br> </p>
       </div>
     </div>
   </div>
 </div>
+
+
 
