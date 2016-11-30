@@ -131,20 +131,22 @@ module Avion
     end
   end
 
-  # class Comparator
-  #   def initialize(args = {})
-  #     @origin_city = args[:origin_city]
-  #     @destination_city = args[:destination_city]
-  #     @date_there = Date.parse(args[:date_there])
-  #     @date_back = Date.parse(args[:date_back])
-  #   end
-  # end
+  class Comparator
+    def initialize(args = {})
+      @origin_a = args[:origin_a]
+      @origin_b = args[:origin_b]
+      @destination_city = args[:destination_city]
+      @date_there = Date.parse(args[:date_there]) unless args[:date_there].nil?
+      @date_back = Date.parse(args[:date_back]) unless args[:date_back].nil?
+    end
+  end
 
   # TODO:
-  class QPXComparatorGranular
-    def initialize(json_from_a, jsons_from_b)
+  class QPXComparatorGranular < Comparator
+    def initialize(json_from_a, jsons_from_b, args = {})
       @result_a = QPXResponse.new(json_from_a)
       @result_b = QPXResponse.new(json_from_a)
+      super(args)
     end
 
     def compare
@@ -154,7 +156,11 @@ module Avion
           next if trip_1.price == nil || trip_2.price == nil # safeguard if the trip is an empty object
           if trip_1.destination_city == trip_2.destination_city
             output << Offer.new(
-            destination_city: trip_1.destination_city,
+            origin_a: @origin_a,
+            origin_b: @origin_b,
+            destination_city: @destination_city,
+            date_there: @date_there,
+            date_back: @date_back,
             total: trip_1.price + trip_2.price,
             # we agnosticize QPXTripOption here
             roundtrips: [
@@ -171,12 +177,13 @@ module Avion
 
   # Our main comparison logic goes here. Takes two arrays of JSON QPX responses
   # one for each origin
-  class QPXComparator
-    def initialize(jsons_one, jsons_two)
+  class QPXComparator < Comparator
+    def initialize(jsons_one, jsons_two, args = {})
       @results_one = objectify(jsons_one)
       @results_two = objectify(jsons_two)
       @all_trips_one = list_all_trips(@results_one)
       @all_trips_two = list_all_trips(@results_two)
+      super(args)
     end
 
     # Our main secret sauce for now
