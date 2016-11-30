@@ -38,7 +38,7 @@ module Avion
         trips = [QPXTripOption.new({})]
       end
       @trips = trips
-      # should we nilify data after initialization? 
+      # should we nilify data after initialization?
     end
 
     private
@@ -153,9 +153,6 @@ module Avion
       return JSON.generate(request_hash)
     end
   end
-
-  # TODO: Ideally, comparator have to be API agnostic, so we need to
-  # abstract one level up from QPXTripOption
 
   # Our main comparison logic goes here. Takes two arrays of JSON QPX responses
   # one for each origin
