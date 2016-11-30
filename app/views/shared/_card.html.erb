@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <div class="card_wrapper" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+         url('<%= cl_image_path City.find_by(iata_code: offer.destination_city).photo.path, height: 300, width: 400, crop: :fill %>')">
+        <div class="card_data">
+          <div class="card_content">
+            <div class="card_title">
+                <ul class="list-unstyled">
+                  <li class="card_destination"><%= City.find_by(iata_code: offer.destination_city).name.capitalize %></li>
+                </ul>
+                <ul class="list-unstyled">
+                  <li class="card_price">145€</li>
+                </ul>
+            </div>
+            <div class="card_text">
+              <div class="card_text_element">
+                <p class="card_origin_city">from London LHT</p>
+                <ul class="list-unstyled">
+                  <li> aller 10:00 -> 11:30 </li>
+                  <li> retour 16:00 -> 17:30 </li>
+                  <li>65€</li>
+                </ul>
+              </div>
+              <div class="card_text_element card_separator">
+              </div>
+              <div class="card_text_element">
+                  <p class="card_origin_city">from Berlin SXF</p>
+                  <ul class="list-unstyled">
+                    <li> aller 10:00 -> 11:30 </li>
+                    <li> retour 16:00 -> 17:30 </li>
+                    <li>75€</li>
+                  </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
