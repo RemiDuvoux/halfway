@@ -17,24 +17,24 @@
           </div>
           <div class="card_text">
             <div class="card_text_element">
-              <p class="card_origin_city">from <%= Airport.find_by(iata_code: offer.roundtrips.first.origin_airport).city.name  %> <%= offer.roundtrips.first.origin_airport %></p>
+              <p class="card_origin_city text-center" style="margin-bottom: 20px">from <%= Airport.find_by(iata_code: offer.roundtrips.first.origin_airport).city.name  %> <%= offer.roundtrips.first.origin_airport %></p>
               <ul class="list-unstyled">
-                <li> One way <%= offer.roundtrips.first.departure_time_there.strftime("%H:%M") %> <i class="fa fa-plane"></i> <%= offer.roundtrips.first.arrival_time_there.strftime("%H:%M") %> </li>
-                <li> Return <%= offer.roundtrips.first.departure_time_back.strftime("%H:%M") %> <i class="fa fa-plane"></i> <%= offer.roundtrips.first.arrival_time_back.strftime("%H:%M") %> </li>
+                <li> Outbund <%= offer.roundtrips.first.departure_time_there.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.first.arrival_time_there.strftime("%H:%M") %> </li>
+                <li> Return <span style="padding-left: 14px"><%= offer.roundtrips.first.departure_time_back.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.first.arrival_time_back.strftime("%H:%M") %> </span> </li>
               </ul>
-              <div class="price text-center" style= "margin-top: 40px">
+              <div class="price text-center" style= "margin-top: 30px">
                 <p><strong><%= offer.roundtrips.first.price.round %>€</strong></p>
               </div>
             </div>
             <div class="card_text_element card_separator"></div>
             <div class="card_text_element">
-              <p class="card_origin_city">from <%= Airport.find_by(iata_code: offer.roundtrips.last.origin_airport).city.name %>  <%= offer.roundtrips.last.origin_airport %></p>
+              <p class="card_origin_city text-center" style="margin-bottom: 20px">from <%= Airport.find_by(iata_code: offer.roundtrips.last.origin_airport).city.name %>  <%= offer.roundtrips.last.origin_airport %></p>
               <ul class="list-unstyled">
-                <li> One way <%= offer.roundtrips.last.departure_time_there.strftime("%H:%M") %> <i class="fa fa-plane"></i> <%= offer.roundtrips.last.arrival_time_there.strftime("%H:%M") %>  </li>
-                <li> Return <%= offer.roundtrips.last.departure_time_back.strftime("%H:%M") %> <i class="fa fa-plane"></i> <%= offer.roundtrips.last.arrival_time_back.strftime("%H:%M") %></li>
+                <li> Outbund <%= offer.roundtrips.last.departure_time_there.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.last.arrival_time_there.strftime("%H:%M") %>  </li>
+                <li> Return <span style="padding-left: 14px"> <%= offer.roundtrips.last.departure_time_back.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.last.arrival_time_back.strftime("%H:%M") %></span></li>
               </ul>
-              <div class="price text-center" style= "margin-top: 40px">
-                <strong><%= offer.roundtrips.last.price.round %>€</strong>
+              <div class="price text-center" style= "margin-top: 30px">
+                <p><strong><%= offer.roundtrips.last.price.round %>€</strong></p>
               </div>
             </div>
           </div>
