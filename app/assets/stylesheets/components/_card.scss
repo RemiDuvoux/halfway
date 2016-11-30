@@ -1,32 +1,6 @@
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
-// Variables
-$regal-blue: #034378;
-$san-juan: #2d4e68;
-$bermuda: #77d7b9;
-$white: #fff;
-$black: #000;
-$open-sans: 'Open Sans',
-sans-serif;
-
-
-* {
-  box-sizing: border-box;
-}
-
-
-a {
-  text-decoration: none;
-}
-
-h1 {
-  font-family: $open-sans;
-  font-weight: 300;
-}
-
-
   .card_wrapper {
-    background-color: $white;
+    background-color: white;
     min-height: 540px;
     position: relative;
     overflow: hidden;
@@ -97,16 +71,15 @@ position: absolute;
 
   .card_content {
     background-color: rgba(255, 255, 255, 0.92);
-    box-shadow: 0 5px 30px 10px rgba($black, 0.3);
+    box-shadow: 0 5px 30px 10px rgba(black, 0.3);
   }
   .card_title {
     a {
-      color: lighten($black, 50%);
+      color: lighten(black, 50%);
     }
   }
 
   .card_destination {
-    font-family: $open-sans;
     font-size: 24px;
     position: absolute;
     left: 20px;
