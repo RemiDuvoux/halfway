@@ -8,7 +8,7 @@ module Avion
     def initialize(json) # in JSON
       @data = JSON.parse(json)
       # safeguard for when there are no flights (e.g. Bad Response)
-      unless @data['trips']['tripOption'].nil?
+      if !@data['trips']['tripOption'].nil?
         trips = create_trips(@data['trips']['tripOption'])
       else
         trips = [QPXTripOption.new({})]
@@ -59,6 +59,7 @@ module Avion
       Time.parse trip['slice'][slice]['segment'].first['leg'].first['arrivalTime']
     end
 
+    # TODO: Account for pound instead of koruna
     def extract_total_price(trip)
       @currency = trip['saleTotal'].match(/\w{3}/).to_s
       # Mock currency convertion for czech koruna (* 0.037 to get EUR)
@@ -128,6 +129,11 @@ module Avion
         }
       return JSON.generate(request_hash)
     end
+  end
+
+  # TODO:
+  class QPXComparatorGranular
+    #code
   end
 
   # Our main comparison logic goes here. Takes two arrays of JSON QPX responses
@@ -252,8 +258,15 @@ module Avion
     return html
   end
 
+  # TODO: Change this method names after testng
+  def self.query_qpx_granular(route, date_there, date_back, cache_dir)
+   json = Avion::QPXRequester.new(origin: route.first, destination: route.last, date_there: date_there, date_back: date_back, trip_options: 5, api_key: ENV["QPX_KEY"]).make_request
+   path = File.join(cache_dir, Avion.generate_cache_name(route, date_there, date_back)) + ".json"
+   File.open(path, 'w') { |file| file.write(json) }
+   return json
+  end
 
-  #  NOTE: You must user your own API string from Google QPX instead of Secret::QPX_KEY
+  # Query QPX in bulk
   def self.query_qpx(routes, date_there, date_back, cache)
     jsons = []
     routes.each do |route|
@@ -263,4 +276,10 @@ module Avion
     File.open(cache, 'w') { |file| file.write(jsons) }
     return jsons
   end
+
+  def self.generate_cache_name(route, date_there, date_back)
+    "#{route.first}_#{route.last}_#{date_there}_#{date_back}"
+  end
+
+
 end

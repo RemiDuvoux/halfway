@@ -1,5 +1,5 @@
 <ul>
-  <% @offers[0..3].each do |offer| %>
+  <% @offers.each do |offer| %>
   <li><%= Avion.html_result(offer, @offers).html_safe %></li>
   <% end %>
 </ul>
