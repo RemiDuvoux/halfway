@@ -38,13 +38,7 @@ module Avion
         trips = [QPXTripOption.new({})]
       end
       @trips = trips
-    end
-
-    # Deprecated method
-    def list_trips
-      trips_by_price = @trips.map do |trip|
-        [trip.price, trip.destination_city, trip.destination_airport]
-      end
+      # should we nilify data after initialization? 
     end
 
     private
@@ -196,13 +190,6 @@ module Avion
       output
     end
 
-    def print_readable
-      output = prepare_readable
-      p output[0]
-      puts "========="
-      p output[1]
-    end
-
     private
 
     def objectify(jsons)
@@ -213,25 +200,6 @@ module Avion
 
     def list_all_trips(results)
       results.map { |result| result.trips }.flatten
-    end
-
-    def prepare_readable
-      readable_one = @results_one.map do |result|
-        result.trips.map do |trip|
-          [trip.price, trip.destination_city, trip.destination_airport]
-        end
-      end
-
-      readable_two = @results_two.map do |result|
-        result.trips.map do |trip|
-          [trip.price, trip.destination_city, trip.destination_airport]
-        end
-      end
-
-      # We need to flatten mapped arrays before soring
-      readable_one = readable_one.flatten(1).sort
-      readable_two = readable_two.flatten(1).sort
-      [readable_one, readable_two]
     end
   end
 
