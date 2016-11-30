@@ -17,11 +17,15 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'rails-jquery-autocomplete'
+# gem 'rails4-autocomplete'
 gem 'cloudinary', '1.1.0'
 gem "attachinary", github: "assembler/attachinary"
 gem 'jquery-ui-rails'
 gem "jquery-fileupload-rails"
 gem "coffee-rails"
+source "https://rails-assets.org" do
+  gem 'rails-assets-bootstrap-datepicker'
+end
 
 group :development, :test do
   gem 'binding_of_caller'
