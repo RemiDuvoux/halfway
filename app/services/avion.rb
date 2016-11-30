@@ -312,33 +312,6 @@ module Avion
     triples.compact
   end
 
-  def self.print_result(result, results)
-    roundtrip_a = result.roundtrips.first
-    roundtrip_b = result.roundtrips.last
-
-    nth = results.index(result)
-
-    puts "According to our little fairies, the number #{nth + 1} cheapest city to get from #{roundtrip_a.origin_airport} and #{roundtrip_b.origin_airport} is #{result.destination_city}"
-    puts "Ann flies with #{roundtrip_a.carrier}:"
-    puts "Flight 1:"
-    puts "From #{roundtrip_a.origin_airport} to #{roundtrip_a.destination_airport} departing on #{roundtrip_a.departure_time_there}, arriving on #{roundtrip_a.arrival_time_there}"
-    puts "Flight 2:"
-    puts "From #{roundtrip_a.destination_airport} to #{roundtrip_a.origin_airport} departing on #{roundtrip_a.departure_time_back}, arriving on #{roundtrip_a.arrival_time_back}"
-    puts "Cost for Ann: #{roundtrip_a.price}#{roundtrip_a.currency}"
-    puts ""
-    puts "Bob flies with #{roundtrip_b.carrier}:"
-    puts "Flight 1:"
-    puts "From #{roundtrip_b.origin_airport} to #{roundtrip_b.destination_airport} departing on #{roundtrip_b.departure_time_there}, arriving on #{roundtrip_b.arrival_time_there}"
-    puts "Flight 2:"
-    puts "From #{roundtrip_b.destination_airport} to #{roundtrip_b.origin_airport} departing on #{roundtrip_b.departure_time_back}, arriving on #{roundtrip_b.arrival_time_back}"
-    puts "Cost for Bob: #{roundtrip_b.price}#{roundtrip_b.currency}"
-
-    puts "Total cost for both:"
-    puts "#{result.total.round(2)}"
-
-    puts "========"
-  end
-
   def self.html_result(result, results)
     roundtrip_a = result.roundtrips.first
     roundtrip_b = result.roundtrips.last
