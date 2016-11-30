@@ -4,11 +4,11 @@ class OffersController < ApplicationController
   def index
     # NEWFANGLED CACHE APPROACH
     # TESTING
-    airports = %w(PAR BER BRU MXP LON MAD BCN DUB HEL LCA RIX VNO)
+    airports = %w(PAR BER BRU MXP LON BRU MXP LON MAD BCN DUB)
     origin_a = "AMS"
     origin_b = "LIS"
-    date_there = "2016-12-15"
-    date_back = "2016-12-21"
+    date_there = "2016-12-13"
+    date_back = "2016-12-16"
     routes = Avion.generate_triple_routes(airports, origin_a, origin_b)
 
     @offers = []
