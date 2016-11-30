@@ -132,7 +132,7 @@ module Avion
   end
 
   # Query QPX two requests at a time, only make request if corresponding Offer
-  # is not found in Redis cache
+  # is not found in Redis cache. Our hope to run requests in parallel  
   class SmartQPXAgent
     def initialize(args = {})
       @origin_a = args[:origin_a]
@@ -198,7 +198,7 @@ module Avion
     end
   end
 
-  # TODO:
+  # We use it in SmartQPXAgent
   class QPXComparatorGranular < Comparator
     def initialize(json_from_a, json_from_b, args = {})
       @result_a = QPXResponse.new(json_from_a)
@@ -366,15 +366,15 @@ module Avion
   end
 
 
-  # Query QPX one request at a time
+  # Query QPX one request at a time for testing
   def self.query_qpx_solo(route, date_there, date_back, cache_dir)
    json = Avion::QPXRequester.new(origin: route.first, destination: route.last, date_there: date_there, date_back: date_back, trip_options: 5, api_key: ENV["QPX_KEY"]).make_request
-   path = File.join(cache_dir, Avion.generate_cache_name(route, date_there, date_back)) + ".json"
+   path = File.join(cache_dir, Avion.generate_json_filename(route, date_there, date_back)) + ".json"
    File.open(path, 'w') { |file| file.write(json) }
    return json
   end
 
-  # Query QPX in bulk
+  # Query QPX in bulk for testing
   def self.query_qpx(routes, date_there, date_back, cache)
     jsons = []
     routes.each do |route|
@@ -385,8 +385,7 @@ module Avion
     return jsons
   end
 
-  # TODO: Find a better name
-  def self.generate_cache_name(route, date_there, date_back)
+  def self.generate_json_filename(route, date_there, date_back)
     "#{route.first}_#{route.last}_#{date_there}_#{date_back}"
   end
 end

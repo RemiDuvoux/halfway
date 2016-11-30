@@ -4,7 +4,7 @@ class OffersController < ApplicationController
   def index
     # NEWFANGLED CACHE APPROACH
     # TESTING
-    airports = %w(PAR BER BRU)
+    airports = %w(PAR BER BRU MXP LON MAD BCN)
     origin_a = "AMS"
     origin_b = "LIS"
     date_there = "2016-12-15"
@@ -23,5 +23,11 @@ class OffersController < ApplicationController
       }
       @offers.concat(Avion::SmartQPXAgent.new(info).obtain_offers)
     end
+
+    # sort by price
+    @offers = @offers.sort_by { |offer| offer.total }
+    # and remove duplicate cities
+    @offers = @offers.uniq { |offer| offer.destination_city }
+
   end
 end
