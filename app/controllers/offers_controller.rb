@@ -8,7 +8,7 @@ class OffersController < ApplicationController
   end
 
   def index
-    airports = %w(PAR LON ROM MAD BER BRU MXP VIE VNO)
+    airports = %w(PAR LON ROM MAD BER BRU MIL VIE VNO RIX ATH)
     origin_a = "AMS"
     origin_b = "LIS"
     date_there = "2017-02-07"
