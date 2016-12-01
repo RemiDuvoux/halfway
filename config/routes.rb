@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :offers, only: :index
-  resources :trips, only: :show
   root to: 'pages#home'
   post "/search", to: "pages#search"
   resources :results, only:[:index] do
     get :autocomplete_city_name, :on => :collection
   end
   resources :cities, only: :index do
-    resources :trips, only: :create
+    resources :trips, only: [:create, :show]
   end
   mount Attachinary::Engine => "/attachinary"
 

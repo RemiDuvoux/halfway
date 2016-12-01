@@ -23,10 +23,12 @@ class TripsController < ApplicationController
     flight_4 = Flight.create(departure_time: params[:flight_4_departure_time], arrival_time: params[:flight_4_arrival_time], departure_airport_iata_code: params[:flight_4_departure_airport], arrival_airport_iata_code: params[:flight_4_arrival_airport])
     flight_4.trip = trip_2
     flight_4.save
-    redirect_to trip_path(trip_1)
+    redirect_to city_trip_path(city, trip_1)
   end
 
   def show
-
+    @city = City.find(params[:city_id])
+    @trip_1 = Trip.find(params[:id])
+    @trip_2 = @trip_1.trip
   end
 end
