@@ -8,7 +8,7 @@ class OffersController < ApplicationController
   end
 
   def index
-    airports = %w(PAR LON ROM MAD)
+    airports = %w(PAR LON ROM MAD BER BRU ATH MXP VCE AMS LIS DUB HEL BCN LCA FLR MIL VIE RIX VNO)
 
     # We need to put default values if the user somehow gets here
     # not from the home page
