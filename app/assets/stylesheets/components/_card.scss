@@ -1,22 +1,33 @@
 
 .total_date_title {
-  color: #FF5252;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: rgba(80, 50, 50, 0.9);
+  h2 {
+    font-size: 24px;
+  }
 }
+  small {
+      font-size: 12px;
+      font-weight: lighter;
+    }
 
 .card_wrapper {
-  margin-top: 20px;
+  margin-bottom: 45px;
+  margin-left: 10px;
+  margin-right: 10px;
   background-color: white;
   min-height: 300px;
   position: relative;
   overflow: hidden;
-  border-radius: 5px;
-  box-shadow: 0 19px 38px rgba(black, 0.3), 0 15px 12px rgba(black, 0.2);
+  border-radius: 2px;
+  box-shadow: 0 4px 4px rgba(black, 0.3), 0 4px 3px rgba(black, 0.2);
   &:hover {
     .card_data {
       transform: translateY(0);
     }
     p {
-      color: rgba(255, 255, 255, 0.9);
+      color: rgba(55, 45, 45, 0.9);
       font-size: 18px;
     }
   }
@@ -26,29 +37,14 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  transform: translateY(calc(240px + 1em));
+  transform: translateY(calc(225px + 1em));
   transition: transform 0.15s;
-
-  .card_title {
-    margin-top: 10px;
-    color: rgba(245, 245, 245, 1);
-    a {
-      color: lighten(white, 50%);
-    }
-
-    .card_total_price {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      font-size: 24px;
-    }
-  }
 
   .card_content {
     padding: 1em;
     position: relative;
     z-index: 1;
-    background-color: rgba(35, 35, 35, 0.8);
+    background-color: rgba(255, 245, 245, 0.95);
     box-shadow: 0 5px 30px 10px rgba(black, 0.3);
 
     .card_destination {
@@ -58,52 +54,70 @@
       top: 20px;
     }
 
-    .price {
-      p {
-        color: rgba(245, 245, 245, 1);
-        font-size: 20px;
-        font-weight: lighter;
-      }
-    }
 
-    small {
-    font-size: 12px;
-    font-weight: lighter;
+
+    .card_bottom {
+      margin-top: 35px;
     }
   }
 
+
+  .card_title {
+    margin-top: 10px;
+    color: rgba(80, 50, 50, 0.9);
+    .card_total_price {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      font-size: 24px;
+    }
+
+  }
+
   .card_text {
-    height: 280px;
-    margin: 0;
+    height: 225px;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-around;
 
-    li {
-      font-size: 17px;
-      color: white;
-    }
-
-    .card_text_element {
-      flex: 0 0 35%;
-      font-size: 16px;
-    }
+      .card_text_element {
+        flex: 0 0 35%;
+        font-size: 16px;
+        font-weight: lighter;
+        li {
+          font-size: 15px;
+        }
+        .price {
+          p {
+            font-size: 20px;
+            color: rgba(70, 50, 50, 0.9);
+          }
+        }
+      }
 
     .card_separator {
       width: 1.3px;
-      height: 140px;
-      background-color: rgba(245, 245, 245, 1);
+      height: 165px;
+      background-color: rgba(45, 45, 45, 0.1);
       position: absolute;
     }
 
     .card_origin_city {
-      font-size: 18px;
-      font-weight: bold;
+      font-size: 16px;
     }
   }
 }
 
-
+.card-link {
+ position: absolute;
+ top: 0;
+ bottom: 0;
+ right: 0;
+ width: 100%;
+ z-index:2;
+ background: black;
+ opacity: 0;
+}
 
 
 
