@@ -9,10 +9,10 @@ class OffersController < ApplicationController
 
   def index
     airports = %w(PAR LON ROM MAD BER BRU ATH MXP VCE AMS LIS DUB HEL BCN LCA FLR MIL VIE RIX VNO)
-    origin_a = "AMS"
-    origin_b = "LIS"
-    date_there = "2017-02-07"
-    date_back = "2017-02-17"
+    origin_a = params[:origin_a]
+    origin_b = params[:origin_b]
+    date_there = params[:date_there]
+    date_back = params[:date_back]
     routes = Avion.generate_triple_routes(airports, origin_a, origin_b)
 
     # Test all routes against cache
