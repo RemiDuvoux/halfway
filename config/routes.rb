@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   post "/search", to: "pages#search"
   resources :results, only:[:index] do
-    get :autocomplete_airport_name, :on => :collection
+    get :autocomplete_city_name, :on => :collection
   end
   resources :cities, only: :index
   mount Attachinary::Engine => "/attachinary"
