@@ -132,7 +132,7 @@ module Avion
   end
 
   # Query QPX two requests at a time, only make request if corresponding Offer
-  # is not found in Redis cache. 
+  # is not found in Redis cache.
   # TODO: remove debugging puts
   class SmartQPXAgent
     def initialize(args = {})
@@ -142,11 +142,10 @@ module Avion
       @date_there = args[:date_there]
       @date_back = args[:date_back]
       @cache_key_name = generate_cache_key_name
-      # DEBUG ONLY
+      # while in development
       puts @cache_key_name
     end
 
-    # TODO: Handle case when no offers found (see Avion command line tester)
     def obtain_offers
       # Get deserialized Offer object from cache if found
       if found_in_cache?
@@ -200,7 +199,8 @@ module Avion
 
       # Notify we are ready to return request data
       Pusher.trigger('qpx_updates', 'requests_completed', {
-        increment: 1
+        increment: 1,
+        roundtrips_analyzed: output.length
       })
 
       # return an array of matched offers
