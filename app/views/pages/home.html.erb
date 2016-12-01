@@ -1,6 +1,10 @@
-<div class="banner">
+<div class="banner col-xs-12">
   <div class="banner-content">
-    <h1 class="slogan">Meet <i class="fa fa-plane"></i> Halfway </h1>
+  <div class="banner-title">
+    <h1 class="slogan1">Meet </h1>
+    <%= image_tag "plane.svg", class: "plane-img" %>
+    <h1 class="slogan2"> Halfway </h1>
+     </div>
      <div class="container">
        <div class="row">
          <div class="col-sm-12">
@@ -15,7 +19,7 @@
                <%= autocomplete_field_tag 'origin_b', '', autocomplete_city_name_results_path, placeholder: "Your friend's city", class: "origin-field text-center", style: "border: none" %>
           </div>
             <div class="">
-              <%= submit_tag "Meet", id: "submit-button" %>
+              <%= submit_tag "Explore", id: "submit-button" %>
               <%end%>
             </div>
         </div>

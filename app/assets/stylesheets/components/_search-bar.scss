@@ -71,11 +71,13 @@
 #submit-button {
 width: 80px;
 border: none;
-padding: 0 20px;
+padding: 0 20 10px;
 border-radius: 5px;
 line-height: 40px;
 color: white;
 font-size: 14px;
 border: 1.3px solid white;
-
+margin-top: 50px;
+background-color: #FD7068;
+box-shadow: 7px 9px 31px -13px rgba(0,0,0,0.75);
 }

@@ -13,7 +13,7 @@
   font-size: 70px;
   font-weight: lighter;
   text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: Camphor,Open Sans,Segoe UI, sans-serif;
 }
 .banner p {
   font-size: 20px;
@@ -22,12 +22,31 @@
   margin-bottom: 20px;
 }
 
+.banner-title {
+  display: inline-flex;
+}
 .home-button {
   margin-top: 50px;
 }
 
-.slogan {
+.slogan1 {
   margin-bottom: 20px;
+  margin-left: 40px;
+}
+
+.slogan2 {
+  margin-bottom: 20px;
+  margin-left: 40px;
+}
+
+.title-header {
+  display: inline-block;
+}
+
+.plane-img {
+  margin-left: 53px;
+  width: 80px;
+  opacity: 1;
 }
 
 /* Navbar search form */
