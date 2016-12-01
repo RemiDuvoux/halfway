@@ -12,7 +12,7 @@ csv_options = { col_sep: ',', headers: :first_row }
 
 filepath ||= "#{Rails.root}/db/seed_cities.csv"
 CSV.foreach(filepath, csv_options) do |row|
-  new_city = City.create!(name: row[0])
+  new_city = City.create!(name: row[0], iata_code: row[1])
   new_city.save!
   new_city.card_photo_url = row[2]
   new_city.background_photo_url = row[3]

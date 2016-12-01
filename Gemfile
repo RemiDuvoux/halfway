@@ -8,6 +8,10 @@ gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'redis'
+gem 'redis-rails'
+
+# for Avion single-threaded engine
+gem 'rest-client'
 
 gem 'sass-rails'
 gem 'jquery-rails'
@@ -37,5 +41,3 @@ group :development, :test do
   gem 'listen', '~> 3.0.5'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
-
-
