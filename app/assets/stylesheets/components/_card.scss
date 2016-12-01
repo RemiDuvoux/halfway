@@ -1,100 +1,113 @@
 
-  .card_wrapper {
-    margin-top: 20px;
-    background-color: white;
-    min-height: 300px;
-    position: relative;
-    overflow: hidden;
-    // box-shadow: 0 19px 38px rgba($black, 0.3), 0 15px 12px rgba($black, 0.2);
-    &:hover {
-      .card_data {
-        transform: translateY(0);
-      }
+.total_date_title {
+  color: #FF5252;
+}
+
+.card_wrapper {
+  margin-top: 20px;
+  background-color: white;
+  min-height: 300px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 19px 38px rgba(black, 0.3), 0 15px 12px rgba(black, 0.2);
+  &:hover {
+    .card_data {
+      transform: translateY(0);
     }
-    small {
-    font-size: 10px;
-  }
-    .price {
-      font-weight: bolder;
-      color: #FF5252;
-    }
-
-  }
-
-
-
-  .card_data {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    transform: translateY(calc(250px + 1em));
-    transition: transform 0.15s;
-    .card_content {
-      padding: 1em;
-      position: relative;
-      z-index: 1;
+    p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 18px;
     }
   }
-  .card_author {
-    font-size: 16px;
-  }
+}
+
+.card_data {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  transform: translateY(calc(240px + 1em));
+  transition: transform 0.15s;
+
   .card_title {
     margin-top: 10px;
+    color: rgba(245, 245, 245, 1);
+    a {
+      color: lighten(white, 50%);
+    }
+
+    .card_total_price {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      font-size: 24px;
+    }
+  }
+
+  .card_content {
+    padding: 1em;
+    position: relative;
+    z-index: 1;
+    background-color: rgba(35, 35, 35, 0.8);
+    box-shadow: 0 5px 30px 10px rgba(black, 0.3);
+
+    .card_destination {
+      font-size: 24px;
+      position: absolute;
+      left: 20px;
+      top: 20px;
+    }
+
+    .price {
+      p {
+        color: rgba(245, 245, 245, 1);
+        font-size: 20px;
+        font-weight: lighter;
+      }
+    }
+
+    small {
+    font-size: 12px;
+    font-weight: lighter;
+    }
   }
 
   .card_text {
     height: 280px;
     margin: 0;
     display: flex;
-  align-items: center;
-  justify-content: space-around;
-  }
+    align-items: center;
+    justify-content: space-around;
 
-  .card_text_element {
-  flex: 0 0 35%;
-  }
+    li {
+      font-size: 17px;
+      color: white;
+    }
 
-.card_separator {
-  width: 2px;
-  height: 80px;
-  background-color: black;
-  position: absolute;
+    .card_text_element {
+      flex: 0 0 35%;
+      font-size: 16px;
+    }
 
-}
+    .card_separator {
+      width: 1.3px;
+      height: 140px;
+      background-color: rgba(245, 245, 245, 1);
+      position: absolute;
+    }
 
-
-
-.card_origin_city {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.card_total_price {
-position: absolute;
-  right: 20px;
-  top: 20px;
-  font-size: 24px;
-}
-
-// First example styles
-
-
-  .card_content {
-    background-color: rgba(255, 255, 255, 0.92);
-    box-shadow: 0 5px 30px 10px rgba(black, 0.3);
-  }
-  .card_title {
-    a {
-      color: lighten(black, 50%);
+    .card_origin_city {
+      font-size: 18px;
+      font-weight: bold;
     }
   }
+}
 
-  .card_destination {
-    font-size: 24px;
-    position: absolute;
-    left: 20px;
-    top: 20px;
-  }
+
+
+
+
+
 
 
 
