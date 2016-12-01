@@ -8,11 +8,15 @@ class OffersController < ApplicationController
   end
 
   def index
-    airports = %w(PAR LON ROM MAD BER BRU ATH MXP VCE AMS LIS DUB HEL BCN LCA FLR MIL VIE RIX VNO)
-    origin_a = params[:origin_a]
-    origin_b = params[:origin_b]
-    date_there = params[:date_there]
-    date_back = params[:date_back]
+    airports = %w(PAR LON ROM MAD)
+
+    # We need to put default values if the user somehow gets here
+    # not from the home page
+    origin_a = params[:origin_a] || "AMS"
+    origin_b = params[:origin_b] || "LIS"
+    date_there = params[:date_there] || "2017-02-07"
+    date_back = params[:date_back] || "2017-02-17"
+
     routes = Avion.generate_triple_routes(airports, origin_a, origin_b)
 
     # Test all routes against cache
@@ -36,8 +40,12 @@ class OffersController < ApplicationController
       # and remove duplicate cities
       @offers = @offers.uniq { |offer| offer.destination_city }
     else
-      # Build the cache in the background
+      # we need this to be able to redirect user
+      # to the page with same params in the url from the js in wait.html.erb
+      session[:original_url] = request.original_url
+      # send user to waiting page to watch animations
       redirect_to wait_path
+      # Build the cache in the background
       QueryRoutesJob.perform_later(uncached_routes, date_there, date_back)
     end
   end

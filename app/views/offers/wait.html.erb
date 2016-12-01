@@ -28,7 +28,7 @@
       });
 
       channel.bind('done', function(data) {
-        window.location = "/offers";
+        window.location = '<%= session[:original_url] %>';
       });
 
     });
