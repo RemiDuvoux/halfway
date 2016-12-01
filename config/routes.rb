@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :results, only:[:index] do
     get :autocomplete_city_name, :on => :collection
   end
-  resources :cities, only: :index
+  resources :cities, only: :index do
+    resources :trips, only: [:create, :show]
+  end
   get "/offers/wait", to: "offers#wait", as: "wait"
   mount Attachinary::Engine => "/attachinary"
 

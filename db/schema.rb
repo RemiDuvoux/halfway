@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129174432) do
+ActiveRecord::Schema.define(version: 20161201142501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,10 +49,10 @@ ActiveRecord::Schema.define(version: 20161129174432) do
     t.integer  "trip_id"
     t.datetime "departure_time"
     t.datetime "arrival_time"
-    t.integer  "airport_departure_id"
-    t.integer  "airport_arrival_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "departure_airport_iata_code"
+    t.string   "arrival_airport_iata_code"
     t.index ["trip_id"], name: "index_flights_on_trip_id", using: :btree
   end
 
