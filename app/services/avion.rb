@@ -149,7 +149,7 @@ module Avion
     # TODO: Handle case when no offers found (see Avion command line tester)
     def obtain_offers
       # Get deserialized Offer object from cache if found
-      if check_cache
+      if found_in_cache?
         puts "Found key #{@cache_key_name} in cache"
         return Marshal.load($redis.get(@cache_key_name))
       end
@@ -176,12 +176,13 @@ module Avion
       comparator = Avion::QPXComparatorGranular.new(json_a, json_b, comp_info)
       output = comparator.compare
       $redis.set(@cache_key_name, Marshal.dump(output))
+      # return an array of matched offers
       return output
     end
 
     private
 
-    def check_cache
+    def found_in_cache?
       $redis.get(@cache_key_name) != nil
     end
 
@@ -209,6 +210,7 @@ module Avion
 
     # this is where the magic happens
     def compare
+      # Creates an array of matched offers
       output = []
       @result_a.trips.each do |trip_1|
         @result_b.trips.each do |trip_2|
