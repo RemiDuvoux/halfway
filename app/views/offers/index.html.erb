@@ -45,7 +45,37 @@
             <div class="card_bottom"></div>
           </div>
         </div>
+        <%= form_tag city_trips_path(City.find_by(iata_code: offer.destination_city)) do %>
+          <%= hidden_field_tag 'price_1',offer.roundtrips.first.price %>
+          <%= hidden_field_tag 'price_2', offer.roundtrips.last.price %>
+          <%= hidden_field_tag 'flight_1_departure_time',offer.roundtrips.first.departure_time_there  %>
+          <%= hidden_field_tag 'flight_1_arrival_time', offer.roundtrips.first.arrival_time_there %>
+          <%= hidden_field_tag 'flight_1_carrier', offer.roundtrips.first.carrier %>
+          <%= hidden_field_tag 'flight_1_departure_airport', offer.roundtrips.first.origin_airport %>
+          <%= hidden_field_tag 'flight_1_arrival_airport', offer.roundtrips.first.destination_airport %>
+          <%= hidden_field_tag 'flight_1_price', offer.roundtrips.first.price %>
+          <%= hidden_field_tag 'flight_2_departure_time',offer.roundtrips.first.departure_time_back  %>
+          <%= hidden_field_tag 'flight_2_arrival_time', offer.roundtrips.first.arrival_time_back %>
+          <%= hidden_field_tag 'flight_2_carrier', offer.roundtrips.first.carrier %>
+          <%= hidden_field_tag 'flight_2_departure_airport', offer.roundtrips.first.origin_airport %>
+          <%= hidden_field_tag 'flight_2_arrival_airport', offer.roundtrips.first.destination_airport %>
+          <%= hidden_field_tag 'flight_2_price', offer.roundtrips.first.price %>
+          <%= hidden_field_tag 'flight_3_departure_time',offer.roundtrips.last.departure_time_there  %>
+          <%= hidden_field_tag 'flight_3_arrival_time', offer.roundtrips.last.arrival_time_there %>
+          <%= hidden_field_tag 'flight_3_carrier', offer.roundtrips.last.carrier %>
+          <%= hidden_field_tag 'flight_3_departure_airport', offer.roundtrips.last.origin_airport %>
+          <%= hidden_field_tag 'flight_3_arrival_airport', offer.roundtrips.last.destination_airport %>
+          <%= hidden_field_tag 'flight_3_price', offer.roundtrips.last.price %>
+          <%= hidden_field_tag 'flight_4_departure_time',offer.roundtrips.last.departure_time_back  %>
+          <%= hidden_field_tag 'flight_4_arrival_time', offer.roundtrips.last.arrival_time_back %>
+          <%= hidden_field_tag 'flight_4_carrier', offer.roundtrips.last.carrier %>
+          <%= hidden_field_tag 'flight_4_departure_airport', offer.roundtrips.last.origin_airport %>
+          <%= hidden_field_tag 'flight_4_arrival_airport', offer.roundtrips.last.destination_airport %>
+          <%= hidden_field_tag 'flight_4_price', offer.roundtrips.last.price %>
+          <%= submit_tag 'Save', class: "card-link" %>
+      <% end -%>
       </div>
+
 
     </div>
     <% end %>

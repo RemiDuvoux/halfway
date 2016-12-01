@@ -1,0 +1,49 @@
+
+<div class="show-banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= cl_image_path @city.background_photo.path, height: 300, width: 400, crop: :fill %>');">
+  <div class="show-banner-content">
+    <h1>Your trips to <%= @city.name %> on <%= @trip_1.flights.first.departure_time.strftime("%A, %d %b") %></h1>
+    <p>"An incredibly inspiring quote about the city"</p>
+  </div>
+</div>
+<div class="trips-container">
+  <div class="trip">
+    <h3 class="text-center">From <%= City.find_by(iata_code: @trip_1.flights.first.departure_airport_iata_code).name%></h3>
+    <div class="trips-details">
+      <ul class= "list-inline ">
+        <li><p><%= @trip_1.flights.first.departure_airport_iata_code %> <%= @trip_1.flights.first.departure_time.strftime("%H:%M") %> -> <%= @trip_1.flights.first.arrival_airport_iata_code %> <%= @trip_1.flights.first.arrival_time.strftime("%H:%M") %></p></li>
+        <li><span class="btn btn-primary">Edit</span></li>
+      </ul>
+      <div class="flights-separator">
+
+      </div>
+      <ul class= "list-inline ">
+        <li><p><%= @trip_1.flights.last.departure_airport_iata_code %> <%= @trip_1.flights.last.departure_time.strftime("%H:%M") %> -> <%= @trip_1.flights.last.arrival_airport_iata_code %> <%= @trip_1.flights.last.arrival_time.strftime("%H:%M") %></p></li>
+        <li><span class="btn btn-primary">Edit</span></li>
+      </ul>
+    </div>
+    <h3 class="text-center">150€</h3>
+    <div class="CTA text-center">
+      <span class="btn btn-danger">Book!</span>
+    </div>
+  </div>
+  <div class="trip-separator">
+
+  </div>
+    <div class="trip">
+    <h3 class="text-center">From <%= City.find_by(iata_code: @trip_2.flights.first.departure_airport_iata_code).name%></h3>
+    <div class="trips-details">
+      <ul class= "list-inline ">
+        <li><p><%= @trip_2.flights.first.departure_airport_iata_code %> <%= @trip_2.flights.first.departure_time.strftime("%H:%M") %> -> <%= @trip_2.flights.first.arrival_airport_iata_code %> <%= @trip_2.flights.first.arrival_time.strftime("%H:%M") %></p></li>
+        <li><span class="btn btn-primary">Edit</span></li>
+      </ul>
+      <ul class= "list-inline ">
+        <li><p><%= @trip_2.flights.last.departure_airport_iata_code %> <%= @trip_2.flights.last.departure_time.strftime("%H:%M") %> -> <%= @trip_2.flights.last.arrival_airport_iata_code %> <%= @trip_2.flights.last.arrival_time.strftime("%H:%M") %></p></li>
+        <li><span class="btn btn-primary">Edit</span></li>
+      </ul>
+    </div>
+    <h3 class="text-center">150€</h3>
+    <div class="CTA text-center">
+      <span class="btn btn-danger">Book!</span>
+    </div>
+  </div>
+</div>
