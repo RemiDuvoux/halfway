@@ -6,10 +6,13 @@
          <div class="col-sm-12">
           <div class="search-form-box">
             <%= form_for @result do |f| %>
-              <%= autocomplete_field_tag 'city1', '', autocomplete_city_name_results_path , placeholder: "Please indicate your city", class: "origin-field text-center", style: "border-color: rgba(0,0,0,0)" %>
-                <%= f.text_field :date_there, placeholder: "Departure Date", "class" => 'datepicker',style: "border: none" %>
-                <%= f.text_field :date_back,  placeholder: "Return Date", "class" => 'datepicker', style: "border: none" %>
-               <%= autocomplete_field_tag 'city2', '', autocomplete_city_name_results_path, placeholder: "Please indicate your friend city", class: "origin-field-2 text-center", style: "border: none" %>
+              <%= autocomplete_field_tag 'city1', '', autocomplete_city_name_results_path , placeholder: "Your city", class: "origin-field text-center", style: "border-color: rgba(0,0,0,0)" %>
+                <div class="box-separator"></div>
+                <%= f.text_field :date_there, placeholder: "Departure Date", "class" => 'datepicker text-center',style: "border: none" %>
+                <div class="box-separator"></div>
+                <%= f.text_field :date_back,  placeholder: "Return Date", "class" => 'datepicker text-center', style: "border: none" %>
+                <div class="box-separator"></div>
+               <%= autocomplete_field_tag 'city2', '', autocomplete_city_name_results_path, placeholder: "Your friend's city", class: "origin-field text-center", style: "border: none" %>
             <%end%>
           </div>
             <div class="submit-button">

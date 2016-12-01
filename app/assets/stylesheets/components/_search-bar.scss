@@ -1,11 +1,10 @@
-.origin {
-  color: black;
-  width: 100%;
-  border-radius: 2px;
-  border: 1px lighter #E6E6E6;
-  height: 100% !important;
-
-}
+// .origin {
+//   color: rgb(201, 201, 201);
+//   width: 100%;
+//   border-radius: 2px;
+//   border: 1px lighter #E6E6E6;
+//   height: 100% !important;
+// }
 
 .search-form-box {
   width: 100%;
@@ -14,30 +13,39 @@
   height: 60px;
   margin-left: -12px;
   margin-right: -12px;
-  color: black;
+  color: rgb(201, 201, 201);
+  background-color: #FFFFFF;
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.origin {
-  height: 100%;
-  width: 33%;
+.box-separator {
+  width: 1.3px;
+  height: 30px;
+  background-color: rgb(201, 201, 201);
+  margin-top: 15px;
 }
 
 #city1{
   width: 33%;
   height: 100%;
-  color: black;
+  color: #484848;
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
   border-radius: 10px;
-  border-right-color: black;
 }
 
 #city2 {
   width: 33%;
   border-radius: 10px;
+  color: #484848;
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .origin-field {
    border-style: solid;
-  border-right-color: #ff0000
+  border-right-color: #ff0000;
+  &:focus {
+    outline: none;
+  }
 }
 
 #new_result {
@@ -49,44 +57,17 @@
   border-radius: 10px;
 }
 
-.datepicker-box{
+.datepicker{
   flex-grow: 1;
-  // height: 100%;
   display: flex;
+  color: #484848;
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    &:focus {
+    outline: none;
+  }
 }
 
 .submit-button {
   margin: 50px auto;
+  margin-right: 20px;
 }
-// .halfway-search-bar {
-//   flex: 0 1 300px;
-//   display: flex;
-//   justify-content: flex-end;
-//   padding: 0 10px;
-//   position: relative;
-// }
-// .halfway-search-bar-btn {
-//   line-height: 40px;
-//   color: #E6E6E6;
-//   border: none;
-//   background-color: white;
-//   position: absolute;
-//   right: 14px;
-//   top: -2px;
-//   z-index: 1000000;
-// }
-// .halfway-search-bar-input {
-//   flex: 0 1 300px;
-//   transition: all 0.15s ease;
-//   line-height: 40px;
-//   font-weight: lighter;
-//   color: #666666;
-//   border: 1px solid #E6E6E6;
-//   border-radius: 5px;
-//   padding: 0 10px;
-//   font-size: 14px;
-//   outline: none;
-// }
-// .halfway-search-bar:focus  {
-//   border: 1px solid #CCCCCC;
-// }
