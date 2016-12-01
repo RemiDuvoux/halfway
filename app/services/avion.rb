@@ -155,17 +155,38 @@ module Avion
       end
 
       # If not – run two requests one after another and try to combine them
+      start = Time.now # debugging
       json_a = Avion::QPXRequester.new(
       origin: @origin_a, destination: @destination_city, date_there: @date_there, date_back: @date_back, trip_options: 5, api_key: ENV["QPX_KEY"]).make_request
       # DEBUG ONLY
       puts "#{@origin_a} - #{@destination_city} request made to QPX"
+      finish = Time.now # debugging
+      took_seconds = (finish - start).round(2)
 
+      # TODO: DRY
+      # Pub-sub part
+      Pusher.trigger('qpx_updates', 'request_made', {
+        origin: @origin_a,
+        destination: @destination_city,
+        took_seconds: took_seconds
+      })
+
+      start = Time.now # debugging
       json_b = Avion::QPXRequester.new(
       origin: @origin_b, destination: @destination_city, date_there: @date_there, date_back: @date_back, trip_options: 5, api_key: ENV["QPX_KEY"]).make_request
       # DEBUG ONLY
       puts "#{@origin_b} - #{@destination_city} request made to QPX"
+      finish = Time.now # debugging
+      took_seconds = (finish - start).round(2)
 
-      # Form the params hash to pass to Comparator
+      # Notify first request is made
+      Pusher.trigger('qpx_updates', 'request_made', {
+        origin: @origin_a,
+        destination: @destination_city,
+        took_seconds: took_seconds
+      })
+
+      # Notify second request is made
       comp_info = {
         date_there: @date_there,
         date_back: @date_back,
@@ -176,6 +197,12 @@ module Avion
       comparator = Avion::QPXComparatorGranular.new(json_a, json_b, comp_info)
       output = comparator.compare
       $redis.set(@cache_key_name, Marshal.dump(output))
+
+      # Notify we are ready to return request data
+      Pusher.trigger('qpx_updates', 'requests_completed', {
+        increment: 1
+      })
+
       # return an array of matched offers
       return output
     end
@@ -364,4 +391,11 @@ module Avion
   def self.generate_json_filename(route, date_there, date_back)
     "#{route.first}_#{route.last}_#{date_there}_#{date_back}"
   end
+
+  def self.compare_routes_against_cache(routes, date_there, date_back)
+    routes.reject do |route|
+      !$redis.get("#{route.first}_#{route[1]}_#{route.last}_#{date_there}_#{date_back}").nil?
+    end
+  end
+
 end

@@ -13,6 +13,14 @@ gem 'redis-rails'
 # for Avion single-threaded engine
 gem 'rest-client'
 
+# for pub-sub while we talk to QPX_KEY
+gem 'pusher'
+
+#Sidekiq to offload worker
+gem 'sidekiq'
+gem 'sidekiq-failures'
+gem 'sinatra', ">= 2.0.0.beta2", require: false
+
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
