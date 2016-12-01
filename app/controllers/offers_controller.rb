@@ -8,7 +8,7 @@ class OffersController < ApplicationController
   end
 
   def index
-    airports = %w(PAR LON ROM MAD BER BRU VCE MXP RIX VIE BCN)
+    airports = %w(PAR LON ROM MAD)
     origin_a = "AMS"
     origin_b = "LIS"
     date_there = "2017-02-07"
@@ -37,8 +37,8 @@ class OffersController < ApplicationController
       @offers = @offers.uniq { |offer| offer.destination_city }
     else
       # Build the cache in the background
-      QueryRoutesJob.perform_later(uncached_routes, date_there, date_back)
       redirect_to wait_path
+      QueryRoutesJob.perform_later(uncached_routes, date_there, date_back)
     end
   end
 

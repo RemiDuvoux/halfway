@@ -165,6 +165,7 @@ module Avion
 
       # TODO: DRY
       # Pub-sub part
+      # Notify first request is made
       Pusher.trigger('qpx_updates', 'request_made', {
         origin: @origin_a,
         destination: @destination_city,
@@ -179,14 +180,13 @@ module Avion
       finish = Time.now # debugging
       took_seconds = (finish - start).round(2)
 
-      # Notify first request is made
+      # Notify second request is made
       Pusher.trigger('qpx_updates', 'request_made', {
-        origin: @origin_a,
+        origin: @origin_b,
         destination: @destination_city,
         took_seconds: took_seconds
       })
 
-      # Notify second request is made
       comp_info = {
         date_there: @date_there,
         date_back: @date_back,
@@ -312,7 +312,7 @@ module Avion
   # MODULE METHODS
 
   # A helper to build arrays of possible flights for each of two origins
-  # use 3-letter airport codes as arguments
+  # use 3-letter airport codes as arguments. Deprecated
   def self.generate_routes(airports, origin1, origin2)
     possible_from_origin1 = airports.map do |airport|
       if airport != origin1 && airport!= origin2
@@ -340,34 +340,6 @@ module Avion
     end
     triples.compact
   end
-
-  def self.html_result(result, results)
-    roundtrip_a = result.roundtrips.first
-    roundtrip_b = result.roundtrips.last
-
-    nth = results.index(result)
-
-    html = "<p><strong>Number #{nth + 1}</strong> cheapest city to get from #{roundtrip_a.origin_airport} and #{roundtrip_b.origin_airport} is <strong>#{result.destination_city}</strong>" + "<br>"
-    html += "<br>"
-    html += "Ann flies with #{roundtrip_a.carrier}:" + "<br>"
-    html += "Flight there:" + "<br>"
-    html += "From #{roundtrip_a.origin_airport} to #{roundtrip_a.destination_airport} departing on #{roundtrip_a.departure_time_there}, arriving on #{roundtrip_a.arrival_time_there}" + "<br>"
-    html += "Flight back:" + "<br>"
-    html += "From #{roundtrip_a.destination_airport} to #{roundtrip_a.origin_airport} departing on #{roundtrip_a.departure_time_back}, arriving on #{roundtrip_a.arrival_time_back}" + "<br>"
-    html += "Cost for Ann: #{roundtrip_a.price}#{roundtrip_a.currency}" + "<br>"
-    html += "<br>"
-    html += "Bob flies with #{roundtrip_b.carrier}:" + "<br>"
-    html += "Flight there:" + "<br>"
-    html += "From #{roundtrip_b.origin_airport} to #{roundtrip_b.destination_airport} departing on #{roundtrip_b.departure_time_there}, arriving on #{roundtrip_b.arrival_time_there}" + "<br>"
-    html += "Flight back:" + "<br>"
-    html += "From #{roundtrip_b.destination_airport} to #{roundtrip_b.origin_airport} departing on #{roundtrip_b.departure_time_back}, arriving on #{roundtrip_b.arrival_time_back}" + "<br>"
-    html += "Cost for Bob: #{roundtrip_b.price}#{roundtrip_b.currency}" + "<br>"
-    html += "<br>"
-    html += "<strong>Total cost for both: #{result.total.round(2)}</strong>"
-
-    return html
-  end
-
 
   # Query QPX one request at a time for testing
   def self.query_qpx_solo(route, date_there, date_back, cache_dir)

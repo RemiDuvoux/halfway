@@ -14,5 +14,11 @@ class QueryRoutesJob < ApplicationJob
       }
       Avion::SmartQPXAgent.new(info).obtain_offers
     end
+
+    # Job is comleted
+    Pusher.trigger('qpx_updates', 'done', {
+      done: true
+    })
+
   end
 end
