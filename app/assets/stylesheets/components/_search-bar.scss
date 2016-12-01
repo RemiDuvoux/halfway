@@ -7,15 +7,16 @@
 // }
 
 .search-form-box {
-  width: 100%;
+  width: 90%;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 4px;
   height: 60px;
-  margin-left: -12px;
-  margin-right: -12px;
+  margin-left: 52px;
+  margin-right: 22px;
   color: rgb(201, 201, 201);
   background-color: #FFFFFF;
   font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  box-shadow: 7px 9px 31px -13px rgba(0,0,0,0.75);
 }
 
 .box-separator {

@@ -1,4 +1,4 @@
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(11,72,135,0.43) 0%, rgba(0,12,12,0.6) 86%),  url(<%= image_path 'background2.jpg'%>);">
+<div class="banner">
   <div class="banner-content">
     <h1 class="slogan">Meet. Halfway </h1>
      <div class="container">
@@ -8,9 +8,9 @@
             <%= form_for @result do |f| %>
               <%= autocomplete_field_tag 'city1', '', autocomplete_city_name_results_path , placeholder: "Your city", class: "origin-field text-center", style: "border-color: rgba(0,0,0,0)" %>
                 <div class="box-separator"></div>
-                <%= f.text_field :date_there, placeholder: "Departure Date", "class" => 'datepicker text-center',style: "border: none" %>
+                <%= f.text_field :date_there, placeholder: "Departure", "class" => 'datepicker text-center',style: "border: none" %>
                 <div class="box-separator"></div>
-                <%= f.text_field :date_back,  placeholder: "Return Date", "class" => 'datepicker text-center', style: "border: none" %>
+                <%= f.text_field :date_back,  placeholder: "Return", "class" => 'datepicker text-center', style: "border: none" %>
                 <div class="box-separator"></div>
                <%= autocomplete_field_tag 'city2', '', autocomplete_city_name_results_path, placeholder: "Your friend's city", class: "origin-field text-center", style: "border: none" %>
             <%end%>
