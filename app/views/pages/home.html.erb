@@ -1,22 +1,22 @@
 <div class="banner">
   <div class="banner-content">
-    <h1 class="slogan">Meet. Halfway </h1>
+    <h1 class="slogan">Meet <i class="fa fa-plane"></i> Halfway </h1>
      <div class="container">
        <div class="row">
          <div class="col-sm-12">
           <div class="search-form-box">
-            <%= form_for @result do |f| %>
-              <%= autocomplete_field_tag 'city1', '', autocomplete_city_name_results_path , placeholder: "Your city", class: "origin-field text-center", style: "border-color: rgba(0,0,0,0)" %>
+            <%= form_tag offers_path, method: :get, id: "new_result" do %>
+              <%= autocomplete_field_tag 'origin_a', '', autocomplete_city_name_results_path , placeholder: "Your city", class: "origin-field text-center", style: "border-color: rgba(0,0,0,0)" %>
                 <div class="box-separator"></div>
-                <%= f.text_field :date_there, placeholder: "Departure", "class" => 'datepicker text-center',style: "border: none" %>
+                <%= text_field_tag :date_there, nil, placeholder: "Departure", "class" => 'datepicker text-center',style: "border: none" %>
                 <div class="box-separator"></div>
-                <%= f.text_field :date_back,  placeholder: "Return", "class" => 'datepicker text-center', style: "border: none" %>
+                <%= text_field_tag :date_back, nil, placeholder: "Return", "class" => 'datepicker text-center', style: "border: none" %>
                 <div class="box-separator"></div>
-               <%= autocomplete_field_tag 'city2', '', autocomplete_city_name_results_path, placeholder: "Your friend's city", class: "origin-field text-center", style: "border: none" %>
-            <%end%>
+               <%= autocomplete_field_tag 'origin_b', '', autocomplete_city_name_results_path, placeholder: "Your friend's city", class: "origin-field text-center", style: "border: none" %>
           </div>
-            <div class="submit-button">
-              <%= link_to "Meet!", search_path , class: "btn btn-primary btn-lg text-center"%>
+            <div class="">
+              <%= submit_tag "Meet", id: "submit-button" %>
+              <%end%>
             </div>
         </div>
       </div>
@@ -30,10 +30,11 @@
       $('.datepicker').datepicker({
         todayHighlight: true,
         orientation: "bottom-left",
-        autoclose: true
+        autoclose: true,
+        format: 'yyyy-mm-dd',
       });
     });
   </script>
 <% end %>
 
-            {:controller => "offers", :action => "show", :origin_a => , :origin_b => , :date_there => , :date_back =>  }  -->
+
