@@ -4,7 +4,7 @@ class OffersController < ApplicationController
   # Airport list: %w(PAR LON ROM MAD BER BRU ATH MXP VCE AMS LIS DUB HEL BCN LCA FLR MIL VIE RIX VNO)
 
   def wait
-    #Here we handle user waiting
+    #Here we handle user waiting, but it's mostly done in the view with JS
   end
 
   def index
