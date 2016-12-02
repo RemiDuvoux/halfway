@@ -2,8 +2,8 @@
 <div class="page-wrapper" style="background: linear-gradient(to left, #FF5D3B , #FF2B67 )">
 
   <div class="show-banner-content text-center padded">
-    <h1>Your halfway trips to <%= @city.name %> on <%= @trip_1.flights.first.departure_time.strftime("%A, %d %b") %></h1>
-    <p>“A journey is best measured in friends, rather than miles.” – Tim Cahill</p>
+    <h1>Your halfway trips to <%= @city.name %> between <%= @trip_1.flights.first.departure_time.strftime("%b %d") %> and <%= @trip_1.flights.first.arrival_time.strftime("%b %d") %></h1>
+    <p>“A journey is best measured in friends, rather than miles.” – Joseph Stalin</p>
   </div>
 <div class="trips-container">
   <div class="trip">

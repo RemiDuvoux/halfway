@@ -36,7 +36,7 @@
       <% @offers.each do |offer| %>
       <div class="col-xs-12 col-md-6">
         <div class="card_wrapper" style="background-image:
-        url('<%= cl_image_path City.find_by(iata_code: offer.destination_city).card_photo.path, :width=>0.5%>')">
+        url('<%= cl_image_path City.find_by(iata_code: offer.destination_city).card_photo.path, crop: :fill%> '); background-size: cover !important">
         <div class="card_data">
           <div class="card_content">
             <div class="card_title">
@@ -52,7 +52,7 @@
                 <p class="card_origin_city text-center" style="margin-bottom: 20px">from <%= airports[offer.origin_a]%> <%= offer.roundtrips.first.origin_airport %></p>
                 <ul class="list-unstyled">
                   <li> Outbound <span style="padding-left: 6px"><%= offer.roundtrips.first.departure_time_there.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.first.arrival_time_there.strftime("%H:%M") %> </span> </li>
-                  <li> Return <span style="padding-left: 30px"><%= offer.roundtrips.first.departure_time_back.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.first.arrival_time_back.strftime("%H:%M") %> </span> </li>
+                  <li> Return <span style="padding-left: 29px"><%= offer.roundtrips.first.departure_time_back.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.first.arrival_time_back.strftime("%H:%M") %> </span> </li>
                 </ul>
                 <div class="price text-center" style= "margin-top: 30px">
                   <p><strong><%= offer.roundtrips.first.price.round %>€</strong></p>
@@ -63,7 +63,7 @@
                 <p class="card_origin_city text-center" style="margin-bottom: 20px">from <%= airports[offer.origin_b] %>  <%= offer.roundtrips.last.origin_airport %></p>
                 <ul class="list-unstyled">
                   <li> Outbound <span style="padding-left: 6px"><%= offer.roundtrips.last.departure_time_there.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.last.arrival_time_there.strftime("%H:%M") %> </span> </li>
-                  <li> Return <span style="padding-left: 30px"> <%= offer.roundtrips.last.departure_time_back.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.last.arrival_time_back.strftime("%H:%M") %></span></li>
+                  <li> Return <span style="padding-left: 29px"> <%= offer.roundtrips.last.departure_time_back.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.last.arrival_time_back.strftime("%H:%M") %></span></li>
                 </ul>
                 <div class="price text-center" style= "margin-top: 30px">
                   <p><strong><%= offer.roundtrips.last.price.round %>€</strong></p>
