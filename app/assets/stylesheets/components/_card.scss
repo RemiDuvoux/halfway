@@ -1,16 +1,17 @@
 
-
 .action_title {
   margin-top: 30px;
   margin-bottom: 30px;
   color: #fc6479;
 
   h2 {
-    font-size: 20px;
+    font-size: 24px;
   }
   .total_date_title {
-  font-size: 15px;
+    p{
+  font-size: 18px;
   color: #999999;
+  }
 }
 }
   small {
@@ -127,6 +128,20 @@
 }
 
 
+
+.last_card_home {
+  background: linear-gradient(to left, #FF5D3B , #FF2B67 );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h3 {
+    color: rgba(255, 253, 253, 1);
+    font-size: 24px;
+  }
+  h3 :hover {
+    background: transparent;
+  }
+}
 
 
 
