@@ -21,12 +21,12 @@
     "VNO" => "Vilnius",
     "BRU" => "Brussels" } %>
 
-<div class="wrapper">
 
+<div class="wrapper">
   <div class="action_title text-center">
-    <h2 > Where will you meet ? </h2>
+    <h2> Where will you meet ? </h2>
     <div class="total_date_title">
-      <h2 > Best cities to get from <%= airports[params[:origin_a].upcase] %> and <%= airports[params[:origin_b].upcase] %> between <%= @offers.first.date_there.strftime("%b %d")  %> and <%= @offers.first.date_back.strftime("%b %d") %></h2>
+      <p> Best cities to get from <%= airports[params[:origin_a].upcase] %> and <%= airports[params[:origin_b].upcase] %> between <%= @offers.first.date_there.strftime("%b %d")  %> and <%= @offers.first.date_back.strftime("%b %d") %></p>
     </div>
   </div>
   <div class="container">
@@ -99,10 +99,18 @@
           <%= hidden_field_tag 'flight_4_arrival_airport', offer.roundtrips.last.destination_airport %>
           <%= hidden_field_tag 'flight_4_price', offer.roundtrips.last.price %>
           <%= submit_tag 'Save', class: "card-link" %>
-      <% end -%>
+        <% end %>
+        </div>
+      </div>
+      <% end %>
+      <div class="col-xs-12 col-md-6">
+        <div class="card_wrapper last_card_home text-center">
+          <%= link_to "", root_path, class: "card-link" %>
+          <h3 >Did not find what you wanted? <br> Let's make a new search !</h3>
+          <div class="card_data">
+          </div>
+        </div>
       </div>
     </div>
-    <% end %>
-  </div>
   </div>
 </div>
