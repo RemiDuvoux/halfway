@@ -62,7 +62,7 @@ module Avion
     # TODO: Account for pound instead of koruna
     def extract_total_price(trip)
       @currency = trip['saleTotal'].match(/\w{3}/).to_s
-      # TODO: Find a way to pull live currency data 
+      # TODO: Find a way to pull live currency data
       if @currency == "GBP"
         (trip['saleTotal'].match(/\d+\.*\d+/)[0].to_f * 1.19).round(2)
       else
@@ -147,9 +147,10 @@ module Avion
 
     def obtain_offers
       # Get deserialized Offer object from cache if found
-      if found_in_cache?
+      cached = $redis.get(@cache_key_name)
+      if cached
         puts "Found key #{@cache_key_name} in cache"
-        return Marshal.load($redis.get(@cache_key_name))
+        return Marshal.load(cached)
       end
 
       # If not – run two requests one after another and try to combine them
@@ -207,10 +208,6 @@ module Avion
     end
 
     private
-
-    def found_in_cache?
-      $redis.get(@cache_key_name) != nil
-    end
 
     def generate_cache_key_name
       "#{@origin_a}_#{@origin_b}_#{@destination_city}_#{@date_there}_#{@date_back}"

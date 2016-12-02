@@ -20,7 +20,7 @@ class OffersController < ApplicationController
       return
     end
 
-    airports =  %w(PAR LON ROM MAD BER BRU ATH MXP VCE AMS LIS DUB HEL BCN LCA FLR MIL VIE RIX VNO)
+    airports =  %w(PAR LON ROM MAD)
 
     origin_a = params[:origin_a].upcase
     origin_b = params[:origin_b].upcase
