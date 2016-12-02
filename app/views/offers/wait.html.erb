@@ -28,7 +28,7 @@
       });
 
       channel.bind('done', function(data) {
-        window.location = '<%= session[:original_url] %>';
+        window.location = '<%= session[:url_for_wait] %>';
       });
 
     });
