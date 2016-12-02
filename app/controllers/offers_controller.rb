@@ -14,13 +14,13 @@ class OffersController < ApplicationController
     # if there are no query params in URL or they don't make sense - send user to home page
     redirect_to root_path if URI(request.original_url).query.blank? || params_fail?
 
-    airports =  %w(PAR LON ROM MAD BER BRU ATH MXP VCE)
+    airports =  %w(PAR LON ROM MAD BER BRU ATH MXP VCE AMS LIS DUB HEL BCN LCA FLR MIL VIE RIX VNO)
 
     origin_a = params[:origin_a]
     origin_b = params[:origin_b]
     date_there = params[:date_there]
     date_back = params[:date_back]
-    
+
 
     routes = Avion.generate_triple_routes(airports, origin_a, origin_b)
 
