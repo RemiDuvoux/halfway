@@ -7,14 +7,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to left, #FE8946, #FC5D83);
+  background: linear-gradient(to left, #FF5D3B, #FF2B67);
 }
 .banner h1 {
-  font-size: 70px;
-  font-weight: lighter;
   text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
-  font-family: Camphor,Open Sans,Segoe UI, sans-serif;
+  font-family: "MuseoSansRounded";
+  font-size: 80px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: -4px;
+  text-align: center;
 }
+
 .banner p {
   font-size: 20px;
   font-weight: lighter;
@@ -48,6 +53,13 @@
   width: 80px;
   opacity: 1;
 }
+
+
+
+// @font-face {
+//    font-family: MuseoSansRounded300;
+//    src:url(fonts/MUSEOSANSROUNDED-300_0.OTF);
+// }
 
 /* Navbar search form */
 
