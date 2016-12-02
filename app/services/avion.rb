@@ -62,10 +62,9 @@ module Avion
     # TODO: Account for pound instead of koruna
     def extract_total_price(trip)
       @currency = trip['saleTotal'].match(/\w{3}/).to_s
-      # Mock currency convertion for czech koruna (* 0.037 to get EUR)
-      # TODO: get rid of in actual project, will only work in eurozone for the demo
-      if @currency == "CZK"
-        (trip['saleTotal'].match(/\d+\.*\d+/)[0].to_f * 0.037).round(2)
+      # TODO: Find a way to pull live currency data 
+      if @currency == "GBP"
+        (trip['saleTotal'].match(/\d+\.*\d+/)[0].to_f * 1.19).round(2)
       else
         trip['saleTotal'].match(/\d+\.*\d+/)[0].to_f
       end
