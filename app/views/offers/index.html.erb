@@ -3,7 +3,7 @@
   <div class="action_title text-center">
     <h2 > Where will you meet ? </h2>
     <div class="total_date_title">
-      <p > Best cities to get from <%= City.find_by(iata_code: params[:origin_a]).name %> and <%= City.find_by(iata_code: params[:origin_b]).name %> between <%= @offers.first.date_there.strftime("%b %d")  %> and <%= @offers.first.date_back.strftime("%b %d") %></p>
+      <h2 > Best cities to get from <%= City.find_by(iata_code: params[:origin_a]).name %> and <%= City.find_by(iata_code: params[:origin_b]).name %> between <%= @offers.first.date_there.strftime("%b %d")  %> and <%= @offers.first.date_back.strftime("%b %d") %></h2>
     </div>
   </div>
   <div class="container">
