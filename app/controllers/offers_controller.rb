@@ -20,7 +20,7 @@ class OffersController < ApplicationController
       return
     end
 
-    airports =  %w(PAR LON ROM MAD BER BRU ATH MXP VCE)
+    airports =  %w(PAR LON ROM MAD)
 
     origin_a = params[:origin_a].upcase
     origin_b = params[:origin_b].upcase
@@ -53,7 +53,7 @@ class OffersController < ApplicationController
     else
       # we need this to be able to redirect user
       # to the page with same params in the url from the js in wait.html.erb
-      session[:original_url] = request.original_url
+      session[:url_for_wait] = request.original_url
       # send user to waiting page to watch animations
       redirect_to wait_path
       # Build the cache in the background

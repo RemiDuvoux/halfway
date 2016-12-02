@@ -1,9 +1,34 @@
+<%# TODO: Move this hash to Avion module constants %>
+
+<% airports = {
+    "PAR" => "Paris",
+    "LON" => "London",
+    "ROM" => "Roma",
+    "MAD" => "Madrid",
+    "BER" => "Berlin",
+    "BRU" => "Brussels",
+    "ATH" => "Athens",
+    "MIL" => "Milano",
+    "VCE" => "Venice",
+    "AMS" => "Amsterdam",
+    "LIS" => "Lisbon",
+    "DUB" => "Dublin",
+    "HEL" => "Helsinki",
+    "BCN" => "Barcelona",
+    "LCA" => "Cyprus",
+    "FLR" => "Florence",
+    "MLA" => "Malta",
+    "VIE" => "Vienna",
+    "RIX" => "Riga",
+    "VNO" => "Vilnius",
+    "BRU" => "Brussels" } %>
+
 <div class="wrapper">
 
   <div class="action_title text-center">
     <h2 > Where will you meet ? </h2>
     <div class="total_date_title">
-      <h2 > Best cities to get from <%= City.find_by(iata_code: params[:origin_a].upcase).name %> and <%= City.find_by(iata_code: params[:origin_b].upcase).name %> between <%= @offers.first.date_there.strftime("%b %d")  %> and <%= @offers.first.date_back.strftime("%b %d") %></h2>
+      <h2 > Best cities to get from <%= airports[params[:origin_a].upcase] %> and <%= airports[params[:origin_b].upcase] %> between <%= @offers.first.date_there.strftime("%b %d")  %> and <%= @offers.first.date_back.strftime("%b %d") %></h2>
     </div>
   </div>
   <div class="container">
@@ -16,7 +41,7 @@
           <div class="card_content">
             <div class="card_title">
               <ul class="list-unstyled">
-                <li class="card_destination"><%= City.find_by(iata_code: offer.destination_city).name.capitalize %></li>
+                <li class="card_destination"><%= airports[offer.destination_city]%></li>
               </ul>
               <ul class="list-unstyled">
                 <li class="card_total_price"><%= offer.total.floor %>€ <small>for 2</small></li>
@@ -24,7 +49,7 @@
             </div>
             <div class="card_text">
               <div class="card_text_element">
-                <p class="card_origin_city text-center" style="margin-bottom: 20px">from <%= Airport.find_by(iata_code: offer.roundtrips.first.origin_airport).city.name  %> <%= offer.roundtrips.first.origin_airport %></p>
+                <p class="card_origin_city text-center" style="margin-bottom: 20px">from <%= airports[offer.origin_a]%> <%= offer.roundtrips.first.origin_airport %></p>
                 <ul class="list-unstyled">
                   <li> Outbound <span style="padding-left: 6px"><%= offer.roundtrips.first.departure_time_there.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.first.arrival_time_there.strftime("%H:%M") %> </span> </li>
                   <li> Return <span style="padding-left: 30px"><%= offer.roundtrips.first.departure_time_back.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.first.arrival_time_back.strftime("%H:%M") %> </span> </li>
@@ -35,7 +60,7 @@
               </div>
               <div class="card_text_element card_separator"></div>
               <div class="card_text_element">
-                <p class="card_origin_city text-center" style="margin-bottom: 20px">from <%= Airport.find_by(iata_code: offer.roundtrips.last.origin_airport).city.name %>  <%= offer.roundtrips.last.origin_airport %></p>
+                <p class="card_origin_city text-center" style="margin-bottom: 20px">from <%= airports[offer.origin_b] %>  <%= offer.roundtrips.last.origin_airport %></p>
                 <ul class="list-unstyled">
                   <li> Outbound <span style="padding-left: 6px"><%= offer.roundtrips.last.departure_time_there.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.last.arrival_time_there.strftime("%H:%M") %> </span> </li>
                   <li> Return <span style="padding-left: 30px"> <%= offer.roundtrips.last.departure_time_back.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.last.arrival_time_back.strftime("%H:%M") %></span></li>
