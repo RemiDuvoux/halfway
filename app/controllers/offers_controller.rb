@@ -20,6 +20,7 @@ class OffersController < ApplicationController
     origin_b = params[:origin_b]
     date_there = params[:date_there]
     date_back = params[:date_back]
+    
 
     routes = Avion.generate_triple_routes(airports, origin_a, origin_b)
 
