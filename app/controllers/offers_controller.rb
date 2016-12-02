@@ -20,12 +20,13 @@ class OffersController < ApplicationController
       return
     end
 
-    airports =  %w(PAR LON ROM MAD)
+    airports =  %w(PAR LON ROM MAD BER BRU ATH MXP VCE AMS LIS DUB HEL BCN LCA FLR MIL VIE RIX VNO)
 
     origin_a = params[:origin_a].upcase
     origin_b = params[:origin_b].upcase
     date_there = params[:date_there]
     date_back = params[:date_back]
+
     routes = Avion.generate_triple_routes(airports, origin_a, origin_b)
     # Test all routes against cache
     uncached_routes = Avion.compare_routes_against_cache(routes, date_there, date_back)
