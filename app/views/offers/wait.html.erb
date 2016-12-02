@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>Magic is happening</h1>
+  <h2 id="counter">0</h2>
+  <p>Roundtrips analyzed</p>
+</div>
+
+<% content_for :after_js do -%>
+  <%# PUSHER STUFF %>
+  <script src="https://js.pusher.com/3.2/pusher.min.js"></script>
+  <script>
+    // The document is ready for jquery
+    $(function() {
+      // TODO: Enable pusher logging - don't include this in production
+      Pusher.logToConsole = true;
+
+      var pusher = new Pusher('f44cd385b4d5cfdad94c', {
+        cluster: 'eu',
+        encrypted: true
+      });
+
+      var channel = pusher.subscribe('qpx_updates');
+      var counter = 1;
+
+      // BUG: Counter skips 1
+      channel.bind('requests_completed', function(data) {
+        counter += parseInt(data.roundtrips_analyzed)
+        $("#counter").text(counter);
+      });
+
+      channel.bind('done', function(data) {
+        window.location = '<%= session[:original_url] %>';
+      });
+
+    });
+  </script>
+<% end -%>

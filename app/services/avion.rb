@@ -132,7 +132,7 @@ module Avion
   end
 
   # Query QPX two requests at a time, only make request if corresponding Offer
-  # is not found in Redis cache. Our hope to run requests in parallel
+  # is not found in Redis cache.
   # TODO: remove debugging puts
   class SmartQPXAgent
     def initialize(args = {})
@@ -142,11 +142,10 @@ module Avion
       @date_there = args[:date_there]
       @date_back = args[:date_back]
       @cache_key_name = generate_cache_key_name
-      # DEBUG ONLY
+      # while in development
       puts @cache_key_name
     end
 
-    # TODO: Handle case when no offers found (see Avion command line tester)
     def obtain_offers
       # Get deserialized Offer object from cache if found
       if found_in_cache?
@@ -155,17 +154,38 @@ module Avion
       end
 
       # If not – run two requests one after another and try to combine them
+      start = Time.now # debugging
       json_a = Avion::QPXRequester.new(
       origin: @origin_a, destination: @destination_city, date_there: @date_there, date_back: @date_back, trip_options: 5, api_key: ENV["QPX_KEY"]).make_request
       # DEBUG ONLY
       puts "#{@origin_a} - #{@destination_city} request made to QPX"
+      finish = Time.now # debugging
+      took_seconds = (finish - start).round(2)
 
+      # TODO: DRY
+      # Pub-sub part
+      # Notify first request is made
+      Pusher.trigger('qpx_updates', 'request_made', {
+        origin: @origin_a,
+        destination: @destination_city,
+        took_seconds: took_seconds
+      })
+
+      start = Time.now # debugging
       json_b = Avion::QPXRequester.new(
       origin: @origin_b, destination: @destination_city, date_there: @date_there, date_back: @date_back, trip_options: 5, api_key: ENV["QPX_KEY"]).make_request
       # DEBUG ONLY
       puts "#{@origin_b} - #{@destination_city} request made to QPX"
+      finish = Time.now # debugging
+      took_seconds = (finish - start).round(2)
 
-      # Form the params hash to pass to Comparator
+      # Notify second request is made
+      Pusher.trigger('qpx_updates', 'request_made', {
+        origin: @origin_b,
+        destination: @destination_city,
+        took_seconds: took_seconds
+      })
+
       comp_info = {
         date_there: @date_there,
         date_back: @date_back,
@@ -176,6 +196,13 @@ module Avion
       comparator = Avion::QPXComparatorGranular.new(json_a, json_b, comp_info)
       output = comparator.compare
       $redis.set(@cache_key_name, Marshal.dump(output))
+
+      # Notify we are ready to return request data
+      Pusher.trigger('qpx_updates', 'requests_completed', {
+        increment: 1,
+        roundtrips_analyzed: output.length
+      })
+
       # return an array of matched offers
       return output
     end
@@ -285,7 +312,7 @@ module Avion
   # MODULE METHODS
 
   # A helper to build arrays of possible flights for each of two origins
-  # use 3-letter airport codes as arguments
+  # use 3-letter airport codes as arguments. Deprecated
   def self.generate_routes(airports, origin1, origin2)
     possible_from_origin1 = airports.map do |airport|
       if airport != origin1 && airport!= origin2
@@ -314,34 +341,6 @@ module Avion
     triples.compact
   end
 
-  def self.html_result(result, results)
-    roundtrip_a = result.roundtrips.first
-    roundtrip_b = result.roundtrips.last
-
-    nth = results.index(result)
-
-    html = "<p><strong>Number #{nth + 1}</strong> cheapest city to get from #{roundtrip_a.origin_airport} and #{roundtrip_b.origin_airport} is <strong>#{result.destination_city}</strong>" + "<br>"
-    html += "<br>"
-    html += "Ann flies with #{roundtrip_a.carrier}:" + "<br>"
-    html += "Flight there:" + "<br>"
-    html += "From #{roundtrip_a.origin_airport} to #{roundtrip_a.destination_airport} departing on #{roundtrip_a.departure_time_there}, arriving on #{roundtrip_a.arrival_time_there}" + "<br>"
-    html += "Flight back:" + "<br>"
-    html += "From #{roundtrip_a.destination_airport} to #{roundtrip_a.origin_airport} departing on #{roundtrip_a.departure_time_back}, arriving on #{roundtrip_a.arrival_time_back}" + "<br>"
-    html += "Cost for Ann: #{roundtrip_a.price}#{roundtrip_a.currency}" + "<br>"
-    html += "<br>"
-    html += "Bob flies with #{roundtrip_b.carrier}:" + "<br>"
-    html += "Flight there:" + "<br>"
-    html += "From #{roundtrip_b.origin_airport} to #{roundtrip_b.destination_airport} departing on #{roundtrip_b.departure_time_there}, arriving on #{roundtrip_b.arrival_time_there}" + "<br>"
-    html += "Flight back:" + "<br>"
-    html += "From #{roundtrip_b.destination_airport} to #{roundtrip_b.origin_airport} departing on #{roundtrip_b.departure_time_back}, arriving on #{roundtrip_b.arrival_time_back}" + "<br>"
-    html += "Cost for Bob: #{roundtrip_b.price}#{roundtrip_b.currency}" + "<br>"
-    html += "<br>"
-    html += "<strong>Total cost for both: #{result.total.round(2)}</strong>"
-
-    return html
-  end
-
-
   # Query QPX one request at a time for testing
   def self.query_qpx_solo(route, date_there, date_back, cache_dir)
    json = Avion::QPXRequester.new(origin: route.first, destination: route.last, date_there: date_there, date_back: date_back, trip_options: 5, api_key: ENV["QPX_KEY"]).make_request
@@ -364,4 +363,11 @@ module Avion
   def self.generate_json_filename(route, date_there, date_back)
     "#{route.first}_#{route.last}_#{date_there}_#{date_back}"
   end
+
+  def self.compare_routes_against_cache(routes, date_there, date_back)
+    routes.reject do |route|
+      !$redis.get("#{route.first}_#{route[1]}_#{route.last}_#{date_there}_#{date_back}").nil?
+    end
+  end
+
 end

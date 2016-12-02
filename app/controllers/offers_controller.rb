@@ -1,44 +1,64 @@
 class OffersController < ApplicationController
   skip_before_action :authenticate_user!
 
+  # Airport list: %w(PAR LON ROM MAD BER BRU ATH MXP VCE AMS LIS DUB HEL BCN LCA FLR MIL VIE RIX VNO)
+
+  def wait
+    #Here we handle user waiting, but it's mostly done in the view with JS
+
+    # Don't allow user to access this page directly by typing URL
+    redirect_to root_path if request.referer.nil?
+  end
+
   def index
-    # NEWFANGLED CACHE APPROACH
-    # TESTING
-    airports = %w(PAR LON ROM MAD BER BRU ATH MXP VCE AMS LIS DUB HEL BCN LCA FLR MIL VIE RIX VNO)
+    # if there are no query params in URL or they don't make sense - send user to home page
+    redirect_to root_path if URI(request.original_url).query.blank? || params_fail?
+
+    airports =  %w(PAR LON ROM MAD BER BRU ATH MXP VCE)
+
     origin_a = params[:origin_a]
     origin_b = params[:origin_b]
     date_there = params[:date_there]
     date_back = params[:date_back]
+    
+
     routes = Avion.generate_triple_routes(airports, origin_a, origin_b)
 
-    @offers = []
-
-    start = Time.now
-
-    # TODO: METHOD TO CHECK IF ALL CROSS-CHECK KEYS ARE IN REDIS
-
-    # PUT THIS IN A JOB?
-
-    # With a list of 20 airports it will run 18 times
-    # and make 36 QPX requests in total
-    routes.each do |route|
-      info = {
-        origin_a: route.first,
-        origin_b: route[1],
-        destination_city: route.last,
-        date_there: date_there,
-        date_back: date_back
-      }
-      @offers.concat(Avion::SmartQPXAgent.new(info).obtain_offers)
+    # Test all routes against cache
+    uncached_routes = Avion.compare_routes_against_cache(routes, date_there, date_back)
+    # Do we have something that is not cached?
+    if uncached_routes.empty?
+      @offers = []
+      # This won't do any API requests at all as we work only with cache
+      routes.each do |route|
+        info = {
+          origin_a: route.first,
+          origin_b: route[1],
+          destination_city: route.last,
+          date_there: date_there,
+          date_back: date_back
+        }
+        @offers.concat(Avion::SmartQPXAgent.new(info).obtain_offers)
+      end
+      # sort by total price
+      @offers = @offers.sort_by { |offer| offer.total }
+      # and remove duplicate cities
+      @offers = @offers.uniq { |offer| offer.destination_city }
+    else
+      # we need this to be able to redirect user
+      # to the page with same params in the url from the js in wait.html.erb
+      session[:original_url] = request.original_url
+      # send user to waiting page to watch animations
+      redirect_to wait_path
+      # Build the cache in the background
+      QueryRoutesJob.perform_later(uncached_routes, date_there, date_back)
     end
-
-    finish = Time.now
-
-    puts "Requests took #{(finish - start).round(2)} seconds "
-
-    # sort by total price
-    @offers = @offers.sort_by { |offer| offer.total }
-    # and remove duplicate cities
-    @offers = @offers.uniq { |offer| offer.destination_city }
   end
+
+  private
+
+  def params_fail?
+    params[:origin_a].blank? || params[:origin_b].blank? || params[:date_there].blank? || params[:date_back].blank?
+  end
+
 end
