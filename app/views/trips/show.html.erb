@@ -11,17 +11,18 @@
     <div class="trips-details">
       <ul class= "list-inline ">
         <li><p><%= @trip_2.flights.first.departure_airport_iata_code %> <%= @trip_2.flights.first.departure_time.strftime("%H:%M") %> -> <%= @trip_2.flights.first.arrival_airport_iata_code %> <%= @trip_2.flights.first.arrival_time.strftime("%H:%M") %></p></li>
-        <li><div class="submit-button">Edit</div></li>
+        <!-- <li><div class="trip-show-submit-button">Change flight <i class="fa fa-edit"></i></div></li> -->
       </ul>
       <div class="flights-separator">
       </div>
       <ul class= "list-inline second-result">
         <li><p><%= @trip_2.flights.last.arrival_airport_iata_code %> <%= @trip_2.flights.last.departure_time.strftime("%H:%M") %> -> <%= @trip_2.flights.last.departure_airport_iata_code %> <%= @trip_2.flights.last.arrival_time.strftime("%H:%M") %></p></li>
-        <li><div class="submit-button">Edit</div></li>
+        <!-- <li><div class="trip-show-submit-button">Change flight <i class="fa fa-edit"></i></div></li> -->
       </ul>
     </div>
     <h3 class="text-center"><%= @trip_1.price %>€</h3>
       <div class="book-button">Book!</div>
+      <%= link_to "Change flights", root_path, class: "change-flights-link"  %>
   </div>
   <div class="trip-separator">
 
@@ -31,18 +32,19 @@
     <div class="trips-details">
       <ul class= "list-inline ">
         <li><p><%= @trip_1.flights.first.departure_airport_iata_code %> <%= @trip_1.flights.first.departure_time.strftime("%H:%M") %> -> <%= @trip_1.flights.first.arrival_airport_iata_code %> <%= @trip_1.flights.first.arrival_time.strftime("%H:%M") %></p></li>
-        <li><div class="submit-button">Edit</div></li>
+        <!-- <li><div class="trip-show-submit-button">Change flight <i class="fa fa-edit"></i></div></li> -->
       </ul>
       <div class="flights-separator">
 
       </div>
       <ul class= "list-inline second-result">
         <li><p><%= @trip_1.flights.last.arrival_airport_iata_code %> <%= @trip_1.flights.last.departure_time.strftime("%H:%M") %> -> <%= @trip_1.flights.last.departure_airport_iata_code %> <%= @trip_1.flights.last.arrival_time.strftime("%H:%M") %></p></li>
-        <li><div class="submit-button">Edit</div></li>
+        <!-- <li><div class="trip-show-submit-button">Change flight <i class="fa fa-edit"></i></div></li> -->
       </ul>
     </div>
     <h3 class="text-center"><%= @trip_2.price %>€</h3>
       <div class="book-button">Book!</div>
+      <%= link_to "Change flights", root_path, class: "change-flights-link"  %>
   </div>
 </div>
 </div>
