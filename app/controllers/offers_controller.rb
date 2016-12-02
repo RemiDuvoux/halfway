@@ -22,8 +22,8 @@ class OffersController < ApplicationController
 
     airports =  %w(PAR LON ROM MAD BER BRU ATH MXP VCE)
 
-    origin_a = params[:origin_a]
-    origin_b = params[:origin_b]
+    origin_a = params[:origin_a].upcase
+    origin_b = params[:origin_b].upcase
     date_there = params[:date_there]
     date_back = params[:date_back]
     routes = Avion.generate_triple_routes(airports, origin_a, origin_b)
