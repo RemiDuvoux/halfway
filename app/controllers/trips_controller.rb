@@ -3,10 +3,12 @@ class TripsController < ApplicationController
   def create
     city = City.find(params[:city_id])
     trip_1 = Trip.new
+    trip_1.price = params[:price_1]
     trip_1.city = city
     trip_1.save
     trip_2 = Trip.new
     trip_2.city = city
+    trip_2.price = params[:price_2]
     trip_2.trip = trip_1
     trip_2.save
     trip_1.trip = trip_2
