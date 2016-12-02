@@ -1,11 +1,11 @@
-<div class="navbar-wagon">
+<div class="navbar-wagon col-xs-12">
   <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
+  <%= link_to root_path, class: "navbar-wagon-brand col-xs-9" do %>
     <%= image_tag "logo.png" %>
   <% end %>
 
   <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
+  <div class="navbar-wagon-right hidden-xs hidden-sm col-xs-3">
 
     <!-- Search form -->
   <!--   <form action="" class="navbar-wagon-search">
@@ -54,8 +54,10 @@
 
       <!-- Login text link -->
     <!-- Button (call-to-action) -->
-    <%= link_to t(".isgn_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-button btn" %>
-      <% end %>
+    <div class="navbar-wagon-item navbar-wagon-link">
+      <%= link_to t(".isgn_in", default: "Sign Up"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-button btn" %>
+        <% end %>
+    </div>
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
