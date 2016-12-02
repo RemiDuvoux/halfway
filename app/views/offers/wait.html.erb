@@ -1,13 +1,35 @@
-<div class="container">
+<div class="waiting-page-container">
   <h1>Magic is happening</h1>
   <h2 id="counter">0</h2>
   <p>Roundtrips analyzed</p>
+  <div class="plane">
+  <div class="wings">
+    <div class="fan">
+      <div class="fan-wings">
+        <div class="fan-a"></div>
+        <div class="fan-b"></div>
+        <div class="fan-c"></div>
+        <div class="fan-d"></div>
+      </div>
+    </div>
+    <div class="cat">
+      <div class="legs"></div>
+    </div>
+  </div>
+  <div class="wheel">
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+</div>
 </div>
 
+
+<%# DON'T MODIFY BELOW THIS LINE %>
+
 <% content_for :after_js do -%>
-  <%# PUSHER STUFF %>
-  <script src="https://js.pusher.com/3.2/pusher.min.js"></script>
-  <script>
+<%# PUSHER STUFF %>
+<script src="https://js.pusher.com/3.2/pusher.min.js"></script>
+<script>
     // The document is ready for jquery
     $(function() {
       // TODO: Enable pusher logging - don't include this in production
@@ -33,4 +55,4 @@
 
     });
   </script>
-<% end -%>
+  <% end -%>
