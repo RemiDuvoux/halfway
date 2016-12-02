@@ -5,13 +5,20 @@ class OffersController < ApplicationController
 
   def wait
     #Here we handle user waiting, but it's mostly done in the view with JS
+
+    # Don't allow user to access this page directly by typing URL
+    redirect_to root_path if request.referer.nil?
   end
 
   def index
+    # if there are no query params in URL or they don't make sense - send user to home page
+    redirect_to root_path if URI(request.original_url).query.blank? || params_fail?
+
     airports =  %w(PAR LON ROM MAD BER BRU ATH MXP VCE AMS LIS DUB HEL BCN LCA FLR MIL VIE RIX VNO)
 
     # We need to put default values if the user somehow gets here
     # not from the home page
+
     origin_a = params[:origin_a] || "AMS"
     origin_b = params[:origin_b] || "LIS"
     date_there = params[:date_there] || "2017-02-07"
@@ -48,6 +55,12 @@ class OffersController < ApplicationController
       # Build the cache in the background
       QueryRoutesJob.perform_later(uncached_routes, date_there, date_back)
     end
+  end
+
+  private
+
+  def params_fail?
+    params[:origin_a].blank? || params[:origin_b].blank? || params[:date_there].blank? || params[:date_back].blank?
   end
 
 end
