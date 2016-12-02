@@ -1,7 +1,7 @@
 .show-banner {
   color: white;
   text-align: center;
-  height: 40vh;
+  height: 50vh;
   margin-top: -70px;
   background-size: cover !important;
   display: flex;
@@ -27,7 +27,9 @@
 }
 
 .trip {
-  flex-grow: 1
+  flex-grow: 1;
+  margin: 20px 50px;
+  text-align: center
 }
 
 .trip-separator {
@@ -39,15 +41,15 @@
 
 .trips-details {
   padding-top: 30px;
-  margin-left: 50px;
-  margin-top: 20px
+  margin: 20px;
 }
 
 .flights-separator {
   background-color: #CCCCCC;
   height: 1.3px;
   width: 30vw;
-  margin-left: 5vw
+  margin-left: 5vw;
+  margin-bottom: 30px
 }
 
 
@@ -112,4 +114,12 @@
   top: 120px;
   padding: 5px;
 }
+
+.page-wrapper {
+  h1, h3, p {
+    color: white
+  }
+height: 100vh;
+}
+
 
