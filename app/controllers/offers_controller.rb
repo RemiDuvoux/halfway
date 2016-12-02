@@ -7,6 +7,7 @@ class OffersController < ApplicationController
     #Here we handle user waiting, but it's mostly done in the view with JS
 
     # Don't allow user to access this page directly by typing URL
+    # TODO: prevnet the page to be accessible by hitting back from /offers
     redirect_to root_path if request.referer.nil?
   end
 
