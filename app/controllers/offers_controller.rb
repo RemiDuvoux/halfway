@@ -10,7 +10,7 @@ class OffersController < ApplicationController
     # Prevent user from accessing this page directly by typing URL or by hitting back from /offers
     referer = session[:referer]
     session[:referer] = nil
-    redirect_to root_path if request.referer.nil? || referer =~ /offers/
+    redirect_to root_path if referer =~ /offers/
   end
 
   def index
@@ -56,6 +56,8 @@ class OffersController < ApplicationController
       # to the page with same params in the url from the js in wait.html.erb
       session[:url_for_wait] = request.original_url
       # send user to waiting page to watch animations
+      puts "Referer: "
+      p session[:referer]
       redirect_to wait_path
       # Build the cache in the background
       QueryRoutesJob.perform_later(uncached_routes, date_there, date_back)
