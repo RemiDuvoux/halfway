@@ -40,6 +40,7 @@ AIRPORTS = {
     "Vienna" => "VIE",
     "Riga" => "RIX",
     "Vilnius" => "VNO",
+    "Brussels" => "BRU"
   }
 
 City.all.each do |city|
