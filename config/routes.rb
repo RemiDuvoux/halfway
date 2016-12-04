@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :offers, only: :index
   get 'offers/:stamp', to: 'offers#show', as: 'offer'
   root to: 'pages#home'
-  post "/search", to: "pages#search"
   resources :results, only:[:index] do
     get :autocomplete_city_name, :on => :collection
   end

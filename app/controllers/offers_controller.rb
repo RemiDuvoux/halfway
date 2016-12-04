@@ -8,6 +8,12 @@ class OffersController < ApplicationController
   end
 
   def show
+    # safeguard agains random urls starting with /offers
+    unless params[:stamp] =~ /\w{3}_\w{3}_\w{3}_\d{4}-\d{2}-\d{2}_\d{4}-\d{2}-\d{2}/ 
+      redirect_to root_path
+      return
+    end
+
     from_stamp = params[:stamp].split('_')
     info = {
       origin_a: from_stamp.first,
@@ -16,8 +22,11 @@ class OffersController < ApplicationController
       date_there: from_stamp[3],
       date_back: from_stamp.last
     }
+    # All offers for one route sorted by price
     @offers = Avion::SmartQPXAgent.new(info).obtain_offers.sort_by { |offer| offer.total }
-    @offer = @offers.first
+    # use query string to set the nth cheapest offer (zero-based), loop over to 0 if exceed array length
+    idx = params[:cheapest].to_i < @offers.length ? params[:cheapest].to_i : 0
+    @offer = @offers[idx]
   end
 
   def index
@@ -29,7 +38,7 @@ class OffersController < ApplicationController
       return
     end
 
-    airports =  %w(PAR)
+    airports =  %w(PAR BER)
 
     origin_a = params[:origin_a].upcase
     origin_b = params[:origin_b].upcase

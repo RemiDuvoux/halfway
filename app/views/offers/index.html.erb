@@ -38,7 +38,7 @@
         <div class="card_wrapper" style="background-image:
         url('<%= cl_image_path City.find_by(iata_code: offer.destination_city).card_photo.path, crop: :fill%> '); background-size: cover !important">
         <div class="card_data">
-          <%= link_to "", offer_path(offer.stamp), class: "card-link" %>
+          <%= link_to "", offer_path(offer.stamp, cheapest: 0), class: "card-link" %>
           <div class="card_content">
             <div class="card_title">
               <ul class="list-unstyled">
