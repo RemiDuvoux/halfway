@@ -14,7 +14,7 @@ module Avion
         trips = [QPXTripOption.new({})]
       end
       @trips = trips
-      # should we nilify data after initialization?
+      # TODO: should we nilify data after initialization?
     end
 
     private
