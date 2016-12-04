@@ -4,7 +4,7 @@ class OffersController < ApplicationController
   # Airport list: %w(PAR LON ROM MAD BER BRU ATH MXP VCE AMS LIS DUB HEL BCN LCA FLR MIL VIE RIX VNO)
 
   def wait
-    #Waiting logic implemented in the view directly with JS
+    #Waiting logic implemented directly in the view with JS
   end
 
   def index
@@ -51,9 +51,9 @@ class OffersController < ApplicationController
       # we need this to be able to redirect user
       # to the page with same params in the url from the js in wait.html.erb
       session[:url_for_wait] = request.original_url
-      # render wait view without any routing 
+      # render wait view without any routing
       render action: :wait
-      # Build the cache in the background
+      # Send requests and build the cache in the background
       QueryRoutesJob.perform_later(uncached_routes, date_there, date_back)
     end
   end
