@@ -1,4 +1,4 @@
-# An API agnostic version of QPXTripOption we use to refer inside of Offer
+# An API agnostic version of QPXTripOption we use to refer inside of Offer.
 # A converter class. Use more initialization options with different APIs later
 class RoundTrip
   attr_reader :price, :destination_city, :destination_airport,
