@@ -7,6 +7,19 @@ class OffersController < ApplicationController
     #Waiting logic implemented directly in the view with JS
   end
 
+  def show
+    from_stamp = params[:stamp].split('_')
+    info = {
+      origin_a: from_stamp.first,
+      origin_b: from_stamp[1],
+      destination_city: from_stamp[2],
+      date_there: from_stamp[3],
+      date_back: from_stamp.last
+    }
+    @offers = Avion::SmartQPXAgent.new(info).obtain_offers.sort_by { |offer| offer.total }
+    @offer = @offers.first
+  end
+
   def index
     # do not cache the page to avoid caching waiting animation
     response.headers['Cache-Control'] = "no-cache, max-age=0, must-revalidate, no-store"

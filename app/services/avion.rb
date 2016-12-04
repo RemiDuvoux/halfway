@@ -209,6 +209,7 @@ module Avion
 
     private
 
+    # TODO: Use alphabetical approach to make AMS-LIS and LIS-AMS refer to same cache key
     def generate_cache_key_name
       "#{@origin_a}_#{@origin_b}_#{@destination_city}_#{@date_there}_#{@date_back}"
     end
