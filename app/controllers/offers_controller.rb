@@ -3,25 +3,20 @@ class OffersController < ApplicationController
 
   # Airport list: %w(PAR LON ROM MAD BER BRU ATH MXP VCE AMS LIS DUB HEL BCN LCA FLR MIL VIE RIX VNO)
 
-  def wait #Here we handle user waiting, but it's mostly done in the view with JS
-    # this page should not ever be cached by the browser
-    response.headers['Cache-Control'] = "no-cache, max-age=0, must-revalidate, no-store"
-    # Prevent user from accessing this page directly by typing URL or by hitting back from /offers
-    referer = session[:referer]
-    session[:referer] = nil
-    # redirect when the user tries to access waiting page directly (TODO)
-    # or by clicking "Back" button from offers#index
-    redirect_to root_path if referer =~ /offers/
+  def wait
+    #Waiting logic implemented in the view directly with JS
   end
 
   def index
+    # do not cache the page to avoid caching waiting animation
+    response.headers['Cache-Control'] = "no-cache, max-age=0, must-revalidate, no-store"
     # if there are no query params in URL or they don't make sense - send user to home page
     if URI(request.original_url).query.blank? || params_fail?
       redirect_to root_path
       return
     end
 
-    airports =  %w(PAR LON ROM MAD)
+    airports =  %w(PAR)
 
     origin_a = params[:origin_a].upcase
     origin_b = params[:origin_b].upcase
@@ -56,10 +51,8 @@ class OffersController < ApplicationController
       # we need this to be able to redirect user
       # to the page with same params in the url from the js in wait.html.erb
       session[:url_for_wait] = request.original_url
-      # send user to waiting page to watch animations
-      puts "Referer: "
-      p session[:referer]
-      redirect_to wait_path
+      # render wait view without any routing 
+      render action: :wait
       # Build the cache in the background
       QueryRoutesJob.perform_later(uncached_routes, date_there, date_back)
     end

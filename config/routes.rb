@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   resources :cities, only: :index do
     resources :trips, only: [:create, :show]
   end
-  get "/offers/wait", to: "offers#wait", as: "wait"
   mount Attachinary::Engine => "/attachinary"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
