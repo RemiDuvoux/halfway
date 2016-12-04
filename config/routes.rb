@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :offers, only: :index
+  get 'offers/:stamp', to: 'offers#show', as: 'offer'
   root to: 'pages#home'
   post "/search", to: "pages#search"
   resources :results, only:[:index] do
