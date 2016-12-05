@@ -98,6 +98,7 @@ module Avion
       @api_key = args[:api_key]
     end
 
+    # TODO: Account for 400 
     def make_request
       url = "https://www.googleapis.com/qpxExpress/v1/trips/search?key=" + @api_key
       request = compose_request
