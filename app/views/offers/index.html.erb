@@ -1,10 +1,12 @@
-<div class="wrapper">
-  <div class="action_title text-center">
-    <h2> Where will you meet ? </h2>
-    <div class="total_date_title">
-      <!-- <p> Best cities to get from <#%= Avion::AIRPORTS[params[:origin_a].upcase] %> and <#%= Avion::AIRPORTS[params[:origin_b].upcase] %> between <#%= @offers.first.date_there.strftime("%b %d")  %> and <%#= @offers.first.date_back.strftime("%b %d") %></p> -->
+<section id="main">
+<header class="header_cards">
+<div class="action_title text-center">
+      <h2> Where will you meet ? </h2>
+      <div class="total_date_title">
+        <p> Best cities to get from <%= Avion::AIRPORTS[params[:origin_a].upcase] %> and <%= Avion::AIRPORTS[params[:origin_b].upcase] %> between <%= Date.parse(params[:date_there]).strftime("%b %d") %> and <%= Date.parse(params[:date_back]).strftime("%b %d") %></p>
+      </div>
     </div>
-  </div>
+</header>
   <div class="filters">
     <ul class="list-inline text-center">
       <li>
@@ -59,62 +61,72 @@
       </li>
     </ul>
   </div>
-  <div class="container">
-    <div class="row">
-      <% @offers.each do |offer| %>
-      <div class="col-xs-12 col-md-6">
-        <div class="card_wrapper" style="background-image:
-        url('<%= cl_image_path City.find_by(iata_code: offer.destination_city).card_photo.path, crop: :fill%> '); background-size: cover !important">
-        <div class="card_data">
-          <%= link_to "", offer_path(offer.stamp, cheapest: 0), class: "card-link" %>
-          <div class="card_content">
-            <div class="card_title">
-              <ul class="list-unstyled">
-                <li class="card_destination"><%= Avion::AIRPORTS[offer.destination_city]%></li>
-              </ul>
-              <ul class="list-unstyled">
-                <li class="card_total_price"><%= offer.total.floor %>€ <small>for 2</small></li>
-              </ul>
-            </div>
-            <div class="card_text">
-              <div class="card_text_element">
-                <p class="card_origin_city text-center" style="margin-bottom: 20px">from <%= Avion::AIRPORTS[offer.origin_a]%> <%= offer.roundtrips.first.origin_airport %></p>
+<div class="total_wrapper_cards">
+  <div class="wrapper_background has-section">
+    <div class="background_element"></div>
+    <div class="background_element"></div>
+  </div>
+  <div class="home_cards_wrapper">
+
+    <div class="container">
+      <div class="row">
+        <% @offers.each do |offer| %>
+        <div class="col-xs-12 col-md-6">
+          <div class="card_wrapper" style="background-image:
+          url('<%= cl_image_path City.find_by(iata_code: offer.destination_city).card_photo.path, crop: :fill%> '); background-size: cover !important">
+          <div class="card_data">
+            <%= link_to "", offer_path(offer.stamp, cheapest: 0), class: "card-link" %>
+            <div class="card_content">
+              <div class="card_title">
                 <ul class="list-unstyled">
-                  <li> Outbound <span style="padding-left: 6px"><%= offer.roundtrips.first.departure_time_there.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.first.arrival_time_there.strftime("%H:%M") %> </span> </li>
-                  <li> Return <span style="padding-left: 29px"><%= offer.roundtrips.first.departure_time_back.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.first.arrival_time_back.strftime("%H:%M") %> </span> </li>
+                  <li class="card_destination"><%= Avion::AIRPORTS[offer.destination_city]%></li>
                 </ul>
-                <div class="price text-center" style= "margin-top: 30px">
-                  <p><strong><%= offer.roundtrips.first.price.round %>€</strong></p>
+                <ul class="list-unstyled">
+                  <li class="card_total_price"><%= offer.total.floor %>€ <small>for 2</small></li>
+                </ul>
+              </div>
+              <div class="card_text">
+                <div class="card_text_element">
+                  <p class="card_origin_city text-center" style="margin-bottom: 25px">from <%= Avion::AIRPORTS[offer.origin_a]%> <%= offer.roundtrips.first.origin_airport %></p>
+                  <p class="airline text-center"> <%= Offer::AIRLINES[offer.roundtrips.first.carrier]%> </p>
+                  <ul class="list-unstyled">
+                    <li> Outbound <span style="padding-left: 6px"><%= offer.roundtrips.first.departure_time_there.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.first.arrival_time_there.strftime("%H:%M") %> </span> </li>
+                    <li> Return <span style="padding-left: 29px"><%= offer.roundtrips.first.departure_time_back.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.first.arrival_time_back.strftime("%H:%M") %> </span> </li>
+                  </ul>
+                  <div class="price text-center" style= "margin-top: 25px">
+                    <p><strong><%= offer.roundtrips.first.price.round %>€</strong></p>
+                  </div>
+                </div>
+                <div class="card_text_element card_separator"></div>
+                <div class="card_text_element">
+                  <p class="card_origin_city text-center" style="margin-bottom: 25px">from <%= Avion::AIRPORTS[offer.origin_b] %>  <%= offer.roundtrips.last.origin_airport %></p>
+                  <p class="airline text-center"> <%= Offer::AIRLINES[offer.roundtrips.last.carrier]%> </p>
+                  <ul class="list-unstyled">
+                    <li> Outbound <span style="padding-left: 6px"> <%= offer.roundtrips.last.departure_time_there.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.last.arrival_time_there.strftime("%H:%M") %> </span> </li>
+                    <li> Return <span style="padding-left: 29px"> <%= offer.roundtrips.last.departure_time_back.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.last.arrival_time_back.strftime("%H:%M") %></span></li>
+                  </ul>
+                  <div class="price text-center" style= "margin-top: 25px">
+                    <p><strong><%= offer.roundtrips.last.price.round %>€</strong></p>
+                  </div>
                 </div>
               </div>
-              <div class="card_text_element card_separator"></div>
-              <div class="card_text_element">
-                <p class="card_origin_city text-center" style="margin-bottom: 20px">from <%= Avion::AIRPORTS[offer.origin_b] %>  <%= offer.roundtrips.last.origin_airport %></p>
-                <ul class="list-unstyled">
-                  <li> Outbound <span style="padding-left: 6px"><%= offer.roundtrips.last.departure_time_there.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.last.arrival_time_there.strftime("%H:%M") %> </span> </li>
-                  <li> Return <span style="padding-left: 29px"> <%= offer.roundtrips.last.departure_time_back.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.last.arrival_time_back.strftime("%H:%M") %></span></li>
-                </ul>
-                <div class="price text-center" style= "margin-top: 30px">
-                  <p><strong><%= offer.roundtrips.last.price.round %>€</strong></p>
-                </div>
-              </div>
+              <div class="card_bottom"></div>
             </div>
-            <div class="card_bottom"></div>
+          </div>
           </div>
         </div>
-      </div>
-    </div>
-    <% end %>
-    <div class="col-xs-12 col-md-6">
-      <div class="card_wrapper last_card_home text-center">
-        <%= link_to "", root_path, class: "card-link" %>
-        <h3 >Did not find what you wanted? <br> Let's make a new search !</h3>
-        <div class="card_data">
+        <% end %>
+        <div class="col-xs-12 col-md-6">
+          <div class="card_wrapper last_card_home text-center">
+            <%= link_to "", root_path, class: "card-link" %>
+            <h3 >Did not find what you wanted? <br> Let's make a new search !</h3>
+            <div class="card_data">
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-</div>
-
+</section>
 

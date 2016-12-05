@@ -110,25 +110,25 @@ class OffersController < ApplicationController
 
   def departure_time_choice
     if params[:departure_time_there] == "earlybird"
-      return [5,10]
+      return [5,8]
     elsif params[:departure_time_there] == "morning"
-      return [9,12]
+      return [8,12]
     elsif params[:departure_time_there] == "afternoon"
-      return [11,18]
+      return [12,18]
     elsif params[:departure_time_there] == "afterwork"
-      return [17,24]
+      return [18,24]
     end
   end
 
   def arrival_time_choice
     if params[:arrival_time_back] == "earlybird"
-      return [5,10]
+      return [5,8]
     elsif params[:arrival_time_back] == "morning"
-      return [9,12]
+      return [8,12]
     elsif params[:arrival_time_back] == "afternoon"
-      return [11,18]
+      return [12,18]
     elsif params[:arrival_time_back] == "evening"
-      return [17,24]
+      return [18,24]
     end
   end
 
