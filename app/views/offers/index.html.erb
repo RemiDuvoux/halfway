@@ -2,8 +2,62 @@
   <div class="action_title text-center">
     <h2> Where will you meet ? </h2>
     <div class="total_date_title">
-      <p> Best cities to get from <%= Avion::AIRPORTS[params[:origin_a].upcase] %> and <%= Avion::AIRPORTS[params[:origin_b].upcase] %> between <%= @offers.first.date_there.strftime("%b %d")  %> and <%= @offers.first.date_back.strftime("%b %d") %></p>
+      <!-- <p> Best cities to get from <#%= Avion::AIRPORTS[params[:origin_a].upcase] %> and <#%= Avion::AIRPORTS[params[:origin_b].upcase] %> between <#%= @offers.first.date_there.strftime("%b %d")  %> and <%#= @offers.first.date_back.strftime("%b %d") %></p> -->
     </div>
+  </div>
+  <div class="filters">
+    <ul class="list-inline text-center">
+      <li>
+        <div class="text-center links-box">
+        <h3>When do you want to leave ?</h3>
+        <div class="option <%= departure_css_class_name('earlybird') %>">
+          <%= link_to "5-8AM", offers_path(@filters.merge(departure_time_there: "earlybird")) , class: "radio-btn"%>
+          <i class="fa fa-circle" aria-hidden="true"></i>
+        </div>
+        <div class="option <%= departure_css_class_name('morning') %>">
+          <%= link_to "8-12AM", offers_path(@filters.merge(departure_time_there: "morning")) , class: "radio-btn"%>
+          <i class="fa fa-circle" aria-hidden="true"></i>
+        </div>
+        <div class="option <%= departure_css_class_name('afternoon') %>">
+          <%= link_to "1-6PM", offers_path(@filters.merge(departure_time_there: "afternoon")) , class: "radio-btn"%>
+          <i class="fa fa-circle" aria-hidden="true"></i>
+        </div>
+        <div class="option <%= departure_css_class_name('afterwork') %>">
+          <%= link_to "After 6PM", offers_path(@filters.merge(departure_time_there: "afterwork")) , class: "radio-btn"%>
+          <i class="fa fa-circle" aria-hidden="true"></i>
+        </div>
+        <div class="longer-option <%= departure_css_class_name(nil) %>">
+          <%= link_to "I don't care", offers_path(@filters.merge(departure_time_there: "")) , class: "radio-btn"%>
+          <i class="fa fa-circle" aria-hidden="true"></i>
+        </div>
+        </div>
+      </li>
+      <li>
+        <div class="text-center links-box">
+          <h3>When do you want to come back? </h3>
+        <div class="option <%= arrival_css_class_name('earlybird') %>">
+          <%= link_to "5-8AM", offers_path(@filters.merge(arrival_time_back: "earlybird")) , class: "radio-btn"%>
+          <i class="fa fa-circle" aria-hidden="true"></i>
+        </div>
+        <div class="option <%= arrival_css_class_name('morning') %>">
+          <%= link_to "8-12AM", offers_path(@filters.merge(arrival_time_back: "morning")) , class: "radio-btn"%>
+          <i class="fa fa-circle" aria-hidden="true"></i>
+        </div>
+        <div class="option <%= arrival_css_class_name('afternoon') %>">
+          <%= link_to "1-6PM", offers_path(@filters.merge(arrival_time_back: "afternoon")) , class: "radio-btn"%>
+          <i class="fa fa-circle" aria-hidden="true"></i>
+        </div>
+        <div class="option <%= arrival_css_class_name('evening') %>">
+          <%= link_to "After 6PM", offers_path(@filters.merge(arrival_time_back: "evening")) , class: "radio-btn"%>
+          <i class="fa fa-circle" aria-hidden="true"></i>
+        </div>
+        <div class="longer-option <%= arrival_css_class_name(nil) %>">
+          <%= link_to "I don't care", offers_path(@filters.merge(arrival_time_back: "")) , class: "radio-btn"%>
+          <i class="fa fa-circle" aria-hidden="true"></i>
+        </div>
+        </div>
+      </li>
+    </ul>
   </div>
   <div class="container">
     <div class="row">
@@ -48,17 +102,19 @@
             <div class="card_bottom"></div>
           </div>
         </div>
-        </div>
       </div>
-      <% end %>
-      <div class="col-xs-12 col-md-6">
-        <div class="card_wrapper last_card_home text-center">
-          <%= link_to "", root_path, class: "card-link" %>
-          <h3 >Did not find what you wanted? <br> Let's make a new search !</h3>
-          <div class="card_data">
-          </div>
+    </div>
+    <% end %>
+    <div class="col-xs-12 col-md-6">
+      <div class="card_wrapper last_card_home text-center">
+        <%= link_to "", root_path, class: "card-link" %>
+        <h3 >Did not find what you wanted? <br> Let's make a new search !</h3>
+        <div class="card_data">
         </div>
       </div>
     </div>
   </div>
 </div>
+</div>
+
+
