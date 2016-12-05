@@ -33,6 +33,7 @@
   font-family: "MuseoSansRounded";
   border-radius: 10px;
   background-color: white;
+
 }
 
 #origin_b {
@@ -69,6 +70,42 @@
     outline: none;
   }
 }
+::-webkit-input-placeholder {
+  color: #484848;
+}
+
+
+.datepicker table tr td.today, .datepicker table tr td.active {
+  color: #FF2B67;
+
+}
+
+.datepicker table tr td.today:hover {
+  background-color: #ea2752;
+  color: white;
+}
+
+.datepicker table tr td.active:active,
+.datepicker table tr td.active.highlighted:active,
+.datepicker table tr td.active.active,
+.datepicker table tr td.active.highlighted.active {
+  background-color: #FF2B67;
+  color: white;
+}
+
+// .datepicker table tr td.active:hover, .datepicker table tr td.active.highlighted:hover, .datepicker table tr td.active.active, .datepicker table tr td.active.highlighted.active:hover {
+//   background-color: #ea2752;
+//   color: white;
+// }
+
+.datepicker table tr td.active:active:hover,
+.datepicker table tr td.active.highlighted:active:hover,
+.datepicker table tr td.active.active:hover,
+.datepicker table tr td.active.highlighted.active:hover,
+ {
+  background-color: #ea2752;
+  color: white;
+}
 
 .submit-button {
 width: 150px;
@@ -94,34 +131,6 @@ border-color: white;
 -webkit-transform:scale(1.1);
 transform:scale(1.1);
 }
-// .btn-1e {
-//   overflow: hidden;
-// }
 
-// #submit-button:after {
-//   width: 80%;
-//   height: 0;
-//   top: 50%;
-//   left: 50%;
-//   background: #fff;
-//   opacity: 0;
-//   -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
-//   -moz-transform: translateX(-50%) translateY(-50%) rotate(45deg);
-//   -ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
-//   transform: translateX(-50%) translateY(-50%) rotate(45deg);
-// }
 
-// #submit-button:hover,
-// #submit-button:active {
-//   color: #0e83cd;
-// }
 
-// #submit-button:after {
-//   height: 260%;
-//   opacity: 1;
-// }
-
-// #submit-button:active:after {
-//   height: 400%;
-//   opacity: 1;
-// }
