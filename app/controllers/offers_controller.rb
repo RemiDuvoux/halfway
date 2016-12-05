@@ -33,9 +33,6 @@ class OffersController < ApplicationController
     # use query string to set the nth cheapest offer (zero-based), loop over to 0 if exceed array length
     idx = params[:cheapest].to_i < @offers.length ? params[:cheapest].to_i : 0
     @offer = @offers[idx]
-
-    # @roundtrips_from_a = 
-    # @roundtrips_from_b =
   end
 
   def index
