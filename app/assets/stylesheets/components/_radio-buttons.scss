@@ -29,7 +29,7 @@
 .option {
   .fa-circle {
     position: absolute;
-    top: 31px;
+    top: 32px;
     left: 13px;
     color: transparent;
     cursor: pointer;
@@ -56,8 +56,27 @@
   cursor: pointer;
   .fa-circle {
     position: absolute;
-    top: 31px;
+    top: 32px;
     left: 29px;
+    color: transparent;
+    cursor: pointer;
+  }
+  &.active > .fa-circle {
+      color: #FF2B67;
+    }
+}
+
+.medium-option {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  margin: 10px;
+  position: relative;
+  cursor: pointer;
+  .fa-circle {
+    position: absolute;
+    top: 32px;
+    left: 24px;
     color: transparent;
     cursor: pointer;
   }

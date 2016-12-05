@@ -24,7 +24,7 @@
           <%= link_to "1-6PM", offers_path(@filters.merge(departure_time_there: "afternoon")) , class: "radio-btn"%>
           <i class="fa fa-circle" aria-hidden="true"></i>
         </div>
-        <div class="option <%= departure_css_class_name('afterwork') %>">
+        <div class="medium-option <%= departure_css_class_name('afterwork') %>">
           <%= link_to "After 6PM", offers_path(@filters.merge(departure_time_there: "afterwork")) , class: "radio-btn"%>
           <i class="fa fa-circle" aria-hidden="true"></i>
         </div>
@@ -49,7 +49,7 @@
           <%= link_to "1-6PM", offers_path(@filters.merge(arrival_time_back: "afternoon")) , class: "radio-btn"%>
           <i class="fa fa-circle" aria-hidden="true"></i>
         </div>
-        <div class="option <%= arrival_css_class_name('evening') %>">
+        <div class="medium-option <%= arrival_css_class_name('evening') %>">
           <%= link_to "After 6PM", offers_path(@filters.merge(arrival_time_back: "evening")) , class: "radio-btn"%>
           <i class="fa fa-circle" aria-hidden="true"></i>
         </div>
