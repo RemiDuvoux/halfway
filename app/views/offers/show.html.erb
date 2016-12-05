@@ -1,48 +1,146 @@
 <div class="page-wrapper" style="background: linear-gradient(to left, #FF5D3B , #FF2B67 )">
   <div class="show-banner-content text-center padded">
     <h1>Your halfway trips to <%= Avion::AIRPORTS[@offer.destination_city] %> between <%= @offer.date_there.strftime("%b %d") %> and <%= @offer.date_back.strftime("%b %d") %></h1>
-    <p>“A journey is best measured in friends, rather than miles.” – Joseph Stalin</p>
+    <p>“A journey is best measured in friends, rather than miles.”</p>
   </div>
 <div class="trips-container">
   <div class="trip">
     <h3 class="text-center">From <%= Avion::AIRPORTS[@offer.origin_a]%></h3>
     <div class="trips-details">
       <ul class= "list-inline ">
-        <li><p><%= @offer.roundtrips.first.origin_airport %> <%= @offer.roundtrips.first.departure_time_there.strftime("%H:%M") %> -> <%= @offer.roundtrips.first.destination_airport %> <%= @offer.roundtrips.first.arrival_time_there.strftime("%H:%M") %></p></li>
+        <li><p><%= @offer_left.roundtrips.first.origin_airport %> <%= @offer_left.roundtrips.first.departure_time_there.strftime("%H:%M") %> -> <%= @offer_left.roundtrips.first.destination_airport %> <%= @offer_left.roundtrips.first.arrival_time_there.strftime("%H:%M") %></p></li>
         <!-- <li><div class="trip-show-submit-button">Change flight <i class="fa fa-edit"></i></div></li> -->
       </ul>
       <div class="flights-separator">
       </div>
       <ul class= "list-inline second-result">
-        <li><p><%= @offer.roundtrips.first.destination_airport %> <%= @offer.roundtrips.first.departure_time_back.strftime("%H:%M") %> -> <%= @offer.roundtrips.first.origin_airport %> <%= @offer.roundtrips.first.arrival_time_back.strftime("%H:%M") %></p></li>
+        <li><p><%= @offer_left.roundtrips.first.destination_airport %> <%= @offer_left.roundtrips.first.departure_time_back.strftime("%H:%M") %> -> <%= @offer_left.roundtrips.first.origin_airport %> <%= @offer_left.roundtrips.first.arrival_time_back.strftime("%H:%M") %></p></li>
         <!-- <li><div class="trip-show-submit-button">Change flight <i class="fa fa-edit"></i></div></li> -->
       </ul>
     </div>
-    <h3 class="text-center"><%= @offer.roundtrips.first.price %>€</h3>
+    <h3 class="text-center"><%= @offer_left.roundtrips.first.price %>€</h3>
       <div class="book-button">Book!</div>
-      <%= link_to "Next cheapest", offer_path(@offer.stamp, cheapest: (params[:cheapest].to_i + 1)), class: "change-flights-link"  %>
-  </div>
-  <div class="trip-separator">
+
+      <%# MODAL TEST LEFT %>
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalLeft">
+        Change flight options
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="modalLeft" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Choose better times</h4>
+            </div>
+            <div class="modal-body">
+              <%# TODO: this should all be refactored in the helper %>
+              <% offers = @offers_left %>
+              <% offers = offers.reject { |o| o.roundtrips.first.departure_time_there == @offer_left.roundtrips.first.departure_time_there} %>
+              <% offers.each do |offer| %>
+                <%= link_to controller: :offers, action: :show, cheapest: @offers.index(offer), left: @offers_left.index(offer), right: @offers_right.index(@offer_right) do %>
+                <% roundtrip = offer.roundtrips.first %>
+                <%= roundtrip.origin_airport  %>
+                <%= roundtrip.destination_airport %>
+                <%= roundtrip.departure_time_there %>
+                <%= roundtrip.arrival_time_there %>
+                <br>
+                <%= roundtrip.destination_airport %>
+                <%= roundtrip.origin_airport  %>
+                <%= roundtrip.departure_time_back %>
+                <%= roundtrip.arrival_time_back %>
+                <br>
+                <%= roundtrip.price %>
+                <%= " Difference: #{(roundtrip.price - @offer_left.roundtrips.first.price).round(2)}" %>
+                <% end %>
+                <br>
+                <br>
+              <% end %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%# END MODAL TEST LEFT %>
 
   </div>
+
+  <div class="trip-separator"></div> <%# MIDDLE OF THE SCREEN IS HERE %>
+
     <div class="trip text-center">
     <h3 class="text-center">From <%= Avion::AIRPORTS[@offer.origin_b] %></h3>
     <div class="trips-details">
       <ul class= "list-inline ">
-        <li><p><%= @offer.roundtrips.last.origin_airport %> <%= @offer.roundtrips.last.departure_time_there.strftime("%H:%M") %> -> <%= @offer.roundtrips.last.destination_airport %> <%= @offer.roundtrips.last.arrival_time_there.strftime("%H:%M") %></p></li>
+        <li><p><%= @offer_right.roundtrips.last.origin_airport %> <%= @offer_right.roundtrips.last.departure_time_there.strftime("%H:%M") %> -> <%= @offer_right.roundtrips.last.destination_airport %> <%= @offer_right.roundtrips.last.arrival_time_there.strftime("%H:%M") %></p></li>
         <!-- <li><div class="trip-show-submit-button">Change flight <i class="fa fa-edit"></i></div></li> -->
       </ul>
       <div class="flights-separator">
 
       </div>
       <ul class= "list-inline second-result">
-        <li><p><%= @offer.roundtrips.last.destination_airport %> <%= @offer.roundtrips.last.departure_time_back.strftime("%H:%M") %> -> <%= @offer.roundtrips.last.origin_airport %> <%= @offer.roundtrips.last.arrival_time_back.strftime("%H:%M") %></p></li>
+        <li><p><%= @offer_right.roundtrips.last.destination_airport %> <%= @offer_right.roundtrips.last.departure_time_back.strftime("%H:%M") %> -> <%= @offer_right.roundtrips.last.origin_airport %> <%= @offer_right.roundtrips.last.arrival_time_back.strftime("%H:%M") %></p></li>
         <!-- <li><div class="trip-show-submit-button">Change flight <i class="fa fa-edit"></i></div></li> -->
       </ul>
     </div>
-    <h3 class="text-center"><%= @offer.roundtrips.last.price%>€</h3>
+    <h3 class="text-center"><%= @offer_right.roundtrips.last.price%>€</h3>
       <div class="book-button">Book!</div>
-      <%= link_to "Next cheapest", offer_path(@offer.stamp, cheapest: (params[:cheapest].to_i + 1)), class: "change-flights-link"  %>
+
+      <%# MODAL TEST RIGHT %>
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalRight">
+        Change flight options
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="modalRight" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Choose better times</h4>
+            </div>
+            <div class="modal-body">
+              <%# TODO: this should all be refactored in the helper %>
+              <% offers = @offers_right %>
+              <% offers = offers.reject { |o| o.roundtrips.last.departure_time_there == @offer_right.roundtrips.last.departure_time_there} %>
+              <% offers.each do |offer| %>
+                <%= link_to controller: :offers, action: :show, cheapest: @offers.index(offer), right: @offers_right.index(offer), left: @offers_left.index(@offer_left) do %>
+                <% roundtrip = offer.roundtrips.last %>
+                <%= roundtrip.origin_airport  %>
+                <%= roundtrip.destination_airport %>
+                <%= roundtrip.departure_time_there %>
+                <%= roundtrip.arrival_time_there %>
+                <br>
+                <%= roundtrip.destination_airport %>
+                <%= roundtrip.origin_airport  %>
+                <%= roundtrip.departure_time_back %>
+                <%= roundtrip.arrival_time_back %>
+                <br>
+                <%= roundtrip.price %>
+                <%= " Difference: #{(roundtrip.price - @offer_right.roundtrips.last.price).round(2)}" %>
+                <% end %>
+                <br>
+                <br>
+              <% end %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     <%# END MODAL TEST RIGHT %>
+
     </div>
   </div>
 </div>

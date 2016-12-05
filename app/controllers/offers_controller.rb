@@ -8,6 +8,8 @@ class OffersController < ApplicationController
   end
 
   def show
+    # turn off page caching in browser
+    response.headers['Cache-Control'] = "no-cache, max-age=0, must-revalidate, no-store"
     # safeguard agains random urls starting with offers/
     unless params[:stamp] =~ /\w{3}_\w{3}_\w{3}_\d{4}-\d{2}-\d{2}_\d{4}-\d{2}-\d{2}/
       redirect_to root_path
@@ -33,6 +35,12 @@ class OffersController < ApplicationController
     # use query string to set the nth cheapest offer (zero-based), loop over to 0 if exceed array length
     idx = params[:cheapest].to_i < @offers.length ? params[:cheapest].to_i : 0
     @offer = @offers[idx]
+
+    # TODO: and yet again we try to decouple left and right
+    @offers_left = @offers.uniq { |o| o.roundtrips.first.departure_time_there }
+    @offers_right = @offers.uniq { |o| o.roundtrips.last.departure_time_there }
+    @offer_left = @offers_left[params[:left].to_i]
+    @offer_right = @offers_right[params[:right].to_i]
   end
 
   def index
@@ -44,7 +52,7 @@ class OffersController < ApplicationController
       return
     end
 
-    airports =  %w(PAR LON ROM MAD BER BRU MXP VCE AMS LIS BCN MIL VIE)
+    airports =  %w(PAR MAD BER)
 
     origin_a = params[:origin_a].upcase
     origin_b = params[:origin_b].upcase
