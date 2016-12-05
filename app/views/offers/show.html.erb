@@ -20,13 +20,12 @@
     </div>
     <h3 class="text-center"><%= @offer_left.roundtrips.first.price %>€</h3>
       <div class="book-button">Book!</div>
-      <%= link_to "Next cheapest", offer_path(@offer.stamp, cheapest: (params[:cheapest].to_i + 1)), class: "change-flights-link"  %>
 
       <%# MODAL TEST LEFT %>
 
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalLeft">
-        Launch demo modal
+        Change flight options
       </button>
 
       <!-- Modal -->
@@ -92,13 +91,12 @@
     </div>
     <h3 class="text-center"><%= @offer_right.roundtrips.last.price%>€</h3>
       <div class="book-button">Book!</div>
-      <%= link_to "Next cheapest", offer_path(@offer.stamp, cheapest: (params[:cheapest].to_i + 1)), class: "change-flights-link" %>
 
       <%# MODAL TEST RIGHT %>
 
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalRight">
-        Launch demo modal
+        Change flight options
       </button>
 
       <!-- Modal -->
