@@ -1,34 +1,8 @@
-<%# TODO: Move this hash to Avion module constants %>
-
-<% airports = {
-    "PAR" => "Paris",
-    "LON" => "London",
-    "ROM" => "Roma",
-    "MAD" => "Madrid",
-    "BER" => "Berlin",
-    "BRU" => "Brussels",
-    "ATH" => "Athens",
-    "MIL" => "Milano",
-    "VCE" => "Venice",
-    "AMS" => "Amsterdam",
-    "LIS" => "Lisbon",
-    "DUB" => "Dublin",
-    "HEL" => "Helsinki",
-    "BCN" => "Barcelona",
-    "LCA" => "Cyprus",
-    "FLR" => "Florence",
-    "MLA" => "Malta",
-    "VIE" => "Vienna",
-    "RIX" => "Riga",
-    "VNO" => "Vilnius",
-    "BRU" => "Brussels" } %>
-
-
 <div class="wrapper">
   <div class="action_title text-center">
     <h2> Where will you meet ? </h2>
     <div class="total_date_title">
-      <p> Best cities to get from <%= airports[params[:origin_a].upcase] %> and <%= airports[params[:origin_b].upcase] %> between <%= @offers.first.date_there.strftime("%b %d")  %> and <%= @offers.first.date_back.strftime("%b %d") %></p>
+      <p> Best cities to get from <%= Avion::AIRPORTS[params[:origin_a].upcase] %> and <%= Avion::AIRPORTS[params[:origin_b].upcase] %> between <%= @offers.first.date_there.strftime("%b %d")  %> and <%= @offers.first.date_back.strftime("%b %d") %></p>
     </div>
   </div>
   <div class="container">
@@ -38,10 +12,11 @@
         <div class="card_wrapper" style="background-image:
         url('<%= cl_image_path City.find_by(iata_code: offer.destination_city).card_photo.path, crop: :fill%> '); background-size: cover !important">
         <div class="card_data">
+          <%= link_to "", offer_path(offer.stamp, cheapest: 0), class: "card-link" %>
           <div class="card_content">
             <div class="card_title">
               <ul class="list-unstyled">
-                <li class="card_destination"><%= airports[offer.destination_city]%></li>
+                <li class="card_destination"><%= Avion::AIRPORTS[offer.destination_city]%></li>
               </ul>
               <ul class="list-unstyled">
                 <li class="card_total_price"><%= offer.total.floor %>€ <small>for 2</small></li>
@@ -49,7 +24,7 @@
             </div>
             <div class="card_text">
               <div class="card_text_element">
-                <p class="card_origin_city text-center" style="margin-bottom: 20px">from <%= airports[offer.origin_a]%> <%= offer.roundtrips.first.origin_airport %></p>
+                <p class="card_origin_city text-center" style="margin-bottom: 20px">from <%= Avion::AIRPORTS[offer.origin_a]%> <%= offer.roundtrips.first.origin_airport %></p>
                 <ul class="list-unstyled">
                   <li> Outbound <span style="padding-left: 6px"><%= offer.roundtrips.first.departure_time_there.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.first.arrival_time_there.strftime("%H:%M") %> </span> </li>
                   <li> Return <span style="padding-left: 29px"><%= offer.roundtrips.first.departure_time_back.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.first.arrival_time_back.strftime("%H:%M") %> </span> </li>
@@ -60,7 +35,7 @@
               </div>
               <div class="card_text_element card_separator"></div>
               <div class="card_text_element">
-                <p class="card_origin_city text-center" style="margin-bottom: 20px">from <%= airports[offer.origin_b] %>  <%= offer.roundtrips.last.origin_airport %></p>
+                <p class="card_origin_city text-center" style="margin-bottom: 20px">from <%= Avion::AIRPORTS[offer.origin_b] %>  <%= offer.roundtrips.last.origin_airport %></p>
                 <ul class="list-unstyled">
                   <li> Outbound <span style="padding-left: 6px"><%= offer.roundtrips.last.departure_time_there.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.last.arrival_time_there.strftime("%H:%M") %> </span> </li>
                   <li> Return <span style="padding-left: 29px"> <%= offer.roundtrips.last.departure_time_back.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.last.arrival_time_back.strftime("%H:%M") %></span></li>
@@ -73,35 +48,6 @@
             <div class="card_bottom"></div>
           </div>
         </div>
-        <%= form_tag city_trips_path(City.find_by(iata_code: offer.destination_city)) do %>
-          <%= hidden_field_tag 'price_1',offer.roundtrips.first.price %>
-          <%= hidden_field_tag 'price_2', offer.roundtrips.last.price %>
-          <%= hidden_field_tag 'flight_1_departure_time',offer.roundtrips.first.departure_time_there  %>
-          <%= hidden_field_tag 'flight_1_arrival_time', offer.roundtrips.first.arrival_time_there %>
-          <%= hidden_field_tag 'flight_1_carrier', offer.roundtrips.first.carrier %>
-          <%= hidden_field_tag 'flight_1_departure_airport', offer.roundtrips.first.origin_airport %>
-          <%= hidden_field_tag 'flight_1_arrival_airport', offer.roundtrips.first.destination_airport %>
-          <%= hidden_field_tag 'flight_1_price', offer.roundtrips.first.price %>
-          <%= hidden_field_tag 'flight_2_departure_time',offer.roundtrips.first.departure_time_back  %>
-          <%= hidden_field_tag 'flight_2_arrival_time', offer.roundtrips.first.arrival_time_back %>
-          <%= hidden_field_tag 'flight_2_carrier', offer.roundtrips.first.carrier %>
-          <%= hidden_field_tag 'flight_2_departure_airport', offer.roundtrips.first.origin_airport %>
-          <%= hidden_field_tag 'flight_2_arrival_airport', offer.roundtrips.first.destination_airport %>
-          <%= hidden_field_tag 'flight_2_price', offer.roundtrips.first.price %>
-          <%= hidden_field_tag 'flight_3_departure_time',offer.roundtrips.last.departure_time_there  %>
-          <%= hidden_field_tag 'flight_3_arrival_time', offer.roundtrips.last.arrival_time_there %>
-          <%= hidden_field_tag 'flight_3_carrier', offer.roundtrips.last.carrier %>
-          <%= hidden_field_tag 'flight_3_departure_airport', offer.roundtrips.last.origin_airport %>
-          <%= hidden_field_tag 'flight_3_arrival_airport', offer.roundtrips.last.destination_airport %>
-          <%= hidden_field_tag 'flight_3_price', offer.roundtrips.last.price %>
-          <%= hidden_field_tag 'flight_4_departure_time',offer.roundtrips.last.departure_time_back  %>
-          <%= hidden_field_tag 'flight_4_arrival_time', offer.roundtrips.last.arrival_time_back %>
-          <%= hidden_field_tag 'flight_4_carrier', offer.roundtrips.last.carrier %>
-          <%= hidden_field_tag 'flight_4_departure_airport', offer.roundtrips.last.origin_airport %>
-          <%= hidden_field_tag 'flight_4_arrival_airport', offer.roundtrips.last.destination_airport %>
-          <%= hidden_field_tag 'flight_4_price', offer.roundtrips.last.price %>
-          <%= submit_tag 'Save', class: "card-link" %>
-        <% end %>
         </div>
       </div>
       <% end %>

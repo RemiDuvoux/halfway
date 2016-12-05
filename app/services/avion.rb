@@ -1,7 +1,30 @@
 require 'rest-client' # Make sure you have this gem!
-require 'json'
 
 module Avion
+
+  AIRPORTS = {
+      "PAR" => "Paris",
+      "LON" => "London",
+      "ROM" => "Roma",
+      "MAD" => "Madrid",
+      "BER" => "Berlin",
+      "BRU" => "Brussels",
+      "ATH" => "Athens",
+      "MIL" => "Milano",
+      "VCE" => "Venice",
+      "AMS" => "Amsterdam",
+      "LIS" => "Lisbon",
+      "DUB" => "Dublin",
+      "HEL" => "Helsinki",
+      "BCN" => "Barcelona",
+      "LCA" => "Cyprus",
+      "FLR" => "Florence",
+      "MLA" => "Malta",
+      "VIE" => "Vienna",
+      "RIX" => "Riga",
+      "VNO" => "Vilnius",
+      "BRU" => "Brussels" }
+
   # Wraps an individual QPX response
   class QPXResponse
     attr_reader :trips
@@ -14,7 +37,7 @@ module Avion
         trips = [QPXTripOption.new({})]
       end
       @trips = trips
-      # should we nilify data after initialization?
+      # TODO: should we nilify data after initialization?
     end
 
     private
@@ -62,7 +85,7 @@ module Avion
     # TODO: Account for pound instead of koruna
     def extract_total_price(trip)
       @currency = trip['saleTotal'].match(/\w{3}/).to_s
-      # TODO: Find a way to pull live currency data 
+      # TODO: Find a way to pull live currency data
       if @currency == "GBP"
         (trip['saleTotal'].match(/\d+\.*\d+/)[0].to_f * 1.19).round(2)
       else
@@ -98,6 +121,7 @@ module Avion
       @api_key = args[:api_key]
     end
 
+    # TODO: Account for 400
     def make_request
       url = "https://www.googleapis.com/qpxExpress/v1/trips/search?key=" + @api_key
       request = compose_request
@@ -147,9 +171,10 @@ module Avion
 
     def obtain_offers
       # Get deserialized Offer object from cache if found
-      if found_in_cache?
+      cached = $redis.get(@cache_key_name)
+      if cached
         puts "Found key #{@cache_key_name} in cache"
-        return Marshal.load($redis.get(@cache_key_name))
+        return Marshal.load(cached)
       end
 
       # If not – run two requests one after another and try to combine them
@@ -208,12 +233,10 @@ module Avion
 
     private
 
-    def found_in_cache?
-      $redis.get(@cache_key_name) != nil
-    end
-
+    # TODO: DRY with offers controller and check_against_cache
     def generate_cache_key_name
-      "#{@origin_a}_#{@origin_b}_#{@destination_city}_#{@date_there}_#{@date_back}"
+      alphabetical = [@origin_a, @origin_b].sort
+      "#{alphabetical.first}_#{alphabetical.last}_#{@destination_city}_#{@date_there}_#{@date_back}"
     end
   end
 
@@ -258,7 +281,7 @@ module Avion
           end
         end
       end
-      output
+      return output
     end
   end
 
@@ -363,9 +386,11 @@ module Avion
     "#{route.first}_#{route.last}_#{date_there}_#{date_back}"
   end
 
+  # TODO: DRYer (offers controller, private generate_cache_name for SmartQPXAgent)
   def self.compare_routes_against_cache(routes, date_there, date_back)
     routes.reject do |route|
-      !$redis.get("#{route.first}_#{route[1]}_#{route.last}_#{date_there}_#{date_back}").nil?
+      alphabetical = [route.first, route[1]].sort
+      !$redis.get("#{alphabetical.first}_#{alphabetical.last}_#{route.last}_#{date_there}_#{date_back}").nil?
     end
   end
 

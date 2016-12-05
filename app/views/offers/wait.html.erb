@@ -50,7 +50,8 @@
       });
 
       channel.bind('done', function(data) {
-        window.location = '<%= session[:url_for_wait] %>';
+        // use raw helper to avoid &amp in URL 
+        window.location = '<%= raw session[:url_for_wait] %>';
       });
 
     });

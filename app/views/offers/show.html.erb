@@ -1,0 +1,48 @@
+<div class="page-wrapper" style="background: linear-gradient(to left, #FF5D3B , #FF2B67 )">
+  <div class="show-banner-content text-center padded">
+    <h1>Your halfway trips to <%= Avion::AIRPORTS[@offer.destination_city] %> between <%= @offer.date_there.strftime("%b %d") %> and <%= @offer.date_back.strftime("%b %d") %></h1>
+    <p>“A journey is best measured in friends, rather than miles.” – Joseph Stalin</p>
+  </div>
+<div class="trips-container">
+  <div class="trip">
+    <h3 class="text-center">From <%= Avion::AIRPORTS[@offer.origin_a]%></h3>
+    <div class="trips-details">
+      <ul class= "list-inline ">
+        <li><p><%= @offer.roundtrips.first.origin_airport %> <%= @offer.roundtrips.first.departure_time_there.strftime("%H:%M") %> -> <%= @offer.roundtrips.first.destination_airport %> <%= @offer.roundtrips.first.arrival_time_there.strftime("%H:%M") %></p></li>
+        <!-- <li><div class="trip-show-submit-button">Change flight <i class="fa fa-edit"></i></div></li> -->
+      </ul>
+      <div class="flights-separator">
+      </div>
+      <ul class= "list-inline second-result">
+        <li><p><%= @offer.roundtrips.first.destination_airport %> <%= @offer.roundtrips.first.departure_time_back.strftime("%H:%M") %> -> <%= @offer.roundtrips.first.origin_airport %> <%= @offer.roundtrips.first.arrival_time_back.strftime("%H:%M") %></p></li>
+        <!-- <li><div class="trip-show-submit-button">Change flight <i class="fa fa-edit"></i></div></li> -->
+      </ul>
+    </div>
+    <h3 class="text-center"><%= @offer.roundtrips.first.price %>€</h3>
+      <div class="book-button">Book!</div>
+      <%= link_to "Next cheapest", offer_path(@offer.stamp, cheapest: (params[:cheapest].to_i + 1)), class: "change-flights-link"  %>
+  </div>
+  <div class="trip-separator">
+
+  </div>
+    <div class="trip text-center">
+    <h3 class="text-center">From <%= Avion::AIRPORTS[@offer.origin_b] %></h3>
+    <div class="trips-details">
+      <ul class= "list-inline ">
+        <li><p><%= @offer.roundtrips.last.origin_airport %> <%= @offer.roundtrips.last.departure_time_there.strftime("%H:%M") %> -> <%= @offer.roundtrips.last.destination_airport %> <%= @offer.roundtrips.last.arrival_time_there.strftime("%H:%M") %></p></li>
+        <!-- <li><div class="trip-show-submit-button">Change flight <i class="fa fa-edit"></i></div></li> -->
+      </ul>
+      <div class="flights-separator">
+
+      </div>
+      <ul class= "list-inline second-result">
+        <li><p><%= @offer.roundtrips.last.destination_airport %> <%= @offer.roundtrips.last.departure_time_back.strftime("%H:%M") %> -> <%= @offer.roundtrips.last.origin_airport %> <%= @offer.roundtrips.last.arrival_time_back.strftime("%H:%M") %></p></li>
+        <!-- <li><div class="trip-show-submit-button">Change flight <i class="fa fa-edit"></i></div></li> -->
+      </ul>
+    </div>
+    <h3 class="text-center"><%= @offer.roundtrips.last.price%>€</h3>
+      <div class="book-button">Book!</div>
+      <%= link_to "Next cheapest", offer_path(@offer.stamp, cheapest: (params[:cheapest].to_i + 1)), class: "change-flights-link"  %>
+    </div>
+  </div>
+</div>
