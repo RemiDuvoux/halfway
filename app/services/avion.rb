@@ -1,7 +1,30 @@
 require 'rest-client' # Make sure you have this gem!
-require 'json'
 
 module Avion
+
+  AIRPORTS = {
+      "PAR" => "Paris",
+      "LON" => "London",
+      "ROM" => "Roma",
+      "MAD" => "Madrid",
+      "BER" => "Berlin",
+      "BRU" => "Brussels",
+      "ATH" => "Athens",
+      "MIL" => "Milano",
+      "VCE" => "Venice",
+      "AMS" => "Amsterdam",
+      "LIS" => "Lisbon",
+      "DUB" => "Dublin",
+      "HEL" => "Helsinki",
+      "BCN" => "Barcelona",
+      "LCA" => "Cyprus",
+      "FLR" => "Florence",
+      "MLA" => "Malta",
+      "VIE" => "Vienna",
+      "RIX" => "Riga",
+      "VNO" => "Vilnius",
+      "BRU" => "Brussels" }
+
   # Wraps an individual QPX response
   class QPXResponse
     attr_reader :trips
@@ -98,7 +121,7 @@ module Avion
       @api_key = args[:api_key]
     end
 
-    # TODO: Account for 400 
+    # TODO: Account for 400
     def make_request
       url = "https://www.googleapis.com/qpxExpress/v1/trips/search?key=" + @api_key
       request = compose_request
