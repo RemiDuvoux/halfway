@@ -1,7 +1,7 @@
 class OffersController < ApplicationController
   skip_before_action :authenticate_user!
 
-  # Airport list: %w(PAR LON ROM MAD BER BRU ATH MXP VCE AMS LIS DUB HEL BCN LCA FLR MIL VIE RIX VNO)
+  # Airport list: %w(PAR LON ROM MAD BER BRU MXP VCE AMS LIS BCN MIL VIE)
 
   def wait
     #Waiting logic implemented directly in the view with JS
@@ -44,7 +44,7 @@ class OffersController < ApplicationController
       return
     end
 
-    airports =  %w(PAR BER)
+    airports =  %w(PAR LON ROM MAD BER BRU MXP VCE AMS LIS BCN MIL VIE)
 
     origin_a = params[:origin_a].upcase
     origin_b = params[:origin_b].upcase
