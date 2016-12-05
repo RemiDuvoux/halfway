@@ -18,7 +18,7 @@
                 <div class="box-separator"></div>
                <%= select_tag :origin_b, options_for_select(Avion::AIRPORTS.invert), class: "origin-field text-center", prompt: "Your friend's city", style: "border:none" %>
           </div>
-            <div class="">
+            <div >
               <%= submit_tag "Explore", class: "submit-button" %>
               <%end%>
             </div>
@@ -35,11 +35,24 @@
 <%= content_for :after_js do %>
  <script>
     $(document).ready(function() {
-      $('.datepicker').datepicker({
+      $('#date_there').datepicker({
         todayHighlight: true,
         orientation: "bottom-left",
         autoclose: true,
         format: 'yyyy-mm-dd',
+      });
+      $('#date_back').datepicker({
+        todayHighlight: true,
+        orientation: "bottom-left",
+        autoclose: true,
+        format: 'yyyy-mm-dd',
+      }).on("show", function(e) {
+          var thereDate = $("#date_there").datepicker("getDate");
+          var backDate = $("#date_back").datepicker("getDate");
+
+          if (backDate == null) {
+            $('#date_back').datepicker('update', thereDate);
+          }
       });
     });
   </script>
