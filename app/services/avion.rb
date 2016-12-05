@@ -209,9 +209,10 @@ module Avion
 
     private
 
-    # TODO: Use alphabetical approach to make AMS-LIS and LIS-AMS refer to same cache key
+    # TODO: DRY with offers controller and check_against_cache
     def generate_cache_key_name
-      "#{@origin_a}_#{@origin_b}_#{@destination_city}_#{@date_there}_#{@date_back}"
+      alphabetical = [@origin_a, @origin_b].sort
+      "#{alphabetical.first}_#{alphabetical.last}_#{@destination_city}_#{@date_there}_#{@date_back}"
     end
   end
 
@@ -256,7 +257,7 @@ module Avion
           end
         end
       end
-      output
+      return output
     end
   end
 
@@ -361,9 +362,11 @@ module Avion
     "#{route.first}_#{route.last}_#{date_there}_#{date_back}"
   end
 
+  # TODO: DRYer (offers controller, private generate_cache_name for SmartQPXAgent)
   def self.compare_routes_against_cache(routes, date_there, date_back)
     routes.reject do |route|
-      !$redis.get("#{route.first}_#{route[1]}_#{route.last}_#{date_there}_#{date_back}").nil?
+      alphabetical = [route.first, route[1]].sort
+      !$redis.get("#{alphabetical.first}_#{alphabetical.last}_#{route.last}_#{date_there}_#{date_back}").nil?
     end
   end
 

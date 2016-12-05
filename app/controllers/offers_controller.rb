@@ -8,8 +8,14 @@ class OffersController < ApplicationController
   end
 
   def show
-    # safeguard agains random urls starting with /offers
-    unless params[:stamp] =~ /\w{3}_\w{3}_\w{3}_\d{4}-\d{2}-\d{2}_\d{4}-\d{2}-\d{2}/ 
+    # safeguard agains random urls starting with offers/
+    unless params[:stamp] =~ /\w{3}_\w{3}_\w{3}_\d{4}-\d{2}-\d{2}_\d{4}-\d{2}-\d{2}/
+      redirect_to root_path
+      return
+    end
+
+    # Don't bother making requests if corresponding stamp not found in cache
+    if $redis.get(params[:stamp]).nil?
       redirect_to root_path
       return
     end
