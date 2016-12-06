@@ -33,10 +33,9 @@ class OffersController < ApplicationController
     # All offers for one route sorted by price
     @offers = Avion::SmartQPXAgent.new(info).obtain_offers.sort_by { |offer| offer.total }
     # use query string to set the nth cheapest offer (zero-based), loop over to 0 if exceed array length
-    idx = params[:cheapest].to_i < @offers.length ? params[:cheapest].to_i : 0
-    @offer = @offers[idx]
+    @offer = @offers[params[:cheapest].to_i]
 
-    # TODO: and yet again we try to decouple left and right
+    # TODO: REFACTOR! Find better names
     @offers_left = @offers.uniq { |o| o.roundtrips.first.trip_id }
     @offers_right = @offers.uniq { |o| o.roundtrips.last.trip_id }
     @offer_left = @offers_left[params[:left].to_i]
@@ -95,10 +94,10 @@ class OffersController < ApplicationController
 
       # remove duplicate cities
       @offers = @offers.uniq { |offer| offer.destination_city }
-
       # and sort by total price
       @offers = @offers.sort_by { |offer| offer.total }
-    else
+
+    else # we have to build a new cache
       # we need this to be able to redirect user
       # to the page with same params in the url from the js in wait.html.erb
       session[:url_for_wait] = request.original_url
