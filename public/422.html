@@ -1,41 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The change you wanted was rejected (422)</title>
+  <title>The page you were looking for doesn't exist (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
+    html,
+    body {
+      background: linear-gradient(to left, #FF5D3B , #FF2B67 );
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
 
-  </style>
-</head>
+    * {
+      position: relative;
+    }
 
-<style>
-  html,
-  body {
-    background: linear-gradient(to left, #FF5D3B , #FF2B67 );
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-  }
+    .frame {
+      width: 500px;
+      height: auto;
+      margin: 15% auto 0;
+      position: absolute;
+      width: 100%;
+    }
 
-  * {
-    position: relative;
-  }
-
-  .frame {
-    width: 500px;
-    height: auto;
-    margin: 15% auto 0;
-    position: absolute;
-    width: 100%;
-  }
-
-  svg {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
+    svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
 
 /**
  * Paper Plane
@@ -247,26 +242,37 @@ div.dialog {
   z-index: 1;
   width: 95%;
   max-width: 33em;
-  margin: 2em auto 0;
+  margin: 1em auto 0;
   padding: 20px;
 }
 
 div.dialog > div {
 
-  background-color: white;
-  padding: 20px 12% 0;
-  box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  border-radius: 5px;
+  /*background-color: white;*/
+  padding: 16px 12% 0;
+  /*box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);*/
+  /*border-radius: 5px;*/
 }
 
 h1 {
-  font-size: 100%;
-  color: #FF2B67;
-  line-height: 1.5em;
+  /*font-size: 100%;
+  color: white;
+  line-height: 1.5em;*/
+  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+  font-family: helvetica;
+  font-size: 60px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: -4px;
+  text-align: center;
+  color: white;
 }
 
 p {
-  font-size: 90%;
+  font-size: 16px;
+  color: white;
+  z-index: 1;
 }
 
 .box404 {
@@ -274,20 +280,18 @@ p {
   text-align: center;
   width: 95%;
   max-width: 33em;
-/*    margin: 9em auto 0;
-*/width: 150px;
+width: 150px;
 border: none;
-padding: 0 20 10px;
 border-radius: 4px;
 line-height: 40px;
 font-size: 14px;
 border: 1.3px solid white;
-margin: 17em auto 0;
+margin: 14em auto 0;
 box-shadow: 7px 9px 31px -13px rgba(0,0,0,0.75);
 -webkit-transition: all 0.5s ease;
 transition: all 0.5s ease;
-font-family: "MuseoSansRounded";
-
+font-family: helvetica;
+  background: #FD4251;
 }
 
 .box404 a {
@@ -362,12 +366,13 @@ S20.866,331,46.607,331h668.787C741.133,331,762,307.942,762,279.5S741.133,228,715
 
 </div>
 
+
 <!-- This file lives in public/422.html -->
 
 <div class="dialog">
   <div>
-    <h1>422: The change you wanted was rejected</h1>
-    <p>Maybe you tried to change something you didn't have access to</p>
+    <h1>422</h1>
+    <p>The change you wanted was rejected or you did not have the right access</p>
   </div>
 </div>
 <div class="box404">
