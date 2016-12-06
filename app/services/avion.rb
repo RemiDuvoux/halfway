@@ -167,8 +167,7 @@ module Avion
       puts "#{@origin_a} - #{@destination_city} request made to QPX"
       finish = Time.now # debugging
       took_seconds = (finish - start).round(2)
-
-      # TODO: DRY
+      
       # Pub-sub part
       # Notify first request is made
       Pusher.trigger('qpx_updates', 'request_made', {
