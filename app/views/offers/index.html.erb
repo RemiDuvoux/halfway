@@ -12,19 +12,19 @@
         <div class="text-center links-box">
         <h3><i class="fa fa-plane"></i> Departure time </h3>
         <div class="option <%= departure_css_class_name('earlybird') %>">
-          <%= link_to "5-8AM", offers_path(@filters.merge(departure_time_there: "earlybird")) , class: "radio-btn"%>
+          <%= link_to "5-8am", offers_path(@filters.merge(departure_time_there: "earlybird")) , class: "radio-btn"%>
           <i class="fa fa-circle" aria-hidden="true"></i>
         </div>
         <div class="option <%= departure_css_class_name('morning') %>">
-          <%= link_to "8-12AM", offers_path(@filters.merge(departure_time_there: "morning")) , class: "radio-btn"%>
+          <%= link_to "8-12am", offers_path(@filters.merge(departure_time_there: "morning")) , class: "radio-btn"%>
           <i class="fa fa-circle" aria-hidden="true"></i>
         </div>
         <div class="option <%= departure_css_class_name('afternoon') %>">
-          <%= link_to "1-6PM", offers_path(@filters.merge(departure_time_there: "afternoon")) , class: "radio-btn"%>
+          <%= link_to "1-6pm", offers_path(@filters.merge(departure_time_there: "afternoon")) , class: "radio-btn"%>
           <i class="fa fa-circle" aria-hidden="true"></i>
         </div>
         <div class="medium-option <%= departure_css_class_name('afterwork') %>">
-          <%= link_to "After 6PM", offers_path(@filters.merge(departure_time_there: "afterwork")) , class: "radio-btn"%>
+          <%= link_to "After 6pm", offers_path(@filters.merge(departure_time_there: "afterwork")) , class: "radio-btn"%>
           <i class="fa fa-circle" aria-hidden="true"></i>
         </div>
         <div class="longer-option <%= departure_css_class_name(nil) %>">
@@ -37,19 +37,19 @@
         <div class="text-center links-box return-box">
           <h3><i class="fa fa-plane"></i> Return time</h3>
         <div class="option <%= arrival_css_class_name('earlybird') %>">
-          <%= link_to "5-8AM", offers_path(@filters.merge(arrival_time_back: "earlybird")) , class: "radio-btn"%>
+          <%= link_to "5-8am", offers_path(@filters.merge(arrival_time_back: "earlybird")) , class: "radio-btn"%>
           <i class="fa fa-circle" aria-hidden="true"></i>
         </div>
         <div class="option <%= arrival_css_class_name('morning') %>">
-          <%= link_to "8-12AM", offers_path(@filters.merge(arrival_time_back: "morning")) , class: "radio-btn"%>
+          <%= link_to "8-12am", offers_path(@filters.merge(arrival_time_back: "morning")) , class: "radio-btn"%>
           <i class="fa fa-circle" aria-hidden="true"></i>
         </div>
         <div class="option <%= arrival_css_class_name('afternoon') %>">
-          <%= link_to "1-6PM", offers_path(@filters.merge(arrival_time_back: "afternoon")) , class: "radio-btn"%>
+          <%= link_to "1-6pm", offers_path(@filters.merge(arrival_time_back: "afternoon")) , class: "radio-btn"%>
           <i class="fa fa-circle" aria-hidden="true"></i>
         </div>
         <div class="medium-option <%= arrival_css_class_name('evening') %>">
-          <%= link_to "After 6PM", offers_path(@filters.merge(arrival_time_back: "evening")) , class: "radio-btn"%>
+          <%= link_to "After 6pm", offers_path(@filters.merge(arrival_time_back: "evening")) , class: "radio-btn"%>
           <i class="fa fa-circle" aria-hidden="true"></i>
         </div>
         <div class="longer-option <%= arrival_css_class_name(nil) %>">
