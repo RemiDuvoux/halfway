@@ -44,8 +44,10 @@ class OffersController < ApplicationController
 
   def index
     @filters = params.to_hash.slice("origin_a", "date_there", "date_back", "origin_b")
+
     # do not cache the page to avoid caching waiting animation
     response.headers['Cache-Control'] = "no-cache, max-age=0, must-revalidate, no-store"
+
     # if there are no query params in URL or they don't make sense - send user to home page
     if URI(request.original_url).query.blank? || params_fail?
       redirect_to root_path
