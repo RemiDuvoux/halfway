@@ -20,6 +20,7 @@ gem 'pusher'
 gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'sinatra', ">= 2.0.0.beta2", require: false
+gem 'sweetalert-rails'
 
 gem 'sass-rails'
 gem 'jquery-rails'

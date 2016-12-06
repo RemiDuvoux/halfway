@@ -77,7 +77,6 @@
 
 .datepicker table tr td.today, .datepicker table tr td.active {
   color: #FF2B67;
-
 }
 
 .datepicker table tr td.today:hover {
@@ -134,3 +133,6 @@ transform:scale(1.1);
 
 
 
+.datepicker table tr td.active:active:hover, .datepicker table tr td.active.highlighted:active:hover, .datepicker table tr td.active.active:hover, .datepicker table tr td.active.highlighted.active:hover, .datepicker table tr td.active:active:focus, .datepicker table tr td.active.highlighted:active:focus, .datepicker table tr td.active.active:focus, .datepicker table tr td.active.highlighted.active:focus, .datepicker table tr td.active:active.focus, .datepicker table tr td.active.highlighted:active.focus, .datepicker table tr td.active.active.focus, .datepicker table tr td.active.highlighted.active.focus {
+  background-color: #FF2B67;
+}
