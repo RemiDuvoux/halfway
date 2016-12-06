@@ -103,6 +103,7 @@ module Avion
     end
 
     # TODO: Account for 400
+    # RestClient::BadRequest: 400 Bad Request
     def make_request
       url = "https://www.googleapis.com/qpxExpress/v1/trips/search?key=" + @api_key
       request = compose_request

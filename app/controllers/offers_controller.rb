@@ -44,7 +44,7 @@ class OffersController < ApplicationController
       # save url to redirect back from wait.html.erb via JS
       session[:url_for_wait] = request.original_url
       # render wait view without any routing
-      render action: :wait
+      render :wait
       # Send requests and build the cache in the background
       QueryRoutesJob.perform_later(uncached_routes, date_there, date_back)
     end
