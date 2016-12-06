@@ -1,3 +1,54 @@
+.flight-option {
+  display: flex;
+  flex-grow: 1;
+  margin-bottom: 20px;
+}
+
+.modal-body h2 {
+  margin-top: 5px;
+}
+
+.outbound-option {
+  flex-grow: 1;
+  padding: 0 5px;
+  margin-left: 5px;
+  h2 {
+    font-size: 15px;
+  }
+}
+
+.airports-option {
+  padding: 5px;
+}
+
+.return-option {
+flex-grow: 1;
+padding: 0 10px;
+margin-right: 5px;
+h2 {
+    font-size: 15px;
+  }
+}
+
+.price-option {
+flex-grow: 1;
+padding: 0 10px;
+}
+
+.option-select {
+  flex-grow: 1;
+  padding: 0 10px;
+}
+
+.options-separator {
+  margin-top: 20px;
+  width: 70px;
+  background-color: #CCCCCC;
+  height: 0px;
+  vertical-align: center;
+}
+
+
 .trips-container {
   display: flex;
   wrap: nowrap;
@@ -109,60 +160,3 @@ ul .list-inline {
   font-size: 12px;
   }
 }
-
-
-
-
-// <div class="back-card">
-//   <div class="front-card">
-//     <div class="front-card-content">
-//       <div class="front-card-cities">
-
-//       </div>
-//       <div class="front-card-hours">
-
-//       </div>
-//     </div>
-//     <div class="book-div">
-
-//     </div>
-//   </div>
-// </div>
-
-// .back-card {
-//   z-index: 1;
-//   background-color: #333333;
-//   width: 350px;
-//   height: 350px;
-//   position: relative;
-// }
-
-// .front-card {
-//   background: linear-gradient(to left, #FF6B75, #DB4781);
-//   z-index: 2;
-//   width: 750px;
-//   height: 300px;
-//   position: absolute;
-//   bottom: 10px;
-//   right: -80px;
-//   display: flex
-// }
-
-// .book-div {
-//   height: 100%;
-//   width: 30%;
-//   position: relative;
-//   border-left: 1px dashed #999999
-// }
-
-
-// .front-card-content {
-//   width: 100%;
-//   width: 80%
-// }
-
-// .wrapper-new-card {
-//   margin-left: 100px;
-//   padding: 100px;
-//   z-index: 3
-// }
