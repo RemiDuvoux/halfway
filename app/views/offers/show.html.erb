@@ -39,7 +39,7 @@
             <div class="modal-body">
               <%# TODO: this should all be refactored in the helper %>
               <% offers = @offers_left %>
-              <% offers = offers.reject { |o| o.roundtrips.first.departure_time_there == @offer_left.roundtrips.first.departure_time_there} %>
+              <% offers = offers.reject { |o| o.roundtrips.first.trip_id == @offer_left.roundtrips.first.trip_id} %>
               <% offers.each do |offer| %>
                 <%= link_to controller: :offers, action: :show, cheapest: @offers.index(offer), left: @offers_left.index(offer), right: @offers_right.index(@offer_right) do %>
                 <% roundtrip = offer.roundtrips.first %>
@@ -110,7 +110,7 @@
             <div class="modal-body">
               <%# TODO: this should all be refactored in the helper %>
               <% offers = @offers_right %>
-              <% offers = offers.reject { |o| o.roundtrips.last.departure_time_there == @offer_right.roundtrips.last.departure_time_there} %>
+              <% offers = offers.reject { |o| o.roundtrips.last.trip_id == @offer_right.roundtrips.last.trip_id} %>
               <% offers.each do |offer| %>
                 <%= link_to controller: :offers, action: :show, cheapest: @offers.index(offer), right: @offers_right.index(offer), left: @offers_left.index(@offer_left) do %>
                 <% roundtrip = offer.roundtrips.last %>

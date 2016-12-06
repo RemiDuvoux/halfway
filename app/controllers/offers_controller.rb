@@ -37,8 +37,8 @@ class OffersController < ApplicationController
     @offer = @offers[idx]
 
     # TODO: and yet again we try to decouple left and right
-    @offers_left = @offers.uniq { |o| o.roundtrips.first.departure_time_there }
-    @offers_right = @offers.uniq { |o| o.roundtrips.last.departure_time_there }
+    @offers_left = @offers.uniq { |o| o.roundtrips.first.trip_id }
+    @offers_right = @offers.uniq { |o| o.roundtrips.last.trip_id }
     @offer_left = @offers_left[params[:left].to_i]
     @offer_right = @offers_right[params[:right].to_i]
   end
