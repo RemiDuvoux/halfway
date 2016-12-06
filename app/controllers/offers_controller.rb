@@ -56,6 +56,9 @@ class OffersController < ApplicationController
 
     airports =  Avion::AIRPORTS.keys
 
+    # TODO: REMOVE IT BEFORE PUSHING TO GITHUB
+    airports = %w(PAR LON)
+
     origin_a = params[:origin_a].upcase
     origin_b = params[:origin_b].upcase
     date_there = params[:date_there]
