@@ -282,6 +282,7 @@ AIRLINES = {
 'WF'=>  'Wideroe',
 'MF'=>  'Xiamen Airlines',
 'IY'=>  'Yemenia',
+'4U'=> 'Germanwings'
 }
 
   private
