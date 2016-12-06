@@ -33,20 +33,21 @@ class OffersController < ApplicationController
     # All offers for one route sorted by price
     @offers = Avion::SmartQPXAgent.new(info).obtain_offers.sort_by { |offer| offer.total }
     # use query string to set the nth cheapest offer (zero-based), loop over to 0 if exceed array length
-    idx = params[:cheapest].to_i < @offers.length ? params[:cheapest].to_i : 0
-    @offer = @offers[idx]
+    @offer = @offers.first # cheapest offer
 
-    # TODO: and yet again we try to decouple left and right
-    @offers_left = @offers.uniq { |o| o.roundtrips.first.trip_id }
-    @offers_right = @offers.uniq { |o| o.roundtrips.last.trip_id }
-    @offer_left = @offers_left[params[:left].to_i]
-    @offer_right = @offers_right[params[:right].to_i]
+    # here we work with roundtrips directly
+    @trips_a = @offers.reduce([]) {|a, e| a << e.roundtrips.first }
+    @trips_b = @offers.reduce([]) {|a, e| a << e.roundtrips.last }
+    @trip_a = @trips_a[params[:left].to_i]
+    @trip_b = @trips_b[params[:right].to_i]
   end
 
   def index
     @filters = params.to_hash.slice("origin_a", "date_there", "date_back", "origin_b")
+
     # do not cache the page to avoid caching waiting animation
     response.headers['Cache-Control'] = "no-cache, max-age=0, must-revalidate, no-store"
+
     # if there are no query params in URL or they don't make sense - send user to home page
     if URI(request.original_url).query.blank? || params_fail?
       redirect_to root_path
@@ -54,6 +55,9 @@ class OffersController < ApplicationController
     end
 
     airports =  Avion::AIRPORTS.keys
+
+    # TODO: REMOVE IT BEFORE PUSHING TO GITHUB
+    airports = %w(PAR LON)
 
     origin_a = params[:origin_a].upcase
     origin_b = params[:origin_b].upcase
@@ -93,13 +97,12 @@ class OffersController < ApplicationController
         @offers = filter_by_arrival_time(@offers)
       end
 
-      #and remove duplicate cities
+      # remove duplicate cities
       @offers = @offers.uniq { |offer| offer.destination_city }
-
-      # sort by total price
+      # and sort by total price
       @offers = @offers.sort_by { |offer| offer.total }
 
-    else
+    else # we have to build a new cache
       # we need this to be able to redirect user
       # to the page with same params in the url from the js in wait.html.erb
       session[:url_for_wait] = request.original_url
@@ -112,6 +115,7 @@ class OffersController < ApplicationController
 
   private
 
+  # TODO: verify if date_there is not later than date_back
   def params_fail?
     params[:origin_a].blank? || params[:origin_b].blank? || params[:date_there].blank? || params[:date_back].blank?
   end

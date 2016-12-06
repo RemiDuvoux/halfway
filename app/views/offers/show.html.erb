@@ -1,24 +1,26 @@
+<%# HEADER %>
 <div class="page-wrapper" style="background: linear-gradient(to left, #FF5D3B , #FF2B67 )">
   <div class="show-banner-content text-center padded">
     <h1>Your halfway trips to <%= Avion::AIRPORTS[@offer.destination_city] %> between <%= @offer.date_there.strftime("%b %d") %> and <%= @offer.date_back.strftime("%b %d") %></h1>
     <p>“A journey is best measured in friends, rather than miles.”</p>
   </div>
+<%# END HEADER %>
+
+<%# LEFT PART %>
 <div class="trips-container">
   <div class="trip">
     <h3 class="text-center">From <%= Avion::AIRPORTS[@offer.origin_a]%></h3>
     <div class="trips-details">
       <ul class= "list-inline ">
-        <li><p><%= @offer_left.roundtrips.first.origin_airport %> <%= @offer_left.roundtrips.first.departure_time_there.strftime("%H:%M") %> -> <%= @offer_left.roundtrips.first.destination_airport %> <%= @offer_left.roundtrips.first.arrival_time_there.strftime("%H:%M") %></p></li>
-        <!-- <li><div class="trip-show-submit-button">Change flight <i class="fa fa-edit"></i></div></li> -->
+        <li><p><%= @trip_a.origin_airport %> <%= @trip_a.departure_time_there.strftime("%H:%M") %> -> <%= @trip_a.destination_airport %> <%= @trip_a.arrival_time_there.strftime("%H:%M") %></p></li>
       </ul>
       <div class="flights-separator">
       </div>
       <ul class= "list-inline second-result">
-        <li><p><%= @offer_left.roundtrips.first.destination_airport %> <%= @offer_left.roundtrips.first.departure_time_back.strftime("%H:%M") %> -> <%= @offer_left.roundtrips.first.origin_airport %> <%= @offer_left.roundtrips.first.arrival_time_back.strftime("%H:%M") %></p></li>
-        <!-- <li><div class="trip-show-submit-button">Change flight <i class="fa fa-edit"></i></div></li> -->
+        <li><p><%= @trip_a.destination_airport %> <%= @trip_a.departure_time_back.strftime("%H:%M") %> -> <%= @trip_a.origin_airport %> <%= @trip_a.arrival_time_back.strftime("%H:%M") %></p></li>
       </ul>
     </div>
-    <h3 class="text-center"><%= @offer_left.roundtrips.first.price %>€</h3>
+    <h3 class="text-center"><%= @trip_a.price %>€</h3>
       <div class="book-button">Book!</div>
 
       <%# MODAL TEST LEFT %>
@@ -38,23 +40,22 @@
             </div>
             <div class="modal-body">
               <%# TODO: this should all be refactored in the helper %>
-              <% offers = @offers_left %>
-              <% offers = offers.reject { |o| o.roundtrips.first.trip_id == @offer_left.roundtrips.first.trip_id} %>
-              <% offers.each do |offer| %>
-                <%= link_to controller: :offers, action: :show, cheapest: @offers.index(offer), left: @offers_left.index(offer), right: @offers_right.index(@offer_right) do %>
-                <% roundtrip = offer.roundtrips.first %>
-                <%= roundtrip.origin_airport  %>
-                <%= roundtrip.destination_airport %>
-                <%= roundtrip.departure_time_there %>
-                <%= roundtrip.arrival_time_there %>
+              <% trips = @trips_a %>
+              <% trips = trips.reject { |t| t.trip_id == @trip_a.trip_id } %>
+              <% trips.each do |trip| %>
+                <%= link_to controller: :offers, action: :show, left: @trips_a.index(trip), right: @trips_b.index(@trip_b) do %>
+                <%= trip.origin_airport  %>
+                <%= trip.destination_airport %>
+                <%= trip.departure_time_there %>
+                <%= trip.arrival_time_there %>
                 <br>
-                <%= roundtrip.destination_airport %>
-                <%= roundtrip.origin_airport  %>
-                <%= roundtrip.departure_time_back %>
-                <%= roundtrip.arrival_time_back %>
+                <%= trip.destination_airport %>
+                <%= trip.origin_airport  %>
+                <%= trip.departure_time_back %>
+                <%= trip.arrival_time_back %>
                 <br>
-                <%= roundtrip.price %>
-                <%= " Difference: #{(roundtrip.price - @offer_left.roundtrips.first.price).round(2)}" %>
+                <%= trip.price %>
+                <%= " Difference: #{(trip.price - @trip_a.price).round(2)}" %>
                 <% end %>
                 <br>
                 <br>
@@ -67,29 +68,27 @@
           </div>
         </div>
       </div>
-
       <%# END MODAL TEST LEFT %>
-
   </div>
+  <%# END LEFT PART %>
 
   <div class="trip-separator"></div> <%# MIDDLE OF THE SCREEN IS HERE %>
 
+    <%# RIGHT PART %>
     <div class="trip text-center">
     <h3 class="text-center">From <%= Avion::AIRPORTS[@offer.origin_b] %></h3>
     <div class="trips-details">
       <ul class= "list-inline ">
-        <li><p><%= @offer_right.roundtrips.last.origin_airport %> <%= @offer_right.roundtrips.last.departure_time_there.strftime("%H:%M") %> -> <%= @offer_right.roundtrips.last.destination_airport %> <%= @offer_right.roundtrips.last.arrival_time_there.strftime("%H:%M") %></p></li>
-        <!-- <li><div class="trip-show-submit-button">Change flight <i class="fa fa-edit"></i></div></li> -->
+        <li><p><%= @trip_b.origin_airport %> <%= @trip_b.departure_time_there.strftime("%H:%M") %> -> <%= @trip_b.destination_airport %> <%= @trip_b.arrival_time_there.strftime("%H:%M") %></p></li>
       </ul>
       <div class="flights-separator">
 
       </div>
       <ul class= "list-inline second-result">
-        <li><p><%= @offer_right.roundtrips.last.destination_airport %> <%= @offer_right.roundtrips.last.departure_time_back.strftime("%H:%M") %> -> <%= @offer_right.roundtrips.last.origin_airport %> <%= @offer_right.roundtrips.last.arrival_time_back.strftime("%H:%M") %></p></li>
-        <!-- <li><div class="trip-show-submit-button">Change flight <i class="fa fa-edit"></i></div></li> -->
+        <li><p><%= @trip_b.destination_airport %> <%= @trip_b.departure_time_back.strftime("%H:%M") %> -> <%= @trip_b.origin_airport %> <%= @trip_b.arrival_time_back.strftime("%H:%M") %></p></li>
       </ul>
     </div>
-    <h3 class="text-center"><%= @offer_right.roundtrips.last.price%>€</h3>
+    <h3 class="text-center"><%= @trip_b.price%>€</h3>
       <div class="book-button">Book!</div>
 
       <%# MODAL TEST RIGHT %>
@@ -109,23 +108,22 @@
             </div>
             <div class="modal-body">
               <%# TODO: this should all be refactored in the helper %>
-              <% offers = @offers_right %>
-              <% offers = offers.reject { |o| o.roundtrips.last.trip_id == @offer_right.roundtrips.last.trip_id} %>
-              <% offers.each do |offer| %>
-                <%= link_to controller: :offers, action: :show, cheapest: @offers.index(offer), right: @offers_right.index(offer), left: @offers_left.index(@offer_left) do %>
-                <% roundtrip = offer.roundtrips.last %>
-                <%= roundtrip.origin_airport  %>
-                <%= roundtrip.destination_airport %>
-                <%= roundtrip.departure_time_there %>
-                <%= roundtrip.arrival_time_there %>
+              <% trips = @trips_b %>
+              <% trips = trips.reject { |t| t.trip_id == @trip_b.trip_id } %>
+              <% trips.each do |trip| %>
+                <%= link_to controller: :offers, action: :show, right: @trips_b.index(trip), left: @trips_a.index(@trip_a) do %>
+                <%= trip.origin_airport  %>
+                <%= trip.destination_airport %>
+                <%= trip.departure_time_there %>
+                <%= trip.arrival_time_there %>
                 <br>
-                <%= roundtrip.destination_airport %>
-                <%= roundtrip.origin_airport  %>
-                <%= roundtrip.departure_time_back %>
-                <%= roundtrip.arrival_time_back %>
+                <%= trip.destination_airport %>
+                <%= trip.origin_airport  %>
+                <%= trip.departure_time_back %>
+                <%= trip.arrival_time_back %>
                 <br>
-                <%= roundtrip.price %>
-                <%= " Difference: #{(roundtrip.price - @offer_right.roundtrips.last.price).round(2)}" %>
+                <%= trip.price %>
+                <%= " Difference: #{(trip.price - @trip_b.price).round(2)}" %>
                 <% end %>
                 <br>
                 <br>
@@ -138,9 +136,8 @@
           </div>
         </div>
       </div>
-
      <%# END MODAL TEST RIGHT %>
-
     </div>
+    <%# END RIGHT PART %>
   </div>
 </div>
