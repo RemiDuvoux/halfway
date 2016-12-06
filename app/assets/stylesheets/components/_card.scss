@@ -158,6 +158,31 @@
         flex: 0 0 35%;
         font-size: 16px;
         font-weight: lighter;
+        @media (min-width: $screen-md) and (max-width: $screen-lg ) {
+          flex: 0 0 45%;
+        }
+        @media only screen and (min-width: 481px) and (max-width: 580px){
+        flex: 0 0 48%;
+
+        }
+        @media (min-width: $screen-xs) {
+          .hide-on-mobile {
+            display: none;
+          }
+        }
+        @media (max-width: $screen-xs) {
+          flex: 0 0 55%;
+          .list-unstyled {
+            text-align: center;
+            span {
+              padding: 0 !important;
+            }
+          }
+          .card_origin_city {
+            margin-bottom: 10px !important;
+          }
+        }
+
         .airline {
           color: #800000;
           font-size: 14px;
@@ -171,6 +196,7 @@
             color: rgba(60, 50, 50, 0.9);
           }
         }
+
       }
 
     .card_separator {
