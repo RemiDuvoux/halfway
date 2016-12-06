@@ -21,7 +21,7 @@ module OffersHelper
     if price2 > price1
       "Cheaper by €#{(price2 - price1).round}"
     elsif price1 > price2
-      "More expensive by €#{(price2 - price1).round}"
+      "More expensive by €#{(price1 - price2).round}"
     else
       "The price is the same!"
     end

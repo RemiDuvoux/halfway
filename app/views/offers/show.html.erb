@@ -39,31 +39,44 @@
               <h4 class="modal-title" id="myModalLabel">Choose better times</h4>
             </div>
             <div class="modal-body">
-              <%# TODO: this should all be refactored in the helper %>
               <% trips = @trips_a %>
               <% trips = trips.reject { |t| t.trip_id == @trip_a.trip_id } %>
               <% trips.each do |trip| %>
-                <%= link_to controller: :offers, action: :show, left: @trips_a.index(trip), right: @trips_b.index(@trip_b) do %>
-                <%= trip.origin_airport  %>
-                <%= trip.destination_airport %>
-                <%= trip.departure_time_there %>
-                <%= trip.arrival_time_there %>
-                <br>
-                <%= trip.destination_airport %>
-                <%= trip.origin_airport  %>
-                <%= trip.departure_time_back %>
-                <%= trip.arrival_time_back %>
-                <br>
-                <%= trip.price %>
-                <%= " Difference: #{(trip.price - @trip_a.price).round(2)}" %>
-                <% end %>
-                <br>
-                <br>
+                <div class="flight-option">
+                  <div class="outbound-option">
+                    <h2 class="text-center">Outbound</h2>
+                    <div class="airports-option text-center">
+                    <%= trip.origin_airport  %> to <%= trip.destination_airport %>
+                    </div>
+                    <div class="hours-option text-center">
+                    <%= trip.departure_time_there.strftime("%H:%M") %> <i class="fa fa-plane"></i> <%= trip.arrival_time_there .strftime("%H:%M")%>
+                    </div>
+                  </div>
+                  <div class="return-option">
+                    <h2 class="text-center">Return</h2>
+                    <div class="airports-option text-center">
+                    <%= trip.destination_airport %> to
+                    <%= trip.origin_airport  %>
+                    </div>
+                    <div class="hours-option text-center">
+                    <%= trip.departure_time_back.strftime("%H:%M") %> <i class="fa fa-plane"></i>
+                    <%= trip.arrival_time_back.strftime("%H:%M") %>
+                    </div>
+                  </div>
+                  <div class="price-option text-center">
+                  <%= Constants::AIRLINES[@trip_b.carrier] %>
+                  <h4 class="text-center">€<%= trip.price %></h4>
+                    <p style="color: <%= price_difference_styling(trip.price,@trip_a.price)%>"> <%= price_difference_text(trip.price, @trip_a.price) %></p>
+                  </div>
+                  <div class="option-select text-center">
+                  <%= link_to controller: :offers, action: :show, right: @trips_b.index(@trip_b), left: @trips_a.index(trip) do %>
+                    <button class="btn btn-primary">Select</button>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="options-separator">
+                </div>
               <% end %>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
@@ -133,13 +146,13 @@
                     </div>
                   </div>
                   <div class="price-option text-center">
-
+                  <%= Constants::AIRLINES[@trip_b.carrier] %>
                   <h4 class="text-center">€<%= trip.price %></h4>
                     <p style="color: <%= price_difference_styling(trip.price,@trip_b.price)%>"> <%= price_difference_text(trip.price, @trip_b.price) %></p>
                   </div>
                   <div class="option-select text-center">
                   <%= link_to controller: :offers, action: :show, right: @trips_b.index(trip), left: @trips_a.index(@trip_a) do %>
-                    <button class="btn btn-primary">Update now</button>
+                    <button class="btn btn-primary">Select</button>
                     <% end %>
                   </div>
                 </div>
