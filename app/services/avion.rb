@@ -9,21 +9,13 @@ module Avion
       "MAD" => "Madrid",
       "BER" => "Berlin",
       "BRU" => "Brussels",
-      "ATH" => "Athens",
       "MIL" => "Milano",
       "VCE" => "Venice",
       "AMS" => "Amsterdam",
       "LIS" => "Lisbon",
-      "DUB" => "Dublin",
-      "HEL" => "Helsinki",
       "BCN" => "Barcelona",
-      "LCA" => "Cyprus",
-      "FLR" => "Florence",
-      "MLA" => "Malta",
-      "VIE" => "Vienna",
-      "RIX" => "Riga",
-      "VNO" => "Vilnius",
-      "BRU" => "Brussels" }
+      "VIE" => "Vienna"
+     }
 
   # Wraps an individual QPX response
   class QPXResponse

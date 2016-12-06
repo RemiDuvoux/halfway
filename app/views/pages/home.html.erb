@@ -10,13 +10,13 @@
          <div class="col-sm-12">
           <div class="search-form-box">
             <%=form_tag offers_path, :controller => 'offers', method: :get, id: "new_result" do %>
-               <%= select_tag :origin_a, options_for_select(Avion::AIRPORTS.invert), class: "origin-field text-center", prompt: "Your city", style: "border:none" %>
+               <%= select_tag :origin_a, options_for_select(Avion::AIRPORTS.invert.sort), class: "origin-field text-center", prompt: "Your city", style: "border:none" %>
                 <div class="box-separator"></div>
                <%= text_field_tag :date_there, nil, placeholder: "Departure", "class" => 'datepicker text-center',style: "border: none" %>
                 <div class="box-separator"></div>
                <%= text_field_tag :date_back, nil, placeholder: "Return", "class" => 'datepicker text-center', style: "border: none" %>
                 <div class="box-separator"></div>
-               <%= select_tag :origin_b, options_for_select(Avion::AIRPORTS.invert), class: "origin-field text-center", prompt: "Your friend's city", style: "border:none" %>
+               <%= select_tag :origin_b, options_for_select(Avion::AIRPORTS.invert.sort), class: "origin-field text-center", prompt: "Your friend's city", style: "border:none" %>
           </div>
             <div class="">
               <%= submit_tag "Explore", class: "submit-button" %>
@@ -44,5 +44,3 @@
     });
   </script>
 <% end %>
-
-
