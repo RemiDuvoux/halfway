@@ -275,7 +275,7 @@ module Avion
             RoundTrip.new(qpx_trip_option: trip_2)
           ]
           )
-          # TODO: we still bug here
+          # TODO: we still bug here. Has to do with short circuit logic for sure
           unless !output.last.nil? && (output.last.roundtrips.first.trip_id == offer.roundtrips.first.trip_id || output.last.roundtrips.last.trip_id == offer.roundtrips.last.trip_id)
             output << offer
           end
