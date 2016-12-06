@@ -33,13 +33,13 @@ class OffersController < ApplicationController
     # All offers for one route sorted by price
     @offers = Avion::SmartQPXAgent.new(info).obtain_offers.sort_by { |offer| offer.total }
     # use query string to set the nth cheapest offer (zero-based), loop over to 0 if exceed array length
-    @offer = @offers[params[:cheapest].to_i]
+    @offer = @offers.first # cheapest offer
 
-    # TODO: REFACTOR! Find better names
-    @offers_left = @offers.uniq { |o| o.roundtrips.first.trip_id }
-    @offers_right = @offers.uniq { |o| o.roundtrips.last.trip_id }
-    @offer_left = @offers_left[params[:left].to_i]
-    @offer_right = @offers_right[params[:right].to_i]
+    # here we work with roundtrips directly
+    @trips_a = @offers.reduce([]) {|a, e| a << e.roundtrips.first }
+    @trips_b = @offers.reduce([]) {|a, e| a << e.roundtrips.last }
+    @trip_a = @trips_a[params[:left].to_i]
+    @trip_b = @trips_b[params[:right].to_i]
   end
 
   def index
