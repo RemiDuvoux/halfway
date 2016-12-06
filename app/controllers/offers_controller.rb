@@ -112,6 +112,7 @@ class OffersController < ApplicationController
 
   private
 
+  # TODO: verify if date_there is not later than date_back
   def params_fail?
     params[:origin_a].blank? || params[:origin_b].blank? || params[:date_there].blank? || params[:date_back].blank?
   end
