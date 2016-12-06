@@ -1,13 +1,13 @@
 .waiting-page-container {
   color: white;
   height: 100vh;
-  margin-top: -70px;
   background-size: cover !important;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   background: linear-gradient(to left, #FF5D3B, #FF2B67);
+  z-index: 100000;
   h2 {
     font-size: 120px;
   }
