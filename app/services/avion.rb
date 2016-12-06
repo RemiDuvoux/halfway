@@ -1,22 +1,6 @@
 require 'rest-client' # Make sure you have this gem!
 
 module Avion
-
-  AIRPORTS = {
-      "PAR" => "Paris",
-      "LON" => "London",
-      "ROM" => "Roma",
-      "MAD" => "Madrid",
-      "BER" => "Berlin",
-      "BRU" => "Brussels",
-      "MIL" => "Milano",
-      "VCE" => "Venice",
-      "AMS" => "Amsterdam",
-      "LIS" => "Lisbon",
-      "BCN" => "Barcelona",
-      "VIE" => "Vienna"
-     }
-
   # Wraps an individual QPX response
   class QPXResponse
     attr_reader :trips
@@ -119,6 +103,7 @@ module Avion
     end
 
     # TODO: Account for 400
+    # RestClient::BadRequest: 400 Bad Request
     def make_request
       url = "https://www.googleapis.com/qpxExpress/v1/trips/search?key=" + @api_key
       request = compose_request
@@ -262,7 +247,7 @@ module Avion
       @result_a.trips.each do |trip_1|
         @result_b.trips.each do |trip_2|
           next if trip_1.price == nil || trip_2.price == nil # safeguard if the trip is an empty object
-          offer = Offer.new(
+          output << Offer.new(
           origin_a: @origin_a,
           origin_b: @origin_b,
           destination_city: trip_1.destination_city,
@@ -275,10 +260,6 @@ module Avion
             RoundTrip.new(qpx_trip_option: trip_2)
           ]
           )
-          # TODO: we still bug here. Has to do with short circuit logic for sure
-          unless !output.last.nil? && (output.last.roundtrips.first.trip_id == offer.roundtrips.first.trip_id || output.last.roundtrips.last.trip_id == offer.roundtrips.last.trip_id)
-            output << offer
-          end
         end
       end
       output
