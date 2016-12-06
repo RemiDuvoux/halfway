@@ -24,32 +24,18 @@ class OffersController < ApplicationController
     airports =  Constants::AIRPORTS.keys
     # TODO: REMOVE BEFORE PUSHING TO GITHUB
     airports = %w(PAR LON)
-
-    origin_a = params[:origin_a]
-    origin_b = params[:origin_b]
     date_there = params[:date_there]
     date_back = params[:date_back]
 
-    routes = Avion.generate_triple_routes(airports, origin_a, origin_b)
+    # generate routes
+    routes = Avion.generate_triple_routes(airports, params[:origin_a], params[:origin_b])
     # Test all routes against cache
     uncached_routes = Avion.compare_routes_against_cache(routes, date_there, date_back)
 
     # Do we have something that is not cached?
     if uncached_routes.empty?
-      session[:referer] = request.original_url
-
-      @offers = []
-      # This won't do any API requests at all as we work only with cache
-      routes.each do |route|
-        info = {
-          origin_a: route.first,
-          origin_b: route[1],
-          destination_city: route.last,
-          date_there: date_there,
-          date_back: date_back
-        }
-        @offers.concat(Avion::SmartQPXAgent.new(info).obtain_offers)
-      end
+      # This won't do any requests as we work with cache
+      @offers = get_offers_for_routes(routes, date_there, date_back)
 
       # filter by departure time if asked
       if params["departure_time_there"].present? && params["departure_time_there"] != ""
@@ -69,8 +55,7 @@ class OffersController < ApplicationController
       @offers = @offers.sort_by { |offer| offer.total }
 
     else # we have to build a new cache
-      # we need this to be able to redirect user
-      # to the page with same params in the url from the js in wait.html.erb
+      # save url to redirect back from wait.html.erb via JS
       session[:url_for_wait] = request.original_url
       # render wait view without any routing
       render action: :wait
@@ -81,13 +66,28 @@ class OffersController < ApplicationController
 
   private
 
+  def get_offers_for_routes(routes, date_there, date_back)
+    offers = []
+    # This won't do any API requests at all as we work only with cache
+    routes.each do |route|
+      options = {
+        origin_a: route.first,
+        origin_b: route[1],
+        destination_city: route.last,
+        date_there: date_there,
+        date_back: date_back
+      }
+      offers.concat(Avion::SmartQPXAgent.new(options).obtain_offers)
+    end
+    return offers
+  end
+
   def assert_show_params
     # safeguard agains random urls starting with offers/
     unless params[:stamp] =~ /\w{3}_\w{3}_\w{3}_\d{4}-\d{2}-\d{2}_\d{4}-\d{2}-\d{2}/
       redirect_to root_path
       return
     end
-
     # Don't bother making requests if corresponding stamp not found in cache
     if $redis.get(params[:stamp]).nil?
       redirect_to root_path
