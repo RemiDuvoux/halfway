@@ -93,12 +93,11 @@ class OffersController < ApplicationController
         @offers = filter_by_arrival_time(@offers)
       end
 
-      #and remove duplicate cities
+      # remove duplicate cities
       @offers = @offers.uniq { |offer| offer.destination_city }
 
-      # sort by total price
+      # and sort by total price
       @offers = @offers.sort_by { |offer| offer.total }
-
     else
       # we need this to be able to redirect user
       # to the page with same params in the url from the js in wait.html.erb
