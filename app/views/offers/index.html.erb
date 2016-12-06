@@ -2,7 +2,7 @@
 <header class="header_cards">
 <div class="action_title text-center">
       <div class="total_date_title">
-        <p> Best cities to get from <%= Avion::AIRPORTS[params[:origin_a].upcase] %> and <%= Avion::AIRPORTS[params[:origin_b].upcase] %> between <%= Date.parse(params[:date_there]).strftime("%b %d") %> and <%= Date.parse(params[:date_back]).strftime("%b %d") %></p>
+        <p> Best cities to get from <%= Constants::AIRPORTS[params[:origin_a].upcase] %> and <%= Constants::AIRPORTS[params[:origin_b].upcase] %> between <%= Date.parse(params[:date_there]).strftime("%b %d") %> and <%= Date.parse(params[:date_back]).strftime("%b %d") %></p>
       </div>
     </div>
 </header>
@@ -78,7 +78,7 @@
             <div class="card_content">
               <div class="card_title">
                 <ul class="list-unstyled">
-                  <li class="card_destination"><%= Avion::AIRPORTS[offer.destination_city]%></li>
+                  <li class="card_destination"><%= Constants::AIRPORTS[offer.destination_city]%></li>
                 </ul>
                 <ul class="list-unstyled">
                   <li class="card_total_price"><%= offer.total.floor %>€ <small>for 2</small></li>
@@ -86,8 +86,8 @@
               </div>
               <div class="card_text">
                 <div class="card_text_element">
-                  <p class="card_origin_city text-center" style="margin-bottom: 25px">from <%= Avion::AIRPORTS[offer.origin_a]%> <%= offer.roundtrips.first.origin_airport %></p>
-                  <p class="airline text-center"> <%= Offer::AIRLINES[offer.roundtrips.first.carrier]%> </p>
+                  <p class="card_origin_city text-center" style="margin-bottom: 25px">from <%= Constants::AIRPORTS[offer.origin_a]%> <%= offer.roundtrips.first.origin_airport %></p>
+                  <p class="airline text-center"> <%= Constants::AIRLINES[offer.roundtrips.first.carrier]%> </p>
                   <ul class="list-unstyled">
                     <li> Outbound <br class="hide-on-mobile"> <span style="padding-left: 6px"><%= offer.roundtrips.first.departure_time_there.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.first.arrival_time_there.strftime("%H:%M") %> </span> </li>
                     <li> Return <br class="hide-on-mobile"> <span style="padding-left: 29px"><%= offer.roundtrips.first.departure_time_back.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.first.arrival_time_back.strftime("%H:%M") %> </span> </li>
@@ -98,8 +98,8 @@
                 </div>
                 <div class="card_text_element card_separator"></div>
                 <div class="card_text_element">
-                  <p class="card_origin_city text-center" style="margin-bottom: 25px">from <%= Avion::AIRPORTS[offer.origin_b] %>  <%= offer.roundtrips.last.origin_airport %></p>
-                  <p class="airline text-center"> <%= Offer::AIRLINES[offer.roundtrips.last.carrier]%> </p>
+                  <p class="card_origin_city text-center" style="margin-bottom: 25px">from <%= Constants::AIRPORTS[offer.origin_b] %>  <%= offer.roundtrips.last.origin_airport %></p>
+                  <p class="airline text-center"> <%= Constants::AIRLINES[offer.roundtrips.last.carrier]%> </p>
                   <ul class="list-unstyled">
                     <li> Outbound <br class="hide-on-mobile"> <span style="padding-left: 6px"> <%= offer.roundtrips.last.departure_time_there.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.last.arrival_time_there.strftime("%H:%M") %> </span> </li>
                     <li> Return <br class="hide-on-mobile"> <span style="padding-left: 29px"> <%= offer.roundtrips.last.departure_time_back.strftime("%H:%M") %> <i class="fa fa-fighter-jet"></i> <%= offer.roundtrips.last.arrival_time_back.strftime("%H:%M") %></span></li>

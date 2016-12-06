@@ -1,7 +1,7 @@
 <%# HEADER %>
 <div class="page-wrapper" style="background: linear-gradient(to left, #FF5D3B , #FF2B67 )">
   <div class="show-banner-content text-center padded">
-    <h1>Your halfway trips to <%= Avion::AIRPORTS[@offer.destination_city] %> between <%= @offer.date_there.strftime("%b %d") %> and <%= @offer.date_back.strftime("%b %d") %></h1>
+    <h1>Your halfway trips to <%= Constants::AIRPORTS[@offer.destination_city] %> between <%= @offer.date_there.strftime("%b %d") %> and <%= @offer.date_back.strftime("%b %d") %></h1>
     <p>“A journey is best measured in friends, rather than miles.”</p>
   </div>
 <%# END HEADER %>
@@ -9,7 +9,7 @@
 <%# LEFT PART %>
 <div class="trips-container">
   <div class="trip">
-    <h3 class="text-center">From <%= Avion::AIRPORTS[@offer.origin_a]%></h3>
+    <h3 class="text-center">From <%= Constants::AIRPORTS[@offer.origin_a]%></h3>
     <div class="trips-details">
       <ul class= "list-inline ">
         <li><p><%= @trip_a.origin_airport %> <%= @trip_a.departure_time_there.strftime("%H:%M") %> -> <%= @trip_a.destination_airport %> <%= @trip_a.arrival_time_there.strftime("%H:%M") %></p></li>
@@ -76,7 +76,7 @@
 
     <%# RIGHT PART %>
     <div class="trip text-center">
-    <h3 class="text-center">From <%= Avion::AIRPORTS[@offer.origin_b] %></h3>
+    <h3 class="text-center">From <%= Constants::AIRPORTS[@offer.origin_b] %></h3>
     <div class="trips-details">
       <ul class= "list-inline ">
         <li><p><%= @trip_b.origin_airport %> <%= @trip_b.departure_time_there.strftime("%H:%M") %> -> <%= @trip_b.destination_airport %> <%= @trip_b.arrival_time_there.strftime("%H:%M") %></p></li>
