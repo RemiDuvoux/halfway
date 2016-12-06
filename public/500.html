@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>We're sorry, but something went wrong (500)</title>
+  <title>The page you were looking for doesn't exist (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
+
     html,
     body {
       background: linear-gradient(to left, #FF5D3B , #FF2B67 );
@@ -242,26 +243,38 @@ div.dialog {
   z-index: 1;
   width: 95%;
   max-width: 33em;
-  margin: 2em auto 0;
+  margin: 1em auto 0;
   padding: 20px;
 }
 
 div.dialog > div {
 
-  background-color: white;
-  padding: 20px 12% 0;
-  box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  border-radius: 5px;
+  /*background-color: white;*/
+  padding: 16px 12% 0;
+  /*box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);*/
+  /*border-radius: 5px;*/
 }
 
 h1 {
-  font-size: 100%;
-  color: #FF2B67;
-  line-height: 1.5em;
+  /*font-size: 100%;
+  color: white;
+  line-height: 1.5em;*/
+  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+  font-family: helvetica;
+  font-size: 60px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: -4px;
+  text-align: center;
+  color: white;
 }
 
 p {
-  font-size: 90%;
+  font-size: 16px;
+  color: white;
+  z-index: 1;
+  font-family: helvetica;
 }
 
 .box404 {
@@ -269,19 +282,18 @@ p {
   text-align: center;
   width: 95%;
   max-width: 33em;
-/*    margin: 9em auto 0;
-*/width: 150px;
+width: 150px;
 border: none;
-padding: 0 20 10px;
 border-radius: 4px;
 line-height: 40px;
 font-size: 14px;
 border: 1.3px solid white;
-margin: 17em auto 0;
+margin: 14em auto 0;
 box-shadow: 7px 9px 31px -13px rgba(0,0,0,0.75);
 -webkit-transition: all 0.5s ease;
 transition: all 0.5s ease;
-font-family: "MuseoSansRounded";
+font-family: helvetica;
+  background: #FD4251;
 }
 
 .box404 a {
@@ -300,7 +312,7 @@ font-family: "MuseoSansRounded";
 </head>
 
 <body>
-  <!-- This file lives in public/500.html -->
+  <!-- This file lives in public/404.html -->
   <div class="frame">
     <div class="plane-container">
       <a href="http://halfway.ninja" target="_blank">
@@ -358,8 +370,8 @@ S20.866,331,46.607,331h668.787C741.133,331,762,307.942,762,279.5S741.133,228,715
 
 <div class="dialog">
   <div>
-    <h1>500: We're sorry, but something went wrong</h1>
-    <p>Try again or go back to Halfway's homepage</p>
+    <h1>500</h1>
+    <p>We are sorry, but something went wrong</p>
   </div>
 </div>
 <div class="box404">
