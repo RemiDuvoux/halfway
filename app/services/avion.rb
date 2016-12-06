@@ -9,21 +9,13 @@ module Avion
       "MAD" => "Madrid",
       "BER" => "Berlin",
       "BRU" => "Brussels",
-      "ATH" => "Athens",
       "MIL" => "Milano",
       "VCE" => "Venice",
       "AMS" => "Amsterdam",
       "LIS" => "Lisbon",
-      "DUB" => "Dublin",
-      "HEL" => "Helsinki",
       "BCN" => "Barcelona",
-      "LCA" => "Cyprus",
-      "FLR" => "Florence",
-      "MLA" => "Malta",
-      "VIE" => "Vienna",
-      "RIX" => "Riga",
-      "VNO" => "Vilnius",
-      "BRU" => "Brussels" }
+      "VIE" => "Vienna"
+     }
 
   # Wraps an individual QPX response
   class QPXResponse
@@ -53,7 +45,7 @@ module Avion
   class QPXTripOption
     attr_reader :price, :destination_city, :destination_airport,
                 :origin_airport, :departure_time_there, :arrival_time_there,
-                :departure_time_back, :arrival_time_back, :currency, :carrier
+                :departure_time_back, :arrival_time_back, :currency, :carrier, :trip_id
     def initialize(option)
       return if option == {} # Safeguard if we had a bad response in JSON. Extraction methods won't be called on nil
       @currency = nil # will be assigned by the call to extract_total_price
@@ -66,6 +58,7 @@ module Avion
       @departure_time_back = extract_departure_time(option, 1)
       @arrival_time_back = extract_arrival_time(option, 1)
       @carrier = extract_carrier(option)
+      @trip_id = extract_trip_id(option)
     end
 
     private
@@ -93,13 +86,17 @@ module Avion
       end
     end
 
+    def extract_trip_id(trip)
+      trip['id']
+    end
+
     def extract_destination_city(trip)
       # This is how we get to the city cody
       trip['pricing'].first['fare'].first['destination']
     end
 
     def extract_origin_airport(trip)
-      trip['pricing'].first['fare'].first['origin']
+      trip['slice'].first['segment'].first['leg'].first['origin']
     end
 
     def extract_destination_airport(trip)

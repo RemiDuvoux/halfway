@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   resources :offers, only: :index
   get 'offers/:stamp', to: 'offers#show', as: 'offer'
   root to: 'pages#home'
+  # do we need it?
   resources :results, only:[:index] do
     get :autocomplete_city_name, :on => :collection
   end
+  # do we need it? 
   resources :cities, only: :index do
     resources :trips, only: [:create, :show]
   end
