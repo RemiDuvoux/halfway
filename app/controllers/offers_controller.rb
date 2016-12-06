@@ -1,63 +1,32 @@
+# Airport list: %w(PAR LON ROM MAD BER BRU VCE AMS LIS BCN MIL VIE)
+
 class OffersController < ApplicationController
   skip_before_action :authenticate_user!
-
-  # Airport list: %w(PAR LON ROM MAD BER BRU VCE AMS LIS BCN MIL VIE)
-
-  def wait
-    #Waiting logic implemented directly in the view with JS
-  end
+  before_action :disable_browser_cache
+  before_action :assert_show_params, only: :show
+  before_action :assert_index_params, only: :index
 
   def show
-    # turn off page caching in browser
-    response.headers['Cache-Control'] = "no-cache, max-age=0, must-revalidate, no-store"
-    # safeguard agains random urls starting with offers/
-    unless params[:stamp] =~ /\w{3}_\w{3}_\w{3}_\d{4}-\d{2}-\d{2}_\d{4}-\d{2}-\d{2}/
-      redirect_to root_path
-      return
-    end
-
-    # Don't bother making requests if corresponding stamp not found in cache
-    if $redis.get(params[:stamp]).nil?
-      redirect_to root_path
-      return
-    end
-
-    from_stamp = params[:stamp].split('_')
-    info = {
-      origin_a: from_stamp.first,
-      origin_b: from_stamp[1],
-      destination_city: from_stamp[2],
-      date_there: from_stamp[3],
-      date_back: from_stamp.last
-    }
+    options = extract_options_from_stamp(params[:stamp])
     # All offers for one route sorted by price
-    @offers = Avion::SmartQPXAgent.new(info).obtain_offers.sort_by { |offer| offer.total }
-    # use query string to set the nth cheapest offer (zero-based), loop over to 0 if exceed array length
+    @offers = Avion::SmartQPXAgent.new(options).obtain_offers.sort_by { |offer| offer.total }
     @offer = @offers.first # cheapest offer
-
-    # here we work with roundtrips directly
-    @trips_a = @offers.reduce([]) {|a, e| a << e.roundtrips.first }
-    @trips_b = @offers.reduce([]) {|a, e| a << e.roundtrips.last }
-    @trip_a = @trips_a[params[:left].to_i]
-    @trip_b = @trips_b[params[:right].to_i]
+    # extract tow arrays of roundtrips
+    @trips_a = @offers.reduce([]) {|a, e| a << e.roundtrips.first }.uniq { |t| t.trip_id }
+    @trips_b = @offers.reduce([]) {|a, e| a << e.roundtrips.last }.uniq { |t| t.trip_id }
+    @trip_a = @trips_a[params[:left].to_i] # set the first roundtrip from city A
+    @trip_b = @trips_b[params[:right].to_i]  # set the second roundtrip from city B
   end
 
   def index
     @filters = params.to_hash.slice("origin_a", "date_there", "date_back", "origin_b")
 
-    # do not cache the page to avoid caching waiting animation
-    response.headers['Cache-Control'] = "no-cache, max-age=0, must-revalidate, no-store"
+    airports =  Constants::AIRPORTS.keys
+    # TODO: REMOVE BEFORE PUSHING TO GITHUB
+    airports = %w(PAR LON)
 
-    # if there are no query params in URL or they don't make sense - send user to home page
-    if URI(request.original_url).query.blank? || params_fail?
-      redirect_to root_path
-      return
-    end
-
-    airports =  Avion::AIRPORTS.keys
-
-    origin_a = params[:origin_a].upcase
-    origin_b = params[:origin_b].upcase
+    origin_a = params[:origin_a]
+    origin_b = params[:origin_b]
     date_there = params[:date_there]
     date_back = params[:date_back]
 
@@ -111,6 +80,44 @@ class OffersController < ApplicationController
   end
 
   private
+
+  def assert_show_params
+    # safeguard agains random urls starting with offers/
+    unless params[:stamp] =~ /\w{3}_\w{3}_\w{3}_\d{4}-\d{2}-\d{2}_\d{4}-\d{2}-\d{2}/
+      redirect_to root_path
+      return
+    end
+
+    # Don't bother making requests if corresponding stamp not found in cache
+    if $redis.get(params[:stamp]).nil?
+      redirect_to root_path
+      return
+    end
+  end
+
+  def assert_index_params
+    # if there are no query params in URL or they don't make sense - send user to home page
+    if URI(request.original_url).query.blank? || params_fail?
+      redirect_to root_path
+      return
+    end
+  end
+
+  def disable_browser_cache
+    # do not cache the page to avoid caching waiting animation
+    response.headers['Cache-Control'] = "no-cache, max-age=0, must-revalidate, no-store"
+  end
+
+  def extract_options_from_stamp(stamp)
+    from_stamp = params[:stamp].split('_')
+    options = {
+      origin_a: from_stamp.first,
+      origin_b: from_stamp[1],
+      destination_city: from_stamp[2],
+      date_there: from_stamp[3],
+      date_back: from_stamp.last
+    }
+  end
 
   # TODO: verify if date_there is not later than date_back
   def params_fail?
