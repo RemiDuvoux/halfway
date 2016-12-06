@@ -1,7 +1,6 @@
 require 'rest-client' # Make sure you have this gem!
 
 module Avion
-
   # Wraps an individual QPX response
   class QPXResponse
     attr_reader :trips
