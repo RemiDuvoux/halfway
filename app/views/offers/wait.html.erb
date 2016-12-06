@@ -27,6 +27,11 @@
 <%# DON'T MODIFY BELOW THIS LINE %>
 
 <% content_for :after_js do -%>
+<script>
+$( document ).ready(function() {
+  $('.navbar-wagon').hide()
+});
+</script>
 <%# PUSHER STUFF %>
 <script src="https://js.pusher.com/3.2/pusher.min.js"></script>
 <script>
@@ -50,7 +55,7 @@
       });
 
       channel.bind('done', function(data) {
-        // use raw helper to avoid &amp in URL 
+        // use raw helper to avoid &amp in URL
         window.location = '<%= raw session[:url_for_wait] %>';
       });
 
