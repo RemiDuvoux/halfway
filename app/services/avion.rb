@@ -167,7 +167,7 @@ module Avion
       puts "#{@origin_a} - #{@destination_city} request made to QPX"
       finish = Time.now # debugging
       took_seconds = (finish - start).round(2)
-      
+
       # Pub-sub part
       # Notify first request is made
       Pusher.trigger('qpx_updates', 'request_made', {
@@ -265,74 +265,7 @@ module Avion
     end
   end
 
-  # Our main comparison logic goes here. Takes two arrays of JSON QPX responses
-  # one for each origin
-  class QPXComparator < Comparator
-    def initialize(jsons_one, jsons_two, args = {})
-      @results_one = objectify(jsons_one)
-      @results_two = objectify(jsons_two)
-      @all_trips_one = list_all_trips(@results_one)
-      @all_trips_two = list_all_trips(@results_two)
-      super(args)
-    end
-
-    # Our main secret sauce for now
-    def combine_prices
-      output = []
-      @all_trips_one.each do |trip_1|
-        @all_trips_two.each do |trip_2|
-          next if trip_1.price == nil || trip_2.price == nil # safeguard if the trip is an empty object
-          if trip_1.destination_city == trip_2.destination_city
-            output << Offer.new(
-            destination_city: trip_1.destination_city,
-            total: trip_1.price + trip_2.price,
-            # we agnosticize QPXTripOption here
-            roundtrips: [
-              RoundTrip.new(qpx_trip_option: trip_1),
-              RoundTrip.new(qpx_trip_option: trip_2)
-            ]
-            )
-          end
-        end
-      end
-      output
-    end
-
-    private
-
-    def objectify(jsons)
-      jsons.map do |json|
-        QPXResponse.new(json)
-      end
-    end
-
-    def list_all_trips(results)
-      results.map { |result| result.trips }.flatten
-    end
-  end
-
   # MODULE METHODS
-
-  # A helper to build arrays of possible flights for each of two origins
-  # use 3-letter airport codes as arguments. Deprecated
-  def self.generate_routes(airports, origin1, origin2)
-    possible_from_origin1 = airports.map do |airport|
-      if airport != origin1 && airport!= origin2
-        [origin1, airport]
-      end
-    end
-
-    possible_from_origin2 = airports.map do |airport|
-      if airport != origin1 && airport!= origin2
-        [origin2, airport]
-      end
-    end
-
-    return {
-      from_a: possible_from_origin1.compact,
-      from_b: possible_from_origin2.compact
-    }
-  end
 
   def self.generate_triple_routes(airports, origin_a, origin_b)
     triples = airports.map do |airport|
@@ -341,29 +274,6 @@ module Avion
       end
     end
     triples.compact
-  end
-
-  # Query QPX one request at a time for testing
-  def self.query_qpx_solo(route, date_there, date_back, cache_dir)
-   json = Avion::QPXRequester.new(origin: route.first, destination: route.last, date_there: date_there, date_back: date_back, trip_options: 5, api_key: ENV["QPX_KEY"]).make_request
-   path = File.join(cache_dir, Avion.generate_json_filename(route, date_there, date_back)) + ".json"
-   File.open(path, 'w') { |file| file.write(json) }
-   return json
-  end
-
-  # Query QPX in bulk for testing
-  def self.query_qpx(routes, date_there, date_back, cache)
-    jsons = []
-    routes.each do |route|
-      jsons << Avion::QPXRequester.new(origin: route.first, destination: route.last, date_there: date_there, date_back: date_back, trip_options: 5, api_key: ENV["QPX_KEY"]).make_request
-    end
-    # Write all jsons to file for caching during testing
-    File.open(cache, 'w') { |file| file.write(jsons) }
-    return jsons
-  end
-
-  def self.generate_json_filename(route, date_there, date_back)
-    "#{route.first}_#{route.last}_#{date_there}_#{date_back}"
   end
 
   # TODO: DRYer (offers controller, private generate_cache_name for SmartQPXAgent)
