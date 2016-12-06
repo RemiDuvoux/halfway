@@ -1,7 +1,6 @@
 <section id="main">
 <header class="header_cards">
 <div class="action_title text-center">
-      <h2> Where will you meet ? </h2>
       <div class="total_date_title">
         <p> Best cities to get from <%= Avion::AIRPORTS[params[:origin_a].upcase] %> and <%= Avion::AIRPORTS[params[:origin_b].upcase] %> between <%= Date.parse(params[:date_there]).strftime("%b %d") %> and <%= Date.parse(params[:date_back]).strftime("%b %d") %></p>
       </div>
@@ -11,7 +10,7 @@
     <ul class="list-inline text-center">
       <li>
         <div class="text-center links-box">
-        <h3>When do you want to leave ?</h3>
+        <h3><i class="fa fa-plane"></i> Departure time </h3>
         <div class="option <%= departure_css_class_name('earlybird') %>">
           <%= link_to "5-8AM", offers_path(@filters.merge(departure_time_there: "earlybird")) , class: "radio-btn"%>
           <i class="fa fa-circle" aria-hidden="true"></i>
@@ -36,7 +35,7 @@
       </li>
       <li>
         <div class="text-center links-box">
-          <h3>When do you want to come back? </h3>
+          <h3><i class="fa fa-plane"></i> Return time</h3>
         <div class="option <%= arrival_css_class_name('earlybird') %>">
           <%= link_to "5-8AM", offers_path(@filters.merge(arrival_time_back: "earlybird")) , class: "radio-btn"%>
           <i class="fa fa-circle" aria-hidden="true"></i>
