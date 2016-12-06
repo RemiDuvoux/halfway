@@ -16,23 +16,33 @@
 
 .filters {
   margin-bottom: 50px;
+  text-align: center;
+  margin-left: -42px;
   h3 {
     font-size: 15px;
   }
+
+
 }
 
 .links-box {
-  border-bottom: 1px solid #FF2B67;
+  border-bottom: 2px solid #FF2B67;
   position: relative;
+  margin-left: 65px;
 }
 
 .option {
   .fa-circle {
     position: absolute;
-    top: 32px;
-    left: 13px;
+
     color: transparent;
     cursor: pointer;
+      top: 32px;
+      left: 15px;
+    @media only screen and (min-width: 0px) and (max-width: $screen-xs){
+      top: 65px;
+      left: 12px;
+    }
   }
   &.active > .fa-circle {
       color: #FF2B67;
@@ -41,7 +51,7 @@
 .option {
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
+  margin-top: 6px;
   margin: 10px;
   position: relative;
   cursor: pointer;
@@ -56,8 +66,12 @@
   cursor: pointer;
   .fa-circle {
     position: absolute;
-    top: 32px;
-    left: 29px;
+      top: 32px;
+      left: 33px;
+    @media only screen and (min-width: 0px) and (max-width: $screen-xs){
+      top: 65px;
+      left: 21px;
+    }
     color: transparent;
     cursor: pointer;
   }
@@ -75,8 +89,12 @@
   cursor: pointer;
   .fa-circle {
     position: absolute;
-    top: 32px;
-    left: 24px;
+      top: 32px;
+      left: 15px;
+    @media only screen and (min-width: 0px) and (max-width: $screen-xs){
+      top: 65px;
+      left: 14px;
+    }
     color: transparent;
     cursor: pointer;
   }
@@ -87,5 +105,19 @@
 
 .links-box {
   display: flex;
+  @media (min-width: $screen-xs){
+  margin-left: 0px;
+  }
 
+}
+
+.return-box {
+  @media (min-width: $screen-xs){
+  margin-right: -27px;
+  margin-left: 30px;
+  }
+  @media only screen and (min-width: 0px) and (max-width: $screen-xs){
+    padding-bottom: 11px;
+    margin-top: 30px;
+  }
 }

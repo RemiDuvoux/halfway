@@ -1,7 +1,11 @@
 <div class="navbar-wagon col-xs-12">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand col-xs-9" do %>
-    <%= image_tag "logo.png" %>
+    <% if current_page?(controller: 'offers', action: 'index')%>
+      <%= image_tag "logo_pink.png" %>
+    <% else %>
+      <%= image_tag "logo.png" %>
+    <% end %>
   <% end %>
 
   <!-- Right Navigation -->
