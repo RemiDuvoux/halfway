@@ -91,7 +91,7 @@ module Avion
     end
 
     def extract_origin_airport(trip)
-      trip['pricing'].first['fare'].first['origin']
+      trip['slice'].first['segment'].first['leg'].first['origin']
     end
 
     def extract_destination_airport(trip)
