@@ -19,8 +19,6 @@ class OffersController < ApplicationController
   end
 
   def index
-    @filters = params.to_hash.slice("origin_a", "date_there", "date_back", "origin_b")
-
     airports =  Constants::AIRPORTS.keys
     # TODO: REMOVE BEFORE PUSHING TO GITHUB
     airports = %w(PAR LON)
@@ -36,24 +34,12 @@ class OffersController < ApplicationController
     if uncached_routes.empty?
       # This won't do any requests as we work with cache
       @offers = get_offers_for_routes(routes, date_there, date_back)
-
-      # filter by departure time if asked
-      if params["departure_time_there"].present? && params["departure_time_there"] != ""
-        @filters = @filters.merge(departure_time_there: params[:departure_time_there])
-        @offers = filter_by_departure_time(@offers)
-      end
-
-      #filter by arrival time if asked
-      if params["arrival_time_back"].present? && params["arrival_time_back"] != ""
-        @filters = @filters.merge(arrival_time_back: params[:arrival_time_back])
-        @offers = filter_by_arrival_time(@offers)
-      end
-
+      # do filtering
+      apply_show_filters
       # remove duplicate cities
       @offers = @offers.uniq { |offer| offer.destination_city }
       # and sort by total price
       @offers = @offers.sort_by { |offer| offer.total }
-
     else # we have to build a new cache
       # save url to redirect back from wait.html.erb via JS
       session[:url_for_wait] = request.original_url
@@ -80,6 +66,23 @@ class OffersController < ApplicationController
       offers.concat(Avion::SmartQPXAgent.new(options).obtain_offers)
     end
     return offers
+  end
+
+  def apply_show_filters
+    # set filters
+    @filters = params.to_hash.slice("origin_a", "date_there", "date_back", "origin_b")
+
+    # filter by departure time if asked
+    if params["departure_time_there"].present? && params["departure_time_there"] != ""
+      @filters = @filters.merge(departure_time_there: params[:departure_time_there])
+      @offers = filter_by_departure_time(@offers)
+    end
+
+    #filter by arrival time if asked
+    if params["arrival_time_back"].present? && params["arrival_time_back"] != ""
+      @filters = @filters.merge(arrival_time_back: params[:arrival_time_back])
+      @offers = filter_by_arrival_time(@offers)
+    end
   end
 
   def assert_show_params
