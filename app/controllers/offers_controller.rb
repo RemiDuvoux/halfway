@@ -20,8 +20,6 @@ class OffersController < ApplicationController
 
   def index
     airports =  Constants::AIRPORTS.keys
-    # TODO: REMOVE BEFORE PUSHING TO GITHUB
-    airports = %w(PAR LON)
     date_there = params[:date_there]
     date_back = params[:date_back]
 
