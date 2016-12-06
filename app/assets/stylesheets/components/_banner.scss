@@ -53,14 +53,109 @@
   opacity: 1;
 }
 
+.banner2 {
+  height: 80vh;
+}
+
+.banner2-title {
+  font-family: "MuseoSansRounded";
+  font-size: 40px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: -4px;
+  text-align: center;
+  // display: flex;
+  // align-items: inline;
+}
+
+.row2 {
+  margin-top: 55px;
+   z-index: 1000000;
+
+}
+
+.glasses-img {
+  width: 200px;
+  margin-top: 45px;
+}
+
+.earth-img {
+  width: 150px;
+}
+
+.medal-img {
+  width: 200px;
+  margin-top: 50px
+}
 
 
-// @font-face {
-//    font-family: MuseoSansRounded300;
-//    src:url(fonts/MUSEOSANSROUNDED-300_0.OTF);
+#usp-title {
+  margin-top: 45px;
+  font-family: "MuseoSansRounded";
+  font-size: 25px;
+  font-weight: 300;
+
+}
+
+#usp-earth {
+  margin-top: 19px;
+  font-family: "MuseoSansRounded";
+  font-size: 25px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+
+}
+
+// .wrapper1 {
+//     width: 100%;
+//     position: relative;
+//     overflow: hidden;
+//     padding: 20px 0;
 // }
-
-/* Navbar search form */
-
-
+// .wrapper_background1 {
+//   z-index: -300;
+//   position: absolute;
+//   left: 0;
+//   right: 0;
+//   height: 100%;
+//   max-height: 1000px;
+//   .background_element1 {
+//     z-index: 0;
+//     width: 170%;
+//     position: absolute;
+//     content: '';
+//     background-image: linear-gradient(-270deg, #FF5D3B 0%, #FF2B67 100%);
+//     top: 0;
+//     height: 250px;
+//     bottom: 0;
+//     margin: auto;
+//     transform: rotate(0) translateY(100%);
+//     left: -10%;
+//     display: block;
+//     opacity: 0;
+//     animation: enterBlock1 1s ease forwards;
+//     animation-delay: .1s;
+//     &:last-child {
+//       opacity: 0;
+//       top: -30px;
+//       transform: rotate(0) translateY(100%) scale(.8);
+//       animation: enterBlock2 1s ease forwards;
+//       animation-delay: .2s;
+//     }
+//   }
+// }
+// @keyframes enterBlock1 {
+//   to {
+//     opacity: 1;
+//     transform: rotate(-10deg) translateY(0) ;
+//   }
+// }
+// @keyframes enterBlock2 {
+//   to {
+//     opacity: .15;
+//     transform: rotate(-15deg) translateY(0) scale(1);
+//   }
+// }
 
