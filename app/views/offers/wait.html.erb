@@ -54,11 +54,15 @@ $( document ).ready(function() {
         $("#counter").text(counter);
       });
 
+      channel.bind('nonsense', function(data) {
+        // use raw helper to avoid &amp in URL
+        window.location = '<%= raw root_path %>';
+      });
+
       channel.bind('done', function(data) {
         // use raw helper to avoid &amp in URL
         window.location = '<%= raw session[:url_for_wait] %>';
       });
-
     });
   </script>
   <% end -%>
