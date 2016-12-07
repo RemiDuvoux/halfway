@@ -3,7 +3,8 @@ module Avion
   class QPXTripOption
     attr_reader :price, :destination_city, :destination_airport,
                 :origin_airport, :departure_time_there, :arrival_time_there,
-                :departure_time_back, :arrival_time_back, :currency, :carrier, :trip_id
+                :departure_time_back, :arrival_time_back, :currency, :carrier, :trip_id,
+                :flight_number_there, :flight_number_back
     def initialize(option)
       return if option == {} # Safeguard if we had a bad response in JSON. Extraction methods won't be called on nil
       @currency = nil # will be assigned by the call to extract_total_price
@@ -16,6 +17,8 @@ module Avion
       @departure_time_back = extract_departure_time(option, 1)
       @arrival_time_back = extract_arrival_time(option, 1)
       @carrier = extract_carrier(option)
+      @flight_number_there = @carrier + extract_flight_number(option, 0)
+      @flight_number_back = @carrier + extract_flight_number(option, 1)
       @trip_id = extract_trip_id(option)
     end
 
@@ -23,6 +26,10 @@ module Avion
 
     def extract_carrier(trip)
       trip['slice'].first['segment'].first['flight']['carrier']
+    end
+
+    def extract_flight_number(trip, slice)
+      trip['slice'][slice]['segment'].first['flight']['number']
     end
 
     def extract_departure_time(trip, slice)
