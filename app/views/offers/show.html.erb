@@ -20,7 +20,10 @@
               </p>
               <div class="flight">
                 <small>flight</small>
-                <strong><%= @trip_a.flight_number_there %></strong>
+                <strong>
+                  <%= @trip_a.flight_number_there %>
+                  <span>/</span>
+                  <%= @trip_a.flight_number_back %></strong>
               </div>
             </header>
             <section class="cities">
@@ -58,19 +61,19 @@
               <div class="times">
                 <div class="box">
                   <small class="box-title">Return</small>
-                  <strong><3</strong>
+                  <strong><%= @trip_a.departure_time_back.strftime("%b %d") %></strong>
                 </div>
                 <div class="box">
                   <small>Duration</small>
-                  <strong>1h30</strong>
+                  <strong><%= ((@trip_a.arrival_time_there - @trip_a.departure_time_there) / 60).floor%> MIN</strong>
                 </div>
                 <div class="box">
                   <small>Departure</small>
-                  <strong>01:10</strong>
+                  <strong><%= @trip_a.departure_time_back.strftime("%l:%M") %></strong>
                 </div>
                 <div class="box">
                   <small>Arrival</small>
-                  <strong>21:30</strong>
+                  <strong><%= @trip_a.arrival_time_back.strftime("%l:%M") %></strong>
                 </div>
               </div>
             </section>
