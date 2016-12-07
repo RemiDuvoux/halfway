@@ -237,7 +237,9 @@
                 <div class="date">
                   <small>Date</small>
                   <strong>Tue, 15 march 2016</strong>
-                  <div class="book-button">Book!</div>
+                  <button type="button" class="book-button" data-toggle="modal" data-target="#modalBookRight">
+                    BOOK!
+                  </button>
                 </div>
               </div>
 
@@ -247,57 +249,7 @@
         <%# MODAL TEST RIGHT %>
 
         <!-- Modal -->
-        <div class="modal fade" id="modalRight" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Choose better times</h4>
-              </div>
-              <div class="modal-body">
-                <%# TODO: this should all be refactored in the helper %>
-                <% trips = @trips_b %>
-                <% trips = trips.reject { |t| t.trip_id == @trip_b.trip_id } %>
-                <% trips.each do |trip| %>
-                <div class="flight-option">
-                  <div class="outbound-option">
-                    <h2 class="text-center">Outbound</h2>
-                    <div class="airports-option text-center">
-                      <%= trip.origin_airport  %> to <%= trip.destination_airport %>
-                    </div>
-                    <div class="hours-option text-center">
-                      <%= trip.departure_time_there.strftime("%H:%M") %> <i class="fa fa-plane"></i> <%= trip.arrival_time_there .strftime("%H:%M")%>
-                    </div>
-                  </div>
-                  <div class="return-option">
-                    <h2 class="text-center">Return</h2>
-                    <div class="airports-option text-center">
-                      <%= trip.destination_airport %> to
-                      <%= trip.origin_airport  %>
-                    </div>
-                    <div class="hours-option text-center">
-                      <%= trip.departure_time_back.strftime("%H:%M") %> <i class="fa fa-plane"></i>
-                      <%= trip.arrival_time_back.strftime("%H:%M") %>
-                    </div>
-                  </div>
-                  <div class="price-option text-center">
-                    <%= Constants::AIRLINES[trip.carrier] %>
-                    <h4 class="text-center">€<%= trip.price %></h4>
-                    <p style="color: <%= price_difference_styling(trip.price,@trip_b.price)%>"> <%= price_difference_text(trip.price, @trip_b.price) %></p>
-                  </div>
-                  <div class="option-select text-center">
-                    <%= link_to controller: :offers, action: :show, right: @trips_b.index(trip), left: @trips_a.index(@trip_a) do %>
-                    <button class="btn btn-primary">Select</button>
-                    <% end %>
-                  </div>
-                </div>
-                <div class="options-separator">
-                </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
+        <%= render 'book_modal', trip: @trip_b, modal_name: "modalBookRight"  %>
         <%# END MODAL TEST RIGHT %>
       </div>
       <%# END RIGHT PART %>
