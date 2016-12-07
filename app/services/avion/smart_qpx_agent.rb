@@ -24,10 +24,20 @@ module Avion
 
       # If not – run two requests one after another and try to combine them
       start = Time.now # debugging
-      json_a = Avion::QPXRequester.new(
-      origin: @origin_a, destination: @destination_city, date_there: @date_there, date_back: @date_back, trip_options: 5, api_key: ENV["QPX_KEY"]).make_request
-      # DEBUG ONLY
-      puts "#{@origin_a} - #{@destination_city} request made to QPX"
+      if search_params_make_sense(Constants::AIRPORTS)
+        json_a = Avion::QPXRequester.new(
+          origin: @origin_a,
+          destination: @destination_city,
+          date_there: @date_there,
+          date_back: @date_back,
+          trip_options: 5,
+          api_key: ENV["QPX_KEY"]
+        ).make_request
+        # DEBUG ONLY
+        puts "#{@origin_a} - #{@destination_city} request made to QPX"
+      else
+        raise "Search params did not make sense"
+      end
       finish = Time.now # debugging
       took_seconds = (finish - start).round(2)
 
@@ -40,10 +50,19 @@ module Avion
       })
 
       start = Time.now # debugging
-      json_b = Avion::QPXRequester.new(
-      origin: @origin_b, destination: @destination_city, date_there: @date_there, date_back: @date_back, trip_options: 5, api_key: ENV["QPX_KEY"]).make_request
-      # DEBUG ONLY
-      puts "#{@origin_b} - #{@destination_city} request made to QPX"
+      if search_params_make_sense(Constants::AIRPORTS)
+        json_b = Avion::QPXRequester.new(
+          origin: @origin_b,
+          destination: @destination_city,
+          date_there: @date_there, date_back: @date_back,
+          trip_options: 5,
+          api_key: ENV["QPX_KEY"]
+        ).make_request
+        # DEBUG ONLY
+        puts "#{@origin_b} - #{@destination_city} request made to QPX"
+      else
+        raise "Search params did not make sense"
+      end
       finish = Time.now # debugging
       took_seconds = (finish - start).round(2)
 
@@ -76,6 +95,11 @@ module Avion
     end
 
     private
+
+    def search_params_make_sense(constants)
+      constants.keys.include?(@origin_a) && constants.keys.include?(@origin_b)  &&
+      (Date.parse(@date_there) < Date.parse(@date_back))
+    end
 
     # TODO: DRY with offers controller and check_against_cache
     def generate_cache_key_name

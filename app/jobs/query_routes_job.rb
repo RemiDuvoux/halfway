@@ -1,6 +1,6 @@
 class QueryRoutesJob < ApplicationJob
   queue_as :default
-
+  
   def perform(routes, date_there, date_back)
     # With a list of 20 airports it will run 18 times
     # and make 36 QPX requests in total
@@ -12,8 +12,16 @@ class QueryRoutesJob < ApplicationJob
         date_there: date_there,
         date_back: date_back
       }
-      Avion::SmartQPXAgent.new(info).obtain_offers
+      begin
+        Avion::SmartQPXAgent.new(info).obtain_offers
+      rescue
+        Pusher.trigger('qpx_updates', 'nonsense', {
+            nonsense: true
+          })
+        raise
+      end
     end
+
 
     # Job is comleted
     Pusher.trigger('qpx_updates', 'done', {
