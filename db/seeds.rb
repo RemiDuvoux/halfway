@@ -15,7 +15,6 @@ CSV.foreach(filepath, csv_options) do |row|
   new_city = City.create!(name: row[0], iata_code: row[1])
   new_city.save!
   new_city.card_photo_url = row[2]
-  new_city.background_photo_url = row[3]
   new_city.save!
 end
 
