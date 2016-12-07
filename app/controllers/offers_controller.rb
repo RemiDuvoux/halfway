@@ -11,7 +11,7 @@ class OffersController < ApplicationController
     # All offers for one route sorted by price
     @offers = Avion::SmartQPXAgent.new(options).obtain_offers.sort_by { |offer| offer.total }
     @offer = @offers.first # cheapest offer
-    # extract two arrays of roundtrips, one from each city to destination 
+    # extract two arrays of roundtrips, one from each city to destination
     @trips_a = @offers.reduce([]) {|a, e| a << e.roundtrips.first }.uniq { |t| t.trip_id }
     @trips_b = @offers.reduce([]) {|a, e| a << e.roundtrips.last }.uniq { |t| t.trip_id }
     @trip_a = @trips_a[params[:left].to_i] # set the first roundtrip from city A
@@ -20,10 +20,6 @@ class OffersController < ApplicationController
 
   def index
     airports = Constants::AIRPORTS.keys
-
-    # TODO: DONT PUSH WITH THESE!
-    airports = %w(PAR LON)
-
     date_there = params[:date_there]
     date_back = params[:date_back]
 
