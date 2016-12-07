@@ -2,7 +2,6 @@
 <div class="page-wrapper page-wrapper-trip-show">
   <%# END HEADER %>
 
-  <%# LEFT PART %>
   <div class="total_wrapper">
   <div class="wrapper_background has-section">
     <div class="background_element background-element-show"></div>
@@ -10,7 +9,9 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-md-6 col-centered">
+
+      <%# LEFT PART %>
+      <div class="col-xs-12 col-md-6">
         <div class="trip">
 
           <div class="boarding-pass">
@@ -87,72 +88,22 @@
               </div>
             </section>
           </div>
-
-          <%# MODAL BOOK LEFT%>
-
-          <%= render 'book_modal', trip: @trip_a, modal_name: "modalBookLeft"  %>
-
-          <%# MODAL BOOK LEFT END %>
-
-          <%# MODAL TEST LEFT %>
-
-          <!-- Button trigger modal -->
-
-          <!-- Modal -->
-          <div class="modal fade" id="modalLeft" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">Choose better times</h4>
-                </div>
-                <div class="modal-body">
-                  <% trips = @trips_a %>
-                  <% trips = trips.reject { |t| t.trip_id == @trip_a.trip_id } %>
-                  <% trips.each do |trip| %>
-                  <div class="flight-option">
-                    <div class="outbound-option">
-                      <h2 class="text-center">Outbound</h2>
-                      <div class="airports-option text-center">
-                        <%= trip.origin_airport  %> to <%= trip.destination_airport %>
-                      </div>
-                      <div class="hours-option text-center">
-                        <%= trip.departure_time_there.strftime("%H:%M") %> <i class="fa fa-plane"></i> <%= trip.arrival_time_there .strftime("%H:%M")%>
-                      </div>
-                    </div>
-                    <div class="return-option">
-                      <h2 class="text-center">Return</h2>
-                      <div class="airports-option text-center">
-                        <%= trip.destination_airport %> to
-                        <%= trip.origin_airport  %>
-                      </div>
-                      <div class="hours-option text-center">
-                        <%= trip.departure_time_back.strftime("%H:%M") %> <i class="fa fa-plane"></i>
-                        <%= trip.arrival_time_back.strftime("%H:%M") %>
-                      </div>
-                    </div>
-                    <div class="price-option text-center">
-                      <%= Constants::AIRLINES[trip.carrier] %>
-                      <h4 class="text-center">€<%= trip.price %></h4>
-                      <p style="color: <%= price_difference_styling(trip.price,@trip_a.price)%>"> <%= price_difference_text(trip.price, @trip_a.price) %></p>
-                    </div>
-                    <div class="option-select text-center">
-                      <%= link_to controller: :offers, action: :show, right: @trips_b.index(@trip_b), left: @trips_a.index(trip) do %>
-                      <button class="btn btn-primary">Select</button>
-                      <% end %>
-                    </div>
-                  </div>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-          <%# END MODAL TEST LEFT %>
         </div>
-        <%# END LEFT PART %>
       </div>
+
+      <%# MODAL BOOK LEFT%>
+      <%= render 'book_modal', trip: @trip_a, modal_name: "modalBookLeft"  %>
+      <%# MODAL BOOK LEFT END %>
+
+      <%# MODAL CHANGE FLIGHTS LEFT PARTIAL%>
+      <%= render 'change_flights_modal', these_trips: @trips_a, other_trips: @trips_b, this_trip: @trip_a, other_trip: @trip_b, right_link: '@trips_b.index(@trip_b)', left_link: '@trips_a.index(trip)', modal_name: "modalLeft"  %>
+      <%# MODAL CHANGE FLIGHT PARTIAL END %>
+
+
+      <%# END LEFT PART %>
+
+      <%# RIGHT PART %>
       <div class="col-xs-12 col-md-6">
-        <%# RIGHT PART %>
         <div class="trip">
 
           <div class="boarding-pass">
@@ -237,14 +188,17 @@
 
             </section>
           </div>
-
-        <%# MODAL TEST RIGHT %>
-
-        <!-- Modal -->
-        <%= render 'book_modal', trip: @trip_b, modal_name: "modalBookRight"  %>
-        <%# END MODAL TEST RIGHT %>
       </div>
       <%# END RIGHT PART %>
+
+      <%# MODAL BOOK RIGHT %>
+      <%= render 'book_modal', trip: @trip_b, modal_name: "modalBookRight"  %>
+      <%# END MODAL BOOK RIGHT %>
+
+      <%# MODAL CHANGE FLIGHTS PARTIAL%>
+      <%= render 'change_flights_modal', these_trips: @trips_b, other_trips: @trips_a, this_trip: @trip_b, other_trip: @trip_a, left_link: '@trips_a.index(@trip_a)', right_link: '@trips_b.index(trip)', modal_name: "modalRight"  %> 
+      <%# MODAL CHANGE FLIGHT PARTIAL END %>
+
     </div>
   </div>
   </div>
