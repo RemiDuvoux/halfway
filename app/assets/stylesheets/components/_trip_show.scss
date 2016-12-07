@@ -4,6 +4,14 @@
   margin-bottom: 20px;
 }
 
+.background-element-show {
+  top: 150px !important;
+  &:last-child {
+    top: 100px !important;
+  }
+
+}
+
 .modal-body h2 {
   margin-top: 5px;
 }
@@ -50,7 +58,7 @@ padding: 0 10px;
 
 .trip {
   flex-grow: 1;
-  margin: 50px 20px 0px;
+  margin: 117px 20px 0px;
   text-align: center;
   padding: -21px;
   padding-left: 13%;
