@@ -19,7 +19,11 @@ class OffersController < ApplicationController
   end
 
   def index
-    airports =  Constants::AIRPORTS.keys
+    airports = Constants::AIRPORTS.keys
+
+    # TODO: DONT PUSH WITH THESE!
+    airports = %w(PAR LON)
+
     date_there = params[:date_there]
     date_back = params[:date_back]
 
@@ -33,7 +37,7 @@ class OffersController < ApplicationController
       # This won't do any requests as we work with cache
       @offers = get_offers_for_routes(routes, date_there, date_back)
       # do filtering
-      apply_show_filters
+      apply_index_filters
       # remove duplicate cities
       @offers = @offers.uniq { |offer| offer.destination_city }
       # and sort by total price
@@ -66,7 +70,7 @@ class OffersController < ApplicationController
     return offers
   end
 
-  def apply_show_filters
+  def apply_index_filters
     # set filters
     @filters = params.to_hash.slice("origin_a", "date_there", "date_back", "origin_b")
 
