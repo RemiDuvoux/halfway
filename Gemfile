@@ -22,6 +22,9 @@ gem 'sidekiq-failures'
 gem 'sinatra', ">= 2.0.0.beta2", require: false
 gem 'sweetalert-rails'
 
+# to parse time periods
+# gem 'chronic_duration'
+
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'

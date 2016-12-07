@@ -16,43 +16,43 @@
           <div class="boarding-pass">
             <header>
               <p class="logo">
-                Alitalia
+                <%= Constants::AIRLINES[@trip_a.carrier] %>
               </p>
               <div class="flight">
                 <small>flight</small>
-                <strong>AZ 356</strong>
+                <strong><%= @trip_a.flight_number_there %></strong>
               </div>
             </header>
             <section class="cities">
               <div class="city city-left">
-                <small>Milano</small>
+                <small><%= Constants::AIRPORTS[@offer.origin_a] %></small>
 
-                <strong>LIN</strong>
+                <strong><%= @trip_a.origin_airport %></strong>
               </div>
               <i class="fa fa-arrows-h" aria-hidden="true"></i>
               <div class="city city-right">
-                <small>Paris</small>
+                <small><%= Constants::AIRPORTS[@offer.origin_b] %></small>
 
-                <strong>ORY</strong>
+                <strong><%= @trip_b.origin_airport %></strong>
               </div>
             </section>
             <section class="infos">
               <div class="places">
                 <div class="box">
                   <small class="box-title">Outbound</small>
-                  <strong><3</strong>
+                  <strong><%= @trip_a.departure_time_there.strftime("%b %d") %></strong>
                 </div>
                 <div class="box">
                   <small>Duration</small>
-                  <strong>1h</strong>
+                  <strong><%= ((@trip_a.arrival_time_there - @trip_a.departure_time_there) / 60).floor%> MIN</strong>
                 </div>
                 <div class="box">
                   <small>Departure</small>
-                  <strong>7:25</strong>
+                  <strong><%= @trip_a.departure_time_there.strftime("%l:%M") %></strong>
                 </div>
                 <div class="box">
                   <small>Arrival</small>
-                  <strong>7:45</strong>
+                  <strong><%= @trip_a.arrival_time_there.strftime("%l:%M") %></strong>
                 </div>
               </div>
               <div class="times">
@@ -77,20 +77,16 @@
             <section class="strap">
             <div class="box">
             <button type="button" class="btn change-flight-button" data-toggle="modal" data-target="#modalLeft">
-            <change-time>
+            <div>
             See other flights
-            </change-time>
+            </div>
           </button>
           </div>
-
-              <div class="box">
-                <div class="date">
-                  <small>Date</small>
-                  <strong>Tue, 15 march 2016</strong>
-                  <button type="button" class="book-button" data-toggle="modal" data-target="#modalBookLeft">
+              <%# Override vendor padding to center the book button %>
+              <div class="box" style="padding: 20px;">
+                  <button type="button" class="book-button-unpadded" data-toggle="modal" data-target="#modalBookLeft">
                     BOOK!
                   </button>
-                </div>
               </div>
 
             </section>
