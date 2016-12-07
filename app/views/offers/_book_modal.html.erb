@@ -1,0 +1,16 @@
+<div class="modal fade" id="modalBookLeft" tabindex="-1" role="dialog" aria-labelledby="modelBookLeft">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Your booking info</h4>
+      </div>
+      <div class="modal-body">
+        <%# FLIGHT INFO HERE %>
+        <h2>Thank you for using HALFWAY</h2>
+        <p style="color: black;">At this stage of our project we are <strong>not yet affiliated with airlines or travel agencies</strong> so we are not quite able to book your ticket for you. This is a reminder of a flight info you picked and you can use to make your own reservation on airline's website or with a travel agent of your choice.</p>
+        <%= link_to "Take me to #{Constants::AIRLINES[trip.carrier]} website", Constants::AIRLINE_WEBSITES[trip.carrier], class: "btn btn-primary", target: "_blank" %>
+      </div>
+    </div>
+  </div>
+</div>
