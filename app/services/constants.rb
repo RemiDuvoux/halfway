@@ -529,6 +529,7 @@ module Constants
     "VS"=>"http://www.virgin-atlantic.com/",
     "VA"=>"http://www.virginaustralia.com/us/en/",
     "VG"=>"http://www.flyvlm.com/",
+    "VY"=>"http://www.vueling.com/",
     "PT"=>"http://www.westair.se/",
     "WS"=>"http://www.westjet.com/",
     "K5"=>"http://www.wingsofalaska.com/",

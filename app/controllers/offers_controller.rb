@@ -20,6 +20,8 @@ class OffersController < ApplicationController
 
   def index
     airports = Constants::AIRPORTS.keys
+    # TODO: DONT PUSH!
+    airports = %w(PAR BER)
     date_there = params[:date_there]
     date_back = params[:date_back]
 
