@@ -126,6 +126,10 @@
 }
 .boarding-pass .infos .places small {
   color: #97A1AD;
+  &.box-title {
+  color: black;
+  font-weight: bolder;
+}
 }
 .boarding-pass .infos .places strong {
   color: #239422;
@@ -149,7 +153,7 @@
   clear: both;
 }
 .boarding-pass .strap .box {
-  padding: 23px 0 20px 20px;
+  padding: 20px 0 20px 20px;
 }
 .boarding-pass .strap .box div {
   margin-bottom: 15px;
@@ -170,5 +174,12 @@
     font-size: 50px;
     float: left;
     margin-left: 23px;
-    margin-top: 24px;
+    margin-top: 27px;
+}
+
+small {
+&.box-title {
+  color: black;
+  font-weight: bolder;
+}
 }

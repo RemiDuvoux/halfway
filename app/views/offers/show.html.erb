@@ -39,7 +39,7 @@
             <section class="infos">
               <div class="places">
                 <div class="box">
-                  <small>Outbound</small>
+                  <small class="box-title">Outbound</small>
                 </div>
                 <div class="box">
                   <small>Duration</small>
@@ -56,7 +56,7 @@
               </div>
               <div class="times">
                 <div class="box">
-                  <small>Return</small>
+                  <small class="box-title">Return</small>
                 </div>
                 <div class="box">
                   <small>Duration</small>
@@ -73,11 +73,15 @@
               </div>
             </section>
             <section class="strap">
+            <div class="box">
+            <button type="button" class="btn change-flight-button" data-toggle="modal" data-target="#modalLeft">
+            <change-time>
+            See other flights
+            </change-time>
+          </button>
+          </div>
+
               <div class="box">
-                <div class="passenger">
-                  <small>passenger</small>
-                  <strong>You!</strong>
-                </div>
                 <div class="date">
                   <small>Date</small>
                   <strong>Tue, 15 march 2016</strong>
@@ -91,9 +95,6 @@
           <%# MODAL TEST LEFT %>
 
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalLeft">
-            Change flight options
-          </button>
 
           <!-- Modal -->
           <div class="modal fade" id="modalLeft" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -181,7 +182,7 @@
               </div>
               <div class="box">
                 <small>Duration</small>
-                <strong><em>1h</em></strong>
+                <strong>1h</strong>
               </div>
               <div class="box">
                 <small>Departure</small>
@@ -230,7 +231,7 @@
         <%# MODAL TEST RIGHT %>
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalRight">
+        <button type="button" class="btn btn-primary btn-lg change-flight-button" data-toggle="modal" data-target="#modalRight">
           Change flight options
         </button>
 
