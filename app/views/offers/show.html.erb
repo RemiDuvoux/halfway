@@ -1,206 +1,64 @@
-<%# HEADER %>
 <div class="page-wrapper page-wrapper-trip-show">
-  <%# END HEADER %>
 
   <div class="total_wrapper">
   <div class="wrapper_background has-section">
     <div class="background_element background-element-show"></div>
     <div class="background_element background-element-show"></div>
   </div>
-  <div class="container">
-    <div class="row">
+
+  <div class="container"> <%# RESPONSIVE GRID CONTAINER %>
+    <div class="row"> <%# RESPONSIVE GRID ROW %>
 
       <%# LEFT PART %>
-      <div class="col-xs-12 col-md-6">
-        <div class="trip">
-
-          <div class="boarding-pass">
-            <header>
-              <p class="logo">
-                <%= Constants::AIRLINES[@trip_a.carrier] %>
-              </p>
-              <div class="flight">
-                <small>flight</small>
-                <strong>
-                  <%= @trip_a.flight_number_there %>
-                  <span>/</span>
-                  <%= @trip_a.flight_number_back %></strong>
-              </div>
-            </header>
-            <section class="cities">
-              <div class="city city-left">
-                <small><%= Constants::AIRPORTS[@offer.origin_a] %></small>
-
-                <strong><%= @trip_a.origin_airport %></strong>
-              </div>
-              <i class="fa fa-arrows-h" aria-hidden="true"></i>
-              <div class="city city-right">
-                <small><%= Constants::AIRPORTS[@offer.origin_b] %></small>
-
-                <strong><%= @trip_b.origin_airport %></strong>
-              </div>
-            </section>
-            <section class="infos">
-              <div class="places">
-                <div class="box">
-                  <small class="box-title">Outbound</small>
-                  <strong><%= @trip_a.departure_time_there.strftime("%b %d") %></strong>
-                </div>
-                <div class="box">
-                  <small>Duration</small>
-                  <strong><%= ((@trip_a.arrival_time_there - @trip_a.departure_time_there) / 60).floor%> MIN</strong>
-                </div>
-                <div class="box">
-                  <small>Departure</small>
-                  <strong><%= @trip_a.departure_time_there.strftime("%l:%M") %></strong>
-                </div>
-                <div class="box">
-                  <small>Arrival</small>
-                  <strong><%= @trip_a.arrival_time_there.strftime("%l:%M") %></strong>
-                </div>
-              </div>
-              <div class="times">
-                <div class="box">
-                  <small class="box-title">Return</small>
-                  <strong><%= @trip_a.departure_time_back.strftime("%b %d") %></strong>
-                </div>
-                <div class="box">
-                  <small>Duration</small>
-                  <strong><%= ((@trip_a.arrival_time_there - @trip_a.departure_time_there) / 60).floor%> MIN</strong>
-                </div>
-                <div class="box">
-                  <small>Departure</small>
-                  <strong><%= @trip_a.departure_time_back.strftime("%l:%M") %></strong>
-                </div>
-                <div class="box">
-                  <small>Arrival</small>
-                  <strong><%= @trip_a.arrival_time_back.strftime("%l:%M") %></strong>
-                </div>
-              </div>
-            </section>
-            <section class="strap">
-              <div class="box">
-                <button type="button" class="btn change-flight-button" data-toggle="modal" data-target="#modalLeft">See other flights</button>
-              </div>
-              <%# Override vendor padding to center the book button %>
-              <div class="box" style="padding: 20px;">
-                <button type="button" class="book-button-unpadded" data-toggle="modal" data-target="#modalBookLeft">BOOK!</button>
-              </div>
-            </section>
-          </div>
-        </div>
-      </div>
-
-      <%# MODAL BOOK LEFT%>
-      <%= render 'book_modal', trip: @trip_a, modal_name: "modalBookLeft"  %>
-      <%# MODAL BOOK LEFT END %>
-
-      <%# MODAL CHANGE FLIGHTS LEFT PARTIAL%>
-      <%= render 'change_flights_modal', these_trips: @trips_a, other_trips: @trips_b, this_trip: @trip_a, other_trip: @trip_b, right_link: '@trips_b.index(@trip_b)', left_link: '@trips_a.index(trip)', modal_name: "modalLeft"  %>
-      <%# MODAL CHANGE FLIGHT PARTIAL END %>
-
-
+      <%= render 'flight_info',
+          this_trip: @trip_a,
+          other_trip: @trip_b,
+          origin_city: @offer.origin_a,
+          modal_book_name: 'modalBookLeft',
+          modal_change_name: 'modalLeft' %>
       <%# END LEFT PART %>
 
       <%# RIGHT PART %>
-      <div class="col-xs-12 col-md-6">
-        <div class="trip">
-
-          <div class="boarding-pass">
-            <header>
-              <p class="logo">
-                Alitalia
-              </p>
-              <div class="flight">
-                <small>flight</small>
-                <strong>AZ 356</strong>
-              </div>
-            </header>
-            <section class="cities">
-              <div class="city city-left">
-                <small>Milano</small>
-
-                <strong>LIN</strong>
-              </div>
-              <i class="fa fa-arrows-h" aria-hidden="true"></i>
-              <div class="city city-right">
-                <small>Paris</small>
-
-                <strong>ORY</strong>
-              </div>
-            </section>
-            <section class="infos">
-              <div class="places">
-                <div class="box">
-                  <small class="box-title">Outbound</small>
-                  <strong><3</strong>
-                </div>
-                <div class="box">
-                  <small>Duration</small>
-                  <strong>1h</strong>
-                </div>
-                <div class="box">
-                  <small>Departure</small>
-                  <strong>7:25</strong>
-                </div>
-                <div class="box">
-                  <small>Arrival</small>
-                  <strong>7:45</strong>
-                </div>
-              </div>
-              <div class="times">
-                <div class="box">
-                  <small class="box-title">Return</small>
-                  <strong><3</strong>
-                </div>
-                <div class="box">
-                  <small>Duration</small>
-                  <strong>1h30</strong>
-                </div>
-                <div class="box">
-                  <small>Departure</small>
-                  <strong>01:10</strong>
-                </div>
-                <div class="box">
-                  <small>Arrival</small>
-                  <strong>21:30</strong>
-                </div>
-              </div>
-            </section>
-            <section class="strap">
-            <div class="box">
-            <button type="button" class="btn change-flight-button" data-toggle="modal" data-target="#modalRight">
-            <change-time>
-            See other flights
-            </change-time>
-          </button>
-          </div>
-
-              <div class="box">
-                <div class="date">
-                  <small>Date</small>
-                  <strong>Tue, 15 march 2016</strong>
-                  <button type="button" class="book-button" data-toggle="modal" data-target="#modalBookRight">
-                    BOOK!
-                  </button>
-                </div>
-              </div>
-
-            </section>
-          </div>
-      </div>
+      <%= render 'flight_info',
+          this_trip: @trip_b,
+          other_trip: @trip_a,
+          origin_city: @offer.origin_b,
+          modal_book_name: 'modalBookRight',
+          modal_change_name: 'modalRight' %>
       <%# END RIGHT PART %>
 
-      <%# MODAL BOOK RIGHT %>
-      <%= render 'book_modal', trip: @trip_b, modal_name: "modalBookRight"  %>
-      <%# END MODAL BOOK RIGHT %>
+    </div> <%# RESPONSIVE GRID ROW END%>
+  </div>  <%# RESPONSIVE GRID CONTAINER END %>
 
-      <%# MODAL CHANGE FLIGHTS PARTIAL%>
-      <%= render 'change_flights_modal', these_trips: @trips_b, other_trips: @trips_a, this_trip: @trip_b, other_trip: @trip_a, left_link: '@trips_a.index(@trip_a)', right_link: '@trips_b.index(trip)', modal_name: "modalRight"  %> 
-      <%# MODAL CHANGE FLIGHT PARTIAL END %>
 
-    </div>
-  </div>
-  </div>
-</div>
+  <%# MODAL BOOK LEFT%>
+  <%= render 'book_modal', trip: @trip_a, modal_name: "modalBookLeft" %>
+  <%# MODAL BOOK LEFT END %>
+
+  <%# MODAL CHANGE FLIGHTS LEFT PARTIAL%>
+  <%= render 'change_flights_modal',
+      these_trips: @trips_a,
+      other_trips: @trips_b,
+      this_trip: @trip_a,
+      other_trip: @trip_b,
+      right_link: '@trips_b.index(@trip_b)',
+      left_link: '@trips_a.index(trip)',
+      modal_name: "modalLeft" %>
+  <%# MODAL CHANGE FLIGHT LEFT PARTIAL END %>
+
+  <%# MODAL BOOK RIGHT %>
+  <%= render 'book_modal', trip: @trip_b, modal_name: "modalBookRight" %>
+  <%# END MODAL BOOK RIGHT %>
+
+  <%# MODAL CHANGE FLIGHTS RIGHT PARTIAL%>
+  <%= render 'change_flights_modal',
+      these_trips: @trips_b,
+      other_trips: @trips_a,
+      this_trip: @trip_b,
+      other_trip: @trip_a,
+      left_link: '@trips_a.index(@trip_a)',
+      right_link: '@trips_b.index(trip)',
+      modal_name: "modalRight" %>
+  <%# MODAL CHANGE FLIGHT RIGHT PARTIAL END %>
+
 </div>

@@ -1,0 +1,77 @@
+<div class="col-xs-12 col-md-6">
+  <div class="trip">
+
+    <div class="boarding-pass">
+      <header>
+        <p class="logo">
+          <%= Constants::AIRLINES[this_trip.carrier] %>
+        </p>
+        <div class="flight">
+          <small>flight</small>
+          <strong>
+            <%= this_trip.flight_number_there %>
+            <span>/</span>
+            <%= this_trip.flight_number_back %></strong>
+        </div>
+      </header>
+      <section class="cities">
+        <div class="city city-left">
+          <small><%= Constants::AIRPORTS[origin_city] %></small>
+
+          <strong><%= this_trip.origin_airport %></strong>
+        </div>
+        <i class="fa fa-arrows-h" aria-hidden="true"></i>
+        <div class="city city-right">
+          <small><%= Constants::AIRPORTS[this_trip.destination_airport] %></small>
+
+          <strong><%= this_trip.destination_airport %></strong>
+        </div>
+      </section>
+      <section class="infos">
+        <div class="places">
+          <div class="box">
+            <small class="box-title">Outbound</small>
+            <strong><%= this_trip.departure_time_there.strftime("%b %d") %></strong>
+          </div>
+          <div class="box">
+            <small>Duration</small>
+            <strong><%= ((this_trip.arrival_time_there - this_trip.departure_time_there) / 60).floor%> MIN</strong>
+          </div>
+          <div class="box">
+            <small>Departure</small>
+            <strong><%= this_trip.departure_time_there.strftime("%H:%M") %></strong>
+          </div>
+          <div class="box">
+            <small>Arrival</small>
+            <strong><%= this_trip.arrival_time_there.strftime("%H:%M") %></strong>
+          </div>
+        </div>
+        <div class="times">
+          <div class="box">
+            <small class="box-title">Return</small>
+            <strong><%= this_trip.departure_time_back.strftime("%b %d") %></strong>
+          </div>
+          <div class="box">
+            <small>Duration</small>
+            <strong><%= ((this_trip.arrival_time_there - this_trip.departure_time_there) / 60).floor%> MIN</strong>
+          </div>
+          <div class="box">
+            <small>Departure</small>
+            <strong><%= this_trip.departure_time_back.strftime("%H:%M") %></strong>
+          </div>
+          <div class="box">
+            <small>Arrival</small>
+            <strong><%= this_trip.arrival_time_back.strftime("%H:%M") %></strong>
+          </div>
+        </div>
+      </section>
+      <section class="strap">
+        <div class="box">
+          <button type="button" class="btn change-flight-button" data-toggle="modal" data-target="#<%= modal_change_name %>">See other flights</button>
+          <%# SOME INLINE CSS HERE %>
+          <div style="font-size: 30px; width: 200px; margin: auto;"><%= this_trip.price %>€</div>
+          <button type="button" class="book-button-unpadded" data-toggle="modal" data-target="#<%= modal_book_name %>">BOOK!</button>
+      </section>
+    </div>
+  </div>
+</div>
