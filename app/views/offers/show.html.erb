@@ -64,7 +64,7 @@
                     </div>
                   </div>
                   <div class="price-option text-center">
-                  <%= Constants::AIRLINES[@trip_b.carrier] %>
+                  <%= Constants::AIRLINES[trip.carrier] %>
                   <h4 class="text-center">€<%= trip.price %></h4>
                     <p style="color: <%= price_difference_styling(trip.price,@trip_a.price)%>"> <%= price_difference_text(trip.price, @trip_a.price) %></p>
                   </div>
@@ -146,7 +146,7 @@
                     </div>
                   </div>
                   <div class="price-option text-center">
-                  <%= Constants::AIRLINES[@trip_b.carrier] %>
+                  <%= Constants::AIRLINES[trip.carrier] %>
                   <h4 class="text-center">€<%= trip.price %></h4>
                     <p style="color: <%= price_difference_styling(trip.price,@trip_b.price)%>"> <%= price_difference_text(trip.price, @trip_b.price) %></p>
                   </div>
