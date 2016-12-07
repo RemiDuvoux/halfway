@@ -81,12 +81,20 @@
                 <div class="date">
                   <small>Date</small>
                   <strong>Tue, 15 march 2016</strong>
-                  <div class="book-button">Book!</div>
+                  <button type="button" class="book-button" data-toggle="modal" data-target="#modalBookLeft">
+                    BOOK!
+                  </button>
                 </div>
               </div>
 
             </section>
           </div>
+
+          <%# MODAL BOOK LEFT%>
+
+          <%= render 'book_modal', trip: @trip_a, modal_name: "modalBookLeft"  %>
+
+          <%# MODAL BOOK LEFT END %>
 
           <%# MODAL TEST LEFT %>
 
