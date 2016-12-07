@@ -30,7 +30,7 @@ module Avion
           destination: @destination_city,
           date_there: @date_there,
           date_back: @date_back,
-          trip_options: 10,
+          trip_options: 5,
           api_key: ENV["QPX_KEY"]
         ).make_request
         # DEBUG ONLY
@@ -55,7 +55,7 @@ module Avion
           origin: @origin_b,
           destination: @destination_city,
           date_there: @date_there, date_back: @date_back,
-          trip_options: 10,
+          trip_options: 5,
           api_key: ENV["QPX_KEY"]
         ).make_request
         # DEBUG ONLY
