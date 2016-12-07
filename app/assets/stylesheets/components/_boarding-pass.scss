@@ -99,13 +99,13 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  border-top: 1px solid #99D298;
+  border-top: 1px solid #999999;
 }
 .boarding-pass .infos .places,
 .boarding-pass .infos .times {
   width: 50%;
   padding: 10px 0;
-  background-color: rgba(255, 43, 103, 0.19);
+  // background-color: rgba(255, 43, 103, 0.19);
 }
 .boarding-pass .infos .places::after,
 .boarding-pass .infos .times::after {
@@ -121,11 +121,15 @@
   color: #ff3560;
 }
 .boarding-pass .infos .places {
-  background: #E2EFE2;
-  border-right: 1px solid #99D298;
+  // background: #E2EFE2;
+  border-right: 1px solid #999999;
 }
 .boarding-pass .infos .places small {
   color: #97A1AD;
+  &.box-title {
+  color: black;
+  font-weight: bolder;
+}
 }
 .boarding-pass .infos .places strong {
   color: #239422;
@@ -141,7 +145,7 @@
 .boarding-pass .strap {
   clear: both;
   position: relative;
-  border-top: 1px solid #99D298;
+  border-top: 1px solid #999999;
 }
 .boarding-pass .strap::after {
   content: '';
@@ -149,7 +153,7 @@
   clear: both;
 }
 .boarding-pass .strap .box {
-  padding: 23px 0 20px 20px;
+  padding: 20px 0 20px 20px;
 }
 .boarding-pass .strap .box div {
   margin-bottom: 15px;
@@ -170,5 +174,12 @@
     font-size: 50px;
     float: left;
     margin-left: 23px;
-    margin-top: 24px;
+    margin-top: 27px;
+}
+
+small {
+&.box-title {
+  color: black;
+  font-weight: bolder;
+}
 }
