@@ -1,6 +1,6 @@
 <div class="navbar-wagon col-xs-12">
   <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand col-xs-9" do %>
+  <%= link_to root_path, class: "navbar-wagon-brand" do %>
     <% if params[:controller] == "offers" %>
       <%= image_tag "logo_pink.png" %>
     <% else %>
@@ -8,5 +8,3 @@
     <% end %>
   <% end %>
 </div>
-
-

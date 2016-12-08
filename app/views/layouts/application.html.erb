@@ -32,7 +32,7 @@
 <meta itemprop="description" content="<%= meta_description %>">
 <meta itemprop="image" content="<%= image_url(meta_image) %>">
   </head>
-  <body>
+  <body class=" <%= controller_name %>-<%= action_name %> ">
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= yield %>

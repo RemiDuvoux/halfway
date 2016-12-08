@@ -1,6 +1,7 @@
 .boarding-pass {
   position: relative;
   width: 350px;
+  margin: auto;
   height: 500px;
   background: #fff;
   border-radius: 12px;
@@ -36,6 +37,7 @@
   padding: 12px 20px;
   height: 53px;
 }
+
 .boarding-pass header .logo {
   float: left;
   width: 104px;
