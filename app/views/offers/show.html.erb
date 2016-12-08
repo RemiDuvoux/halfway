@@ -19,12 +19,19 @@
           modal_change_name: 'modalLeft' %>
       <%# END LEFT PART %>
 
+      <div class="col-xs-12 col-md-2">
+        <div class="recap-buttons-container text-center">
+          <button type="button" class="share-button">SHARE</button>
+          <button type="button" class="share-button">BACK</button>
+        </div>
+      </div>
+
       <%# RIGHT PART %>
       <%= render 'flight_info',
           this_trip: @trip_b,
           other_trip: @trip_a,
           origin_city: @offer.origin_b,
-          destination_city: @offer.destination_city, 
+          destination_city: @offer.destination_city,
           modal_book_name: 'modalBookRight',
           modal_change_name: 'modalRight' %>
       <%# END RIGHT PART %>
