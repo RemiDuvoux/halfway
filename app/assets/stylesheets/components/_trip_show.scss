@@ -1,3 +1,22 @@
+.recap-buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.share-button {
+  border: none;
+  border-radius: 5px;
+  line-height: 40px;
+  color: white;
+  font-size: 14px;
+  background-color: #2db84b;
+  box-shadow: 7px 9px 31px -13px rgba(0,0,0,0.75);
+  width: 100px;
+  margin: 10px; 
+}
+
 .flight-option {
   display: flex;
   flex-grow: 1;
