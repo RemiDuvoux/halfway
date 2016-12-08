@@ -16,7 +16,7 @@
     transform: translateX(-50%);
     top: 50%;
     margin-top: 238px;
-    border: 1px solid white;
+    // border: 1px solid white;
     width: 114px;
     height: 60px;
     position: relative;
@@ -26,7 +26,7 @@
     height: 1px;
     width: 170px;
     position: absolute;
-    left: -171px;
+    left: -185px;
     background-color: white;
     top: 50%;
     }
@@ -35,7 +35,7 @@
     height: 1px;
     width: 170px;
     position: absolute;
-    right: -171px;
+    right: -18px;
     background-color: white;
     top: 50%;
     }
@@ -44,7 +44,7 @@
 
 .share-box {
   position: relative;
-  background-color: #0073FF;
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
