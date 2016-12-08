@@ -4,13 +4,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Choose better times</h4>
+        <h4 class="modal-title text-center" id="myModalLabel">Choose better times</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body unpaded">
         <% trips = these_trips %>
         <% trips = trips.reject { |t| t.trip_id == this_trip.trip_id } %>
-        <% trips.each do |trip| %>
-        <div class="flight-option">
+        <% trips.each_with_index do |trip, index| %>
+        <div class="flight-option <%= background_color_option(index) %>">
           <div class="outbound-option">
             <h2 class="text-center">Outbound</h2>
             <div class="airports-option text-center">
@@ -33,12 +33,12 @@
           </div>
           <div class="price-option text-center">
             <%= Constants::AIRLINES[trip.carrier] %>
+            <p style="color: <%= price_difference_styling(trip.price,this_trip.price)%> ; padding-top: 13px; font-weight: lighter" > <%= price_difference_text(trip.price, this_trip.price) %></p>
             <h4 class="text-center">€<%= trip.price %></h4>
-            <p style="color: <%= price_difference_styling(trip.price,this_trip.price)%>"> <%= price_difference_text(trip.price, this_trip.price) %></p>
           </div>
           <div class="option-select text-center">
             <%= link_to controller: :offers, action: :show, right: eval(right_link), left: eval(left_link) do %>
-            <button class="btn btn-primary">Select</button>
+            <button class="btn select-button">Select</button>
             <% end %>
           </div>
         </div>

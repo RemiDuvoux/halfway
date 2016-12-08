@@ -28,7 +28,7 @@
 }
 .boarding-pass strong {
   display: block;
-  font-weight: bold;
+  font-weight: normal;
 }
 .boarding-pass header {
   background: -webkit-linear-gradient(top, #36475f, #2c394f);
@@ -114,8 +114,6 @@
   clear: both;
 }
 .boarding-pass .infos .times strong {
-  -webkit-transform: scale(0.9);
-          transform: scale(0.9);
   -webkit-transform-origin: left bottom;
           transform-origin: left bottom;
   color: #ff3560;
