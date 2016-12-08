@@ -10,7 +10,7 @@ class OffersController < ApplicationController
     options = extract_options_from_stamp(params[:stamp])
     # All offers for one route sorted by price
     @offers = Avion::SmartQPXAgent.new(options).obtain_offers.sort_by { |offer| offer.total }
-    @offer = @offers.first # cheapest offer
+    @offer = @offers[params[:start].to_i] # cheapest offer
     # extract two arrays of roundtrips, one from each city to destination
     @trips_a = @offers.reduce([]) {|a, e| a << e.roundtrips.first }.uniq { |t| t.trip_id }
     @trips_b = @offers.reduce([]) {|a, e| a << e.roundtrips.last }.uniq { |t| t.trip_id }
@@ -32,12 +32,14 @@ class OffersController < ApplicationController
     if uncached_routes.empty?
       # This won't do any requests as we work with cache
       @offers = get_offers_for_routes(routes, date_there, date_back)
+      # sort by total price
+      @offers = @offers.sort_by { |offer| offer.total }
+      # save unfiltered offers
+      @unfiltered_offers = @offers.clone
       # do filtering
       apply_index_filters
       # remove duplicate cities
       @offers = @offers.uniq { |offer| offer.destination_city }
-      # and sort by total price
-      @offers = @offers.sort_by { |offer| offer.total }
     else # we have to build a new cache
       # save url to redirect back from wait.html.erb via JS
       session[:url_for_wait] = request.original_url
