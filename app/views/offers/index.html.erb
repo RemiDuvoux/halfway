@@ -74,8 +74,8 @@
           <div class="card_wrapper" style="background-image:
           url('<%= cl_image_path City.find_by(iata_code: offer.destination_city).card_photo.path, crop: :fill%> '); background-size: cover !important">
           <div class="card_data">
-            <% found = @unfiltered_offers.index(offer) %>
-            <%= link_to "", offer_path(offer.stamp, left: 0, right: 0, start: found), class: "card-link" %>
+            <% unfiltered_for_city = @unfiltered_offers.select { |o| o.destination_city == offer.destination_city } %>
+            <%= link_to "", offer_path(offer.stamp, left: 0, right: 0, start: unfiltered_for_city), class: "card-link" %>
             <div class="card_content">
               <div class="card_title">
                 <ul class="list-unstyled">
