@@ -32,6 +32,7 @@ class OffersController < ApplicationController
     if uncached_routes.empty?
       # This won't do any requests as we work with cache
       @offers = get_offers_for_routes(routes, date_there, date_back)
+      # clone unfiltered results to check against later 
       @unfiltered_offers = @offers.clone
       # do filtering
       apply_index_filters
