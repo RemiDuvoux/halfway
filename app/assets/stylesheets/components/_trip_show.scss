@@ -44,6 +44,10 @@
 
 .share-box {
   position: relative;
+  background-color: #0073FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .btn-messenger {
     position: absolute;
     top: 0;
