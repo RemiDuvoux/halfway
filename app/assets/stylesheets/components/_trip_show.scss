@@ -3,6 +3,11 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 205px;
+  @media only screen and (min-width: 0px) and (max-width: $screen-md){
+    margin-top: 0px;
+    padding-top: 40px;
+  }
 }
 
 .share-button {
@@ -14,7 +19,7 @@
   background-color: #2db84b;
   box-shadow: 7px 9px 31px -13px rgba(0,0,0,0.75);
   width: 100px;
-  margin: 10px; 
+  margin: 10px;
 }
 
 .flight-option {

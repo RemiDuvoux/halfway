@@ -46,6 +46,7 @@ class OffersController < ApplicationController
       # Send requests and build the cache in the background
       QueryRoutesJob.perform_later(uncached_routes, date_there, date_back)
     end
+    session[:search_url] = request.original_url
   end
 
   private
