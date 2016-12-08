@@ -23,7 +23,7 @@ module OffersHelper
     elsif price1 > price2
       "Add €#{(price1 - price2).round}"
     else
-      "The price is the same!"
+      "Same price"
     end
   end
 
