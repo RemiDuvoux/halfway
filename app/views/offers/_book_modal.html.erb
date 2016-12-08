@@ -1,46 +1,42 @@
 <div class="modal fade" id="<%= modal_name %>" tabindex="-1" role="dialog" aria-labelledby="<%= modal_name %>">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content text-center">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Your booking info</h4>
       </div>
       <div class="modal-body">
         <%# FLIGHT INFO HERE %>
-        <h2>Thank you for using HALFWAY</h2>
-        <p style="color: black;">At this early stage of our project we are <strong>not yet affiliated with airlines or travel agencies</strong> so we are not quite able to book your ticket for you. This is a recap of a flight info you picked so you can use to make your own reservation on airline's website or with a travel agent of your choice. We will keep this tab open in case you need another look.</p>
-        <h3 style="color: black;">You are flying with <%= Constants::AIRLINES[trip.carrier] %></h3>
-        <div style="font-size: 20px;">
-          <span><%= trip.origin_airport %></span>
-          <i class="fa fa-arrow-right"></i>
-          <span><%= trip.destination_airport %></span>
-          <span>(<%= trip.flight_number_there %>)</span>
+        <h2 style= "font-weight: lighter; color: #FF2B67">Thank you for using HALFWAY</h2>
+        <p style="color: rgba(0,0,0,0.7); font-weight: lighter;">At this early stage of our project we are <strong>not yet affiliated with airlines or travel agencies</strong> so we are not quite able to book your ticket for you. This is a recap of a flight info you picked so you can use to make your own reservation on airline's website or with a travel agent of your choice. We will keep this tab open in case you need another look.</p>
+        <h3 style="color: black; font-weight: lighter" class="text-center">You are flying with <%= Constants::AIRLINES[trip.carrier] %></h3>
+        <div class="flight-option" style= "border-top: none">
+          <div class="outbound-option">
+            <h2 class="text-center">Outbound on <%= trip.departure_time_there.strftime("%b %d") %></h2>
+            <div class="airports-option text-center">
+              <%= trip.origin_airport %> to <%= trip.destination_airport %>
+              (<%= trip.flight_number_there %>)
+            </div>
+            <div class="hours-option text-center">
+             <%= trip.departure_time_there.strftime("%H:%M") %> <i class="fa fa-plane"></i> <%= trip.arrival_time_there.strftime("%H:%M") %>
+            </div>
+          </div>
+          <div class="return-option">
+            <h2 class="text-center">Return on <%= trip.departure_time_back.strftime("%b %d") %></h2>
+            <div class="airports-option text-center">
+              <%= trip.destination_airport %> to
+              <%= trip.origin_airport %> (<%= trip.flight_number_back %>)
+            </div>
+            <div class="hours-option text-center">
+              <%= trip.departure_time_back.strftime("%H:%M") %> <i class="fa fa-plane"></i>
+              <%= trip.arrival_time_back.strftime("%H:%M") %>
+            </div>
+          </div>
         </div>
-        <div>
-          <span>Flying there on</span>
-          <span>
-            <strong><%= trip.departure_time_there.strftime("%b %d") %></strong>
-          </span>
-          <span><%= trip.departure_time_there.strftime("%H:%M") %></span>
-          <span> - </span>
-          <span><%= trip.arrival_time_there.strftime("%H:%M") %></span>
         </div>
-        <div style="font-size: 20px;">
-          <span><%= trip.destination_airport %></span>
-          <i class="fa fa-arrow-right"></i>
-          <span><%= trip.origin_airport %></span>
-          <span>(<%= trip.flight_number_back %>)</span>
+        <div class="text-center" style="padding: 10px;">
+        <%= link_to "Take me to #{Constants::AIRLINES[trip.carrier]} website", Constants::AIRLINE_WEBSITES[trip.carrier], class: "btn select-button", style: "margin-top: 0", target: "_blank" %>
         </div>
-        <div>
-          <span>Flying back on</span>
-          <span>
-            <strong><%= trip.departure_time_back.strftime("%b %d") %></strong>
-          </span>
-          <span><%= trip.departure_time_back.strftime("%H:%M") %></span>
-          <span> - </span>
-          <span><%= trip.arrival_time_back.strftime("%H:%M") %></span>
-        </div>
-        <%= link_to "Take me to #{Constants::AIRLINES[trip.carrier]} website", Constants::AIRLINE_WEBSITES[trip.carrier], class: "btn btn-primary", target: "_blank" %>
       </div>
     </div>
   </div>
