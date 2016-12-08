@@ -1,7 +1,9 @@
 .flight-option {
   display: flex;
   flex-grow: 1;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
+  border-top: 1px solid #E6E6E6;
+  padding: 10px;
 }
 
 .background-element-show {
@@ -10,6 +12,28 @@
     top: 100px !important;
   }
 
+}
+
+.select-button {
+    background-color: #ff2b67;
+    color: white;
+    outline: none;
+    margin-top: 29px;
+    border-radius: 5px;
+    &:hover {
+      color: white;
+    }
+    &:focus {
+      outline: none;
+      color: white;
+    }
+    &:active {
+      outline: none;
+    }
+    &:focus &:active {
+      color: white;
+      outline: none;
+    }
 }
 
 .modal-body h2 {
@@ -27,6 +51,12 @@
 
 .airports-option {
   padding: 5px;
+  color: #9d9d9d;
+  font-weight: lighter;
+}
+
+.hours-option {
+  font-weight: bolder;
 }
 
 .return-option {
@@ -39,8 +69,12 @@ h2 {
 }
 
 .price-option {
-flex-grow: 1;
-padding: 0 10px;
+  flex-grow: 1;
+  padding: 0 10px;
+
+  h4 {
+  margin-top: -7px;
+  }
 }
 
 .option-select {
@@ -58,7 +92,7 @@ padding: 0 10px;
 
 .trip {
   flex-grow: 1;
-  margin-top: 60px;
+  margin-top: 40px;
   text-align: center;
   // padding: -21px;
   // padding-left: 13%;
@@ -123,6 +157,7 @@ box-shadow: 7px 9px 31px -13px rgba(0,0,0,0.75);
 width: 38%;
 margin-top: 11px;
 }
+
 
 .trip-show-submit-button {
 border: none;
@@ -205,4 +240,12 @@ ul .list-inline {
     font-size: 14px;
     color: black;
     text-decoration: underline;
+  }
+
+  .pink-background {
+    background-color: rgba(255, 192, 203, 0.2);
+  }
+
+  .unpaded {
+    padding: 0;
   }

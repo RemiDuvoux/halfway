@@ -9,7 +9,7 @@ module OffersHelper
 
   def price_difference_styling(price1, price2)
     if price2 > price1
-      return "#408000"
+      return "#239422"
     elsif price1 > price2
       return "red"
     else
@@ -19,11 +19,17 @@ module OffersHelper
 
   def price_difference_text(price1, price2)
     if price2 > price1
-      "Cheaper by €#{(price2 - price1).round}"
+      "Save €#{(price2 - price1).round}"
     elsif price1 > price2
-      "More expensive by €#{(price1 - price2).round}"
+      "Add €#{(price1 - price2).round}"
     else
       "The price is the same!"
+    end
+  end
+
+  def background_color_option(index)
+    if index.odd?
+      return "pink-background"
     end
   end
 end
