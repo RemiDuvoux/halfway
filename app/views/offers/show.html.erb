@@ -30,7 +30,11 @@
       <%# END LEFT PART %>
 
       <div class="col-xs-12 col-md-2">
-      <div class="fb-send" data-href="<%= request.original_url %>"></div>
+        <div class="share-box">
+          <div class="fb-send" data-href="<%= request.original_url %>">
+            <a href="#" class="btn btn-primary btn-messenger">Send</a>
+          </div>
+        </div>
       </div>
 
       <%# RIGHT PART %>

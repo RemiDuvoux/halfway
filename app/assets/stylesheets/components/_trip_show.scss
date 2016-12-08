@@ -10,6 +10,47 @@
   }
 }
 
+.share-box {
+  @media only screen and (min-width: $screen-xs) {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 50%;
+    margin-top: 238px;
+    border: 1px solid white;
+    width: 114px;
+    height: 60px;
+    position: relative;
+    border-radius: 5px;
+    &:before {
+    content: "";
+    height: 1px;
+    width: 170px;
+    position: absolute;
+    left: -171px;
+    background-color: white;
+    top: 50%;
+    }
+    &:after {
+    content: "";
+    height: 1px;
+    width: 170px;
+    position: absolute;
+    right: -171px;
+    background-color: white;
+    top: 50%;
+    }
+  }
+}
+
+.fb-share {
+  position: relative;
+  .btn-messenger {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
 .share-button {
   border: none;
   border-radius: 5px;
