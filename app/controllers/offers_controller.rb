@@ -32,14 +32,13 @@ class OffersController < ApplicationController
     if uncached_routes.empty?
       # This won't do any requests as we work with cache
       @offers = get_offers_for_routes(routes, date_there, date_back)
-      # save unfiltered offers
       @unfiltered_offers = @offers.clone
       # do filtering
       apply_index_filters
-      # sort by total price
-      @offers = @offers.sort_by { |offer| offer.total }
       # remove duplicate cities
       @offers = @offers.uniq { |offer| offer.destination_city }
+      # and sort by total price
+      @offers = @offers.sort_by { |offer| offer.total }
     else # we have to build a new cache
       # save url to redirect back from wait.html.erb via JS
       session[:url_for_wait] = request.original_url
