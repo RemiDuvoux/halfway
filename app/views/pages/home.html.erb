@@ -18,7 +18,7 @@
                 <div class="box-separator"></div>
                <%= select_tag :origin_b, options_for_select(Constants::AIRPORTS.invert.sort), class: "origin-field text-center", prompt: "Your friend's city", style: "border:none" %>
           </div>
-            <div >
+            <div class="submit-button-div">
               <%= submit_tag "Explore", class: "submit-button" %>
               <%end%>
             </div>
