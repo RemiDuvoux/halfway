@@ -1,3 +1,13 @@
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=1186058951480215";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
 <div class="page-wrapper page-wrapper-trip-show">
 
   <div class="total_wrapper">
@@ -19,12 +29,17 @@
           modal_change_name: 'modalLeft' %>
       <%# END LEFT PART %>
 
+      <div class="col-xs-12 col-md-2">
+      <%= raise %>
+      <div class="fb-send" data-href="<%= request.original_url %>"></div>
+      </div>
+
       <%# RIGHT PART %>
       <%= render 'flight_info',
           this_trip: @trip_b,
           other_trip: @trip_a,
           origin_city: @offer.origin_b,
-          destination_city: @offer.destination_city, 
+          destination_city: @offer.destination_city,
           modal_book_name: 'modalBookRight',
           modal_change_name: 'modalRight' %>
       <%# END RIGHT PART %>
