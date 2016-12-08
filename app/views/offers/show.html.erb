@@ -8,6 +8,15 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 
+<%= content_for :after_js do  %>
+<script>
+  $('iframe').load( function() {
+      $('iframe').contents().find("head")
+        .append($("<style type='text/css'>  .pluginButton{font-size:50px;}  </style>"));
+  });
+</script>
+<% end %>
+
 <div class="page-wrapper page-wrapper-trip-show">
 
   <div class="total_wrapper">
