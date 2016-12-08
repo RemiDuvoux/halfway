@@ -11,73 +11,71 @@
 <div class="page-wrapper page-wrapper-trip-show">
 
   <div class="total_wrapper">
-  <div class="wrapper_background has-section">
-    <div class="background_element background-element-show"></div>
-    <div class="background_element background-element-show"></div>
-  </div>
+    <div class="wrapper_background has-section">
+      <div class="background_element background-element-show"></div>
+      <div class="background_element background-element-show"></div>
+    </div>
 
-  <div class="container"> <%# RESPONSIVE GRID CONTAINER %>
-    <div class="row"> <%# RESPONSIVE GRID ROW %>
+    <div class="container"> <%# RESPONSIVE GRID CONTAINER %>
+      <div class="row"> <%# RESPONSIVE GRID ROW %>
 
-      <%# LEFT PART %>
-      <%= render 'flight_info',
-          this_trip: @trip_a,
-          other_trip: @trip_b,
-          origin_city: @offer.origin_a,
-          destination_city: @offer.destination_city,
-          modal_book_name: 'modalBookLeft',
-          modal_change_name: 'modalLeft' %>
-      <%# END LEFT PART %>
+        <%# LEFT PART %>
+        <%= render 'flight_info',
+        this_trip: @trip_a,
+        other_trip: @trip_b,
+        origin_city: @offer.origin_a,
+        destination_city: @offer.destination_city,
+        modal_book_name: 'modalBookLeft',
+        modal_change_name: 'modalLeft' %>
+        <%# END LEFT PART %>
 
-      <div class="col-xs-12 col-md-2">
-        <div class="share-box">
+        <div class="col-xs-12 col-md-2">
           <div class="fb-send" data-href="<%= request.original_url %>">
           </div>
         </div>
-      </div>
 
-      <%# RIGHT PART %>
-      <%= render 'flight_info',
-          this_trip: @trip_b,
-          other_trip: @trip_a,
-          origin_city: @offer.origin_b,
-          destination_city: @offer.destination_city,
-          modal_book_name: 'modalBookRight',
-          modal_change_name: 'modalRight' %>
-      <%# END RIGHT PART %>
+        <%# RIGHT PART %>
+        <%= render 'flight_info',
+        this_trip: @trip_b,
+        other_trip: @trip_a,
+        origin_city: @offer.origin_b,
+        destination_city: @offer.destination_city,
+        modal_book_name: 'modalBookRight',
+        modal_change_name: 'modalRight' %>
+        <%# END RIGHT PART %>
 
-    </div> <%# RESPONSIVE GRID ROW END%>
-  </div>  <%# RESPONSIVE GRID CONTAINER END %>
+      </div> <%# RESPONSIVE GRID ROW END%>
+    </div>  <%# RESPONSIVE GRID CONTAINER END %>
 
 
-  <%# MODAL BOOK LEFT%>
-  <%= render 'book_modal', trip: @trip_a, modal_name: "modalBookLeft" %>
-  <%# MODAL BOOK LEFT END %>
+    <%# MODAL BOOK LEFT%>
+    <%= render 'book_modal', trip: @trip_a, modal_name: "modalBookLeft" %>
+    <%# MODAL BOOK LEFT END %>
 
-  <%# MODAL CHANGE FLIGHTS LEFT PARTIAL%>
-  <%= render 'change_flights_modal',
-      these_trips: @trips_a,
-      other_trips: @trips_b,
-      this_trip: @trip_a,
-      other_trip: @trip_b,
-      right_link: '@trips_b.index(@trip_b)',
-      left_link: '@trips_a.index(trip)',
-      modal_name: "modalLeft" %>
-  <%# MODAL CHANGE FLIGHT LEFT PARTIAL END %>
+    <%# MODAL CHANGE FLIGHTS LEFT PARTIAL%>
+    <%= render 'change_flights_modal',
+    these_trips: @trips_a,
+    other_trips: @trips_b,
+    this_trip: @trip_a,
+    other_trip: @trip_b,
+    right_link: '@trips_b.index(@trip_b)',
+    left_link: '@trips_a.index(trip)',
+    modal_name: "modalLeft" %>
+    <%# MODAL CHANGE FLIGHT LEFT PARTIAL END %>
 
-  <%# MODAL BOOK RIGHT %>
-  <%= render 'book_modal', trip: @trip_b, modal_name: "modalBookRight" %>
-  <%# END MODAL BOOK RIGHT %>
+    <%# MODAL BOOK RIGHT %>
+    <%= render 'book_modal', trip: @trip_b, modal_name: "modalBookRight" %>
+    <%# END MODAL BOOK RIGHT %>
 
-  <%# MODAL CHANGE FLIGHTS RIGHT PARTIAL%>
-  <%= render 'change_flights_modal',
-      these_trips: @trips_b,
-      other_trips: @trips_a,
-      this_trip: @trip_b,
-      other_trip: @trip_a,
-      left_link: '@trips_a.index(@trip_a)',
-      right_link: '@trips_b.index(trip)',
-      modal_name: "modalRight" %>
-  <%# MODAL CHANGE FLIGHT RIGHT PARTIAL END %>
+    <%# MODAL CHANGE FLIGHTS RIGHT PARTIAL%>
+    <%= render 'change_flights_modal',
+    these_trips: @trips_b,
+    other_trips: @trips_a,
+    this_trip: @trip_b,
+    other_trip: @trip_a,
+    left_link: '@trips_a.index(@trip_a)',
+    right_link: '@trips_b.index(trip)',
+    modal_name: "modalRight" %>
+    <%# MODAL CHANGE FLIGHT RIGHT PARTIAL END %>
 
-</div>
+  </div>
