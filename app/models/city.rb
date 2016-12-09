@@ -6,7 +6,6 @@ class City < ApplicationRecord
     "Roma" => "ROM",
     "Madrid" => "MAD",
     "Berlin" => "BER",
-    "Brussels" => "BRU",
     "Athens" => "ATH",
     "Milano" => "MXP",
     "Venice" => "VCE",

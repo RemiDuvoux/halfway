@@ -31,23 +31,21 @@ module Avion
           date_there: @date_there,
           date_back: @date_back,
           trip_options: 5,
-          api_key: ENV["QPX_KEY"]
+          api_key: ENV['QPX_KEY']
         ).make_request
         # DEBUG ONLY
         puts "#{@origin_a} - #{@destination_city} request made to QPX"
       else
-        raise "Search params did not make sense"
+        raise 'Search params did not make sense'
       end
       finish = Time.now # debugging
       took_seconds = (finish - start).round(2)
 
       # Pub-sub part
       # Notify first request is made
-      Pusher.trigger('qpx_updates', 'request_made', {
-        origin: @origin_a,
-        destination: @destination_city,
-        took_seconds: took_seconds
-      })
+      Pusher.trigger('qpx_updates', 'request_made', origin: @origin_a,
+                                                    destination: @destination_city,
+                                                    took_seconds: took_seconds)
 
       start = Time.now # debugging
       if search_params_make_sense(Constants::AIRPORTS)
@@ -56,22 +54,20 @@ module Avion
           destination: @destination_city,
           date_there: @date_there, date_back: @date_back,
           trip_options: 5,
-          api_key: ENV["QPX_KEY"]
+          api_key: ENV['QPX_KEY']
         ).make_request
         # DEBUG ONLY
         puts "#{@origin_b} - #{@destination_city} request made to QPX"
       else
-        raise "Search params did not make sense"
+        raise 'Search params did not make sense'
       end
       finish = Time.now # debugging
       took_seconds = (finish - start).round(2)
 
       # Notify second request is made
-      Pusher.trigger('qpx_updates', 'request_made', {
-        origin: @origin_b,
-        destination: @destination_city,
-        took_seconds: took_seconds
-      })
+      Pusher.trigger('qpx_updates', 'request_made', origin: @origin_b,
+                                                    destination: @destination_city,
+                                                    took_seconds: took_seconds)
 
       comp_info = {
         date_there: @date_there,
@@ -85,20 +81,18 @@ module Avion
       $redis.set(@cache_key_name, Marshal.dump(output))
 
       # Notify we are ready to return request data
-      Pusher.trigger('qpx_updates', 'requests_completed', {
-        increment: 1,
-        roundtrips_analyzed: output.length
-      })
+      Pusher.trigger('qpx_updates', 'requests_completed', increment: 1,
+                                                          roundtrips_analyzed: output.length)
 
       # return an array of matched offers
-      return output
+      output
     end
 
     private
 
     def search_params_make_sense(constants)
-      constants.keys.include?(@origin_a) && constants.keys.include?(@origin_b)  &&
-      (Date.parse(@date_there) < Date.parse(@date_back))
+      constants.keys.include?(@origin_a) && constants.keys.include?(@origin_b) &&
+        (Date.parse(@date_there) < Date.parse(@date_back))
     end
 
     # TODO: DRY with offers controller and check_against_cache

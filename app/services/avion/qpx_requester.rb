@@ -17,9 +17,9 @@ module Avion
     # TODO: Account for 400
     # RestClient::BadRequest: 400 Bad Request
     def make_request
-      url = "https://www.googleapis.com/qpxExpress/v1/trips/search?key=" + @api_key
+      url = 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=' + @api_key
       request = compose_request
-      response = RestClient.post url, request, {content_type: :json, accept: :json}
+      response = RestClient.post url, request, content_type: :json, accept: :json
       response.body
     end
 
@@ -30,21 +30,27 @@ module Avion
       # ONLY CHANGE IT TO MAKE MORE VALUES DYNAMIC
       # WITHOUT BREAKING THE STRUCTURE!
       request_hash = {
-        "request"=>
-        {"slice"=>[
-          {"origin"=>@origin, "destination"=>@destination, "date"=>@date_there, "maxStops"=>0},
-          {"origin"=>@destination, "destination"=>@origin, "date"=>@date_back, "maxStops"=>0}
+        'request' =>
+        { 'slice' => [
+          { 'origin' => @origin,
+            'destination' => @destination,
+            'date' => @date_there,
+            'maxStops' => 0 },
+          { 'origin' => @destination,
+            'destination' => @origin,
+            'date' => @date_back,
+            'maxStops' => 0 }
         ],
-        "passengers"=>
-        {"adultCount"=>1,
-          "infantInLapCount"=>0,
-          "infantInSeatCount"=>0,
-          "childCount"=>0,
-          "seniorCount"=>0},
-          "solutions"=>@trip_options,
-          "refundable"=>false}
-        }
-      return JSON.generate(request_hash)
+          'passengers' =>
+        { 'adultCount' => 1,
+          'infantInLapCount' => 0,
+          'infantInSeatCount' => 0,
+          'childCount' => 0,
+          'seniorCount' => 0 },
+          'solutions' => @trip_options,
+          'refundable' => false }
+      }
+      JSON.generate(request_hash)
     end
   end
 end
