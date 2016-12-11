@@ -15,7 +15,7 @@ class OffersController < ApplicationController
     @trips_a = @offers.reduce([]) {|a, e| a << e.roundtrips.first }.uniq { |t| t.trip_id }
     @trips_b = @offers.reduce([]) {|a, e| a << e.roundtrips.last }.uniq { |t| t.trip_id }
     @trip_a = @trips_a[params[:left].to_i] # set the first roundtrip from city A
-    @trip_b = @trips_b[params[:right].to_i]  # set the second roundtrip from city B
+    @trip_b = @trips_b[params[:right].to_i] # set the second roundtrip from city B
   end
 
   def index
@@ -114,7 +114,7 @@ class OffersController < ApplicationController
 
   def extract_options_from_stamp(stamp)
     from_stamp = params[:stamp].split('_')
-    options = {
+    {
       origin_a: from_stamp.first,
       origin_b: from_stamp[1],
       destination_city: from_stamp[2],

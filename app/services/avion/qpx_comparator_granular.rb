@@ -23,19 +23,19 @@ module Avion
       output = []
       @result_a.trips.each do |trip_1|
         @result_b.trips.each do |trip_2|
-          next if trip_1.price == nil || trip_2.price == nil # safeguard if the trip is an empty object
+          next if trip_1.price.nil? || trip_2.price.nil? # safeguard if the trip is an empty object
           output << Offer.new(
-          origin_a: @origin_a,
-          origin_b: @origin_b,
-          destination_city: trip_1.destination_city,
-          date_there: @date_there,
-          date_back: @date_back,
-          total: trip_1.price + trip_2.price,
-          # we agnosticize QPXTripOption here
-          roundtrips: [
-            RoundTrip.new(qpx_trip_option: trip_1),
-            RoundTrip.new(qpx_trip_option: trip_2)
-          ]
+            origin_a: @origin_a,
+            origin_b: @origin_b,
+            destination_city: trip_1.destination_city,
+            date_there: @date_there,
+            date_back: @date_back,
+            total: trip_1.price + trip_2.price,
+            # we agnosticize QPXTripOption here
+            roundtrips: [
+              RoundTrip.new(qpx_trip_option: trip_1),
+              RoundTrip.new(qpx_trip_option: trip_2)
+            ]
           )
         end
       end
